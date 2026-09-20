@@ -1,41 +1,34 @@
 #!/usr/bin/env python3
-"""
-Synchronise les données de tarification du Google Sheet vers un fichier JSON.
-"""
-
 import json
 import os
 from datetime import datetime
 import sys
 
 try:
-    from google.auth.oauth2.service_account import Credentials as SACredentials
+    from google.auth.oauth2.service_account import Credentials
     from googleapiclient.discovery import build
 except ImportError:
-    print("⚠️  Google API libraries not installed.")
     sys.exit(0)
 
 class SheetSynchronizer:
     def __init__(self):
         self.sheet_id = "12dweBPy5hBkJV4RrqfV-EZKO9lnFqGBpflB_MZcm1gU"
-        self.calendar_range = "Calendrier!A:F"
+        self.calendar_range = "Calendrier!A:L"
         self.service = None
         
-    def authenticate(self) -> bool:
+    def authenticate(self):
         try:
             creds_json = os.getenv('GOOGLE_SERVICE_ACCOUNT_JSON')
             if creds_json:
                 with open('/tmp/creds.json', 'w') as f:
                     f.write(creds_json)
-                creds = SACredentials.from_service_account_file('/tmp/creds.json')
+                creds = Credentials.from_service_account_file('/tmp/creds.json')
             else:
-                print("⚠️  GOOGLE_SERVICE_ACCOUNT_JSON non défini")
                 return False
-                
             self.service = build('sheets', 'v4', credentials=creds)
             return True
         except Exception as e:
-            print(f"❌ Erreur: {e}")
+            print(f"Error: {e}")
             return False
 
     def get_calendar_data(self):
@@ -50,26 +43,25 @@ class SheetSynchronizer:
                 return []
 
             calendar = []
-            headers = values[0] if values else []
-            
-            date_idx = self.find_column_index(headers, ['Date', 'Début'])
-            avail_idx = self.find_column_index(headers, ['Disponible', 'Statut'])
-            price_idx = self.find_column_index(headers, ['Prix', 'Tarif'])
             
             for row in values[1:]:
-                if len(row) <= date_idx or not row[date_idx].strip():
+                if len(row) < 2:
                     continue
                 
-                date_str = row[date_idx].strip()
-                available = True
+                # Colonne A = Date
+                date_str = row[0].strip() if len(row) > 0 else ""
+                if not date_str:
+                    continue
+                
+                # Colonne D = Réservé (index 3)
+                reserved = row[3].strip().lower() if len(row) > 3 else ""
+                available = "oui" not in reserved
+                
+                # Colonne L = Prix à saisir (index 11)
                 price = 89
-                
-                if avail_idx >= 0 and len(row) > avail_idx:
-                    available = 'non' not in row[avail_idx].lower()
-                
-                if price_idx >= 0 and len(row) > price_idx:
+                if len(row) > 11:
                     try:
-                        price = int(float(row[price_idx].replace('€', '').strip()))
+                        price = int(float(row[11].replace('€', '').strip()))
                     except:
                         pass
                 
@@ -80,19 +72,12 @@ class SheetSynchronizer:
                     "minStay": 1
                 })
 
+            print(f"Loaded {len(calendar)} dates")
             return calendar
 
         except Exception as e:
-            print(f"❌ Erreur: {e}")
+            print(f"Error: {e}")
             return []
-
-    @staticmethod
-    def find_column_index(headers, keywords):
-        for i, header in enumerate(headers):
-            for keyword in keywords:
-                if keyword.lower() in header.lower():
-                    return i
-        return -1
 
     def save_to_json(self, calendar_data):
         try:
@@ -112,7 +97,7 @@ class SheetSynchronizer:
             
             return True
         except Exception as e:
-            print(f"❌ Erreur: {e}")
+            print(f"Error: {e}")
             return False
 
     def run(self):
