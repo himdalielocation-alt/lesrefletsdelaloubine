@@ -25,8 +25,8 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 46.4842,
-        "longitude": -1.7650
+        "latitude": 46.4741,
+        "longitude": -1.7483
       },
       "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
       "priceRange": "50€ - 130€ / nuit",
@@ -108,10 +108,13 @@
                     Meilleur prix garanti en direct (Sans frais d'agence)
                 </div>
                 <h1 class="font-serif-title text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">
-                    Votre séjour vue mer face au Puits d'Enfer aux Sables d'Olonne
+                    Votre séjour face à l'océan aux Sables d'Olonne
                 </h1>
+                <p class="text-stone-600 text-lg mb-4 leading-relaxed">
+                    Bienvenue aux <strong>Reflets de la Loubine</strong>. Appartement pour <strong>4 personnes</strong> au sein de la résidence de Lagrange Vacances L'Estran.
+                </p>
                 <p class="text-stone-600 text-lg mb-8 leading-relaxed">
-                    Bienvenue aux <strong>Reflets de la Loubine</strong>, un cocon vue mer entre la baie de Cayola et la plage de Tanchet. Appartement chaleureux idéal pour un couple (<strong>jusqu'à 4 personnes</strong>) au sein de la résidence de standing <em>Lagrange Vacances L'Estran</em>. Vue mer directe depuis le salon et la terrasse, 2 piscines extérieures chauffées ouvertes du 15 mai au 15 octobre, et le cadre préservé de la côte vendéenne.
+                    Vue mer directe depuis le salon et la terrasse, 2 piscines extérieures chauffées ouvertes du 15 mai au 15 octobre, et le cadre préservé de la côte vendéenne.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#reservation" class="inline-flex items-center justify-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-6 py-3.5 rounded-xl font-medium transition shadow-md">
@@ -161,7 +164,7 @@
                 <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <i data-lucide="sparkles" class="w-6 h-6"></i>
                 </div>
-                <h3 class="font-bold text-stone-900 mb-1">Résidence Lagrange L'Estran</h3>
+                <h3 class="font-bold text-stone-900 mb-1">Au sein de la Résidence Lagrange L'Estran</h3>
                 <p class="text-sm text-stone-600">Profitez des infrastructures complètes de la résidence (piscines, aires, cadre privilégié).</p>
             </div>
         </div>
@@ -192,12 +195,12 @@
             <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm max-w-4xl mx-auto">
                 <h3 class="font-bold text-xl mb-4 text-stone-900">À propos de l'appartement</h3>
                 <p class="text-stone-600 mb-4 leading-relaxed">
-                    Au sein de la résidence de vacances prisée <strong>Lagrange L'Estran</strong> aux Sables d'Olonne, face au Puits d'Enfer, cet appartement offre une vue mer directe depuis le salon et la terrasse. Un véritable cocon entre la baie de Cayola et la plage de Tanchet, idéal pour un couple (jusqu'à 4 personnes).
+                    Au sein de la résidence de vacances <strong>Lagrange L'Estran</strong> aux Sables d'Olonne, face au Puits d'Enfer, cet appartement offre une vue mer directe depuis le salon et la terrasse. Un véritable cocon entre la baie de Cayola et la plage de Tanchet, idéal pour un couple (jusqu'à 4 personnes).
                 </p>
                 <div class="grid sm:grid-cols-2 gap-4 text-stone-700 pt-2">
                     <div class="flex items-center gap-3">
                         <i data-lucide="users" class="text-cyan-600"></i>
-                        <span>Capacité : <strong>Couple (max 4 personnes)</strong></span>
+                        <span>Capacité : <strong>4 Personnes</strong></span>
                     </div>
                     <div class="flex items-center gap-3">
                         <i data-lucide="waves" class="text-cyan-600"></i>
@@ -273,11 +276,6 @@
                     <h4 class="font-bold text-stone-900 mb-1">Pistes Cyclables</h4>
                     <p class="text-xs text-stone-500">Départ direct au pied de la résidence</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="tree-pine" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Espaces Verts</h4>
-                    <p class="text-xs text-stone-500">Cadre arboré et environnement calme</p>
-                </div>
             </div>
         </div>
     </section>
@@ -338,7 +336,7 @@
                             Calendrier des disponibilités
                         </h3>
                         <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-md inline-block mt-2 font-medium">
-                            * Calendrier à titre indicatif, non mis à jour quotidiennement.
+                            * Calendrier à titre indicatif, mis à jour 1 fois par jour.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 self-center sm:self-auto">
@@ -523,8 +521,8 @@
         lucide.createIcons();
 
         // Initialiser la carte sur Les Sables d'Olonne
-        const lat = 46.4842;
-        const lng = -1.7650;
+        const lat = 46.4741;
+        const lng = -1.7483;
         
         const map = L.map('map').setView([lat, lng], 14);
 
