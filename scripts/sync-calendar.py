@@ -5,7 +5,7 @@ from datetime import datetime
 import sys
 
 try:
-    from google.auth.oauth2.service_account import Credentials
+    from google.oauth2.service_account import Credentials
     from googleapiclient.discovery import build
 except ImportError:
     sys.exit(0)
@@ -56,20 +56,10 @@ class SheetSynchronizer:
                 # Colonne D = Réservé (index 3)
                 reserved = row[3].strip().lower() if len(row) > 3 else ""
                 available = "oui" not in reserved
-                
-                # Colonne L = Prix à saisir (index 11)
-                price = 89
-                if len(row) > 11:
-                    try:
-                        price = int(float(row[11].replace('€', '').strip()))
-                    except:
-                        pass
-                
+
                 calendar.append({
                     "date": date_str,
-                    "available": available,
-                    "price": price,
-                    "minStay": 1
+                    "available": available
                 })
 
             print(f"Loaded {len(calendar)} dates")

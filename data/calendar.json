@@ -8,15 +8,11 @@
   "calendar": [
     {
       "date": "2026-09-01",
-      "available": true,
-      "price": 89,
-      "minStay": 1
+      "available": true
     },
     {
       "date": "2026-09-02",
-      "available": false,
-      "price": 89,
-      "minStay": 1
+      "available": false
     }
   ]
 }

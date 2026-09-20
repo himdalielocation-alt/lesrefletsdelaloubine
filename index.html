@@ -448,9 +448,7 @@
                 const data = await response.json();
                 data.calendar.forEach(entry => {
                     calendarData[entry.date] = {
-                        available: entry.available,
-                        price: entry.price,
-                        minStay: entry.minStay || 1
+                        available: entry.available
                     };
                 });
 
@@ -485,22 +483,17 @@
                 const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayInfo = calendarData[dateString];
 
-                let bgClasses, content;
+                let bgClasses;
                 if (dayInfo) {
-                    if (dayInfo.available) {
-                        bgClasses = 'bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100';
-                        content = `<div class="font-medium">${day}</div><div class="text-xs text-emerald-700">${dayInfo.price}€</div>`;
-                    } else {
-                        bgClasses = 'bg-rose-100 text-rose-800 border-rose-200 line-through font-semibold';
-                        content = day;
-                    }
+                    bgClasses = dayInfo.available
+                        ? 'bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100'
+                        : 'bg-rose-100 text-rose-800 border-rose-200 line-through font-semibold';
                 } else {
                     bgClasses = 'bg-gray-50 text-gray-400 border-gray-200';
-                    content = day;
                 }
 
-                dayCell.className = `h-10 flex flex-col items-center justify-center rounded-lg border text-sm transition font-medium ${bgClasses}`;
-                dayCell.innerHTML = typeof content === 'number' ? content : content;
+                dayCell.className = `h-10 flex items-center justify-center rounded-lg border text-sm transition font-medium ${bgClasses}`;
+                dayCell.textContent = day;
                 grid.appendChild(dayCell);
             }
         }
