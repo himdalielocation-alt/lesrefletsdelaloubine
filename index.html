@@ -4,7 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les Reflets de la Loubine - Location Saisonnière aux Sables d'Olonne</title>
-    <meta name="description" content="Location d'un appartement 4 couchages dans la résidence Lagrange Vacances L'Estran aux Sables d'Olonne. Piscines, proximité mer et confort garanti.">
+    <meta name="description" content="Appartement vue mer directe, face au Puits d'Enfer, au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne. 2 piscines chauffées (15 mai - 15 octobre), idéal pour un couple, jusqu'à 4 personnes.">
+    <meta name="google-site-verification" content="2eS_3_hDGjSf4t1hywJI_mETRfnnpDDXBLifhzVjJDY" />
+
+    <!-- Schema.org JSON-LD : Location saisonnière -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Les Reflets de la Loubine",
+      "description": "Appartement de vacances pour un couple (jusqu'à 4 personnes) au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne, face au Puits d'Enfer. Vue mer directe depuis le salon et la terrasse. 2 piscines extérieures chauffées, ouvertes du 15 mai au 15 octobre. Un cocon vue mer entre la baie de Cayola et la plage de Tanchet.",
+      "url": "https://lesrefletsdelaloubine.fr",
+      "email": "himdalielocation@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Résidence Lagrange Vacances L'Estran",
+        "addressLocality": "Les Sables d'Olonne",
+        "postalCode": "85100",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 46.4842,
+        "longitude": -1.7650
+      },
+      "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+      "priceRange": "50€ - 130€ / nuit",
+      "numberOfRooms": 2,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": 4
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Vue mer directe", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Piscine chauffée (15 mai - 15 octobre)", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Télévision", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Accès direct piste cyclable", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Espaces verts", "value": true }
+      ],
+      "checkinTime": "16:00",
+      "checkoutTime": "10:00",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Virement bancaire",
+      "touristType": ["Couple", "Famille"],
+      "starRating": {
+        "@type": "Rating",
+        "ratingValue": "3"
+      }
+    }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts : Playfair Display (titres) & Inter (texte) -->
@@ -57,10 +108,10 @@
                     Meilleur prix garanti en direct (Sans frais d'agence)
                 </div>
                 <h1 class="font-serif-title text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">
-                    Votre séjour face à l'océan aux Sables d'Olonne
+                    Votre séjour vue mer face au Puits d'Enfer aux Sables d'Olonne
                 </h1>
                 <p class="text-stone-600 text-lg mb-8 leading-relaxed">
-                    Bienvenue aux <strong>Reflets de la Loubine</strong>. Appartement chaleureux pour <strong>4 personnes</strong> au sein de la résidence de standing <em>Lagrange Vacances L'Estran</em>. Profitez de 2 piscines extérieures ouvertes de mai à octobre et du cadre préservé de la côte vendéenne.
+                    Bienvenue aux <strong>Reflets de la Loubine</strong>, un cocon vue mer entre la baie de Cayola et la plage de Tanchet. Appartement chaleureux idéal pour un couple (<strong>jusqu'à 4 personnes</strong>) au sein de la résidence de standing <em>Lagrange Vacances L'Estran</em>. Vue mer directe depuis le salon et la terrasse, 2 piscines extérieures chauffées ouvertes du 15 mai au 15 octobre, et le cadre préservé de la côte vendéenne.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#reservation" class="inline-flex items-center justify-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-6 py-3.5 rounded-xl font-medium transition shadow-md">
@@ -82,7 +133,7 @@
                     </div>
                     <div>
                         <p class="text-sm font-bold text-stone-900">2 Piscines chauffées</p>
-                        <p class="text-xs text-stone-500">Ouvertes de mai à octobre</p>
+                        <p class="text-xs text-stone-500">Du 15 mai au 15 octobre</p>
                     </div>
                 </div>
             </div>
@@ -141,24 +192,32 @@
             <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm max-w-4xl mx-auto">
                 <h3 class="font-bold text-xl mb-4 text-stone-900">À propos de l'appartement</h3>
                 <p class="text-stone-600 mb-4 leading-relaxed">
-                    Situé dans la résidence de vacances prisée <strong>Lagrange L'Estran</strong> aux Sables d'Olonne, cet appartement parfaitement agencé offre tout le confort moderne pour vos vacances en famille ou entre amis.
+                    Au sein de la résidence de vacances prisée <strong>Lagrange L'Estran</strong> aux Sables d'Olonne, face au Puits d'Enfer, cet appartement offre une vue mer directe depuis le salon et la terrasse. Un véritable cocon entre la baie de Cayola et la plage de Tanchet, idéal pour un couple (jusqu'à 4 personnes).
                 </p>
                 <div class="grid sm:grid-cols-2 gap-4 text-stone-700 pt-2">
                     <div class="flex items-center gap-3">
                         <i data-lucide="users" class="text-cyan-600"></i>
-                        <span>Capacité : <strong>4 couchages</strong></span>
+                        <span>Capacité : <strong>Couple (max 4 personnes)</strong></span>
                     </div>
                     <div class="flex items-center gap-3">
                         <i data-lucide="waves" class="text-cyan-600"></i>
-                        <span><strong>2 piscines ouvertes</strong> (Mai à Octobre)</span>
+                        <span><strong>2 piscines chauffées</strong> (15 mai au 15 octobre)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="eye" class="text-cyan-600"></i>
+                        <span>Vue mer directe (salon & terrasse)</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="bed-double" class="text-cyan-600"></i>
+                        <span>Chambre : 2 lits simples + lit armoire (véritable matelas)</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <i data-lucide="map-pin" class="text-cyan-600"></i>
                         <span>Résidence Lagrange Vacances L'Estran</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="sun" class="text-cyan-600"></i>
-                        <span>Proche de l'océan et des pistes cyclables</span>
+                        <i data-lucide="car" class="text-cyan-600"></i>
+                        <span>Parking gratuit</span>
                     </div>
                 </div>
             </div>
@@ -175,14 +234,19 @@
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="waves" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">2 Piscines</h4>
-                    <p class="text-xs text-stone-500">Ouvertes de mai à octobre dans la résidence</p>
+                    <i data-lucide="eye" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
+                    <h4 class="font-bold text-stone-900 mb-1">Vue Mer Directe</h4>
+                    <p class="text-xs text-stone-500">Depuis le salon et la terrasse</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="bed" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">4 Couchages</h4>
-                    <p class="text-xs text-stone-500">Lit double & banquette lit / convertible</p>
+                    <i data-lucide="waves" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
+                    <h4 class="font-bold text-stone-900 mb-1">2 Piscines Chauffées</h4>
+                    <p class="text-xs text-stone-500">Ouvertes du 15 mai au 15 octobre</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
+                    <i data-lucide="bed-double" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
+                    <h4 class="font-bold text-stone-900 mb-1">Literie</h4>
+                    <p class="text-xs text-stone-500">Chambre : 2 lits simples + lit armoire (véritable matelas)</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
                     <i data-lucide="utensils" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
@@ -197,7 +261,7 @@
                 <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
                     <i data-lucide="car" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
                     <h4 class="font-bold text-stone-900 mb-1">Parking</h4>
-                    <p class="text-xs text-stone-500">Stationnement facilité dans la résidence</p>
+                    <p class="text-xs text-stone-500">Stationnement gratuit dans la résidence</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
                     <i data-lucide="coffee" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
@@ -322,7 +386,7 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="font-serif-title text-3xl font-bold text-stone-900 mb-4">Emplacement aux Sables d'Olonne</h2>
-                <p class="text-stone-600">Résidence Lagrange Vacances L'Estran - À proximité immédiate de l'océan et des commerces.</p>
+                <p class="text-stone-600">Résidence en bord de mer, face au Puits d'Enfer, entre la baie de Cayola et la plage de Tanchet.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-start">
@@ -332,28 +396,52 @@
 
                 <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-6">
                     <h3 class="font-bold text-lg text-stone-900">À proximité :</h3>
-                    
+
                     <div class="flex items-start gap-3">
                         <i data-lucide="waves" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
                         <div>
-                            <p class="font-semibold text-sm">Plage & Océan</p>
-                            <p class="text-xs text-stone-500">Accès rapide à pied ou à vélo</p>
+                            <p class="font-semibold text-sm">Plage du Tanchet</p>
+                            <p class="text-xs text-stone-500">1,5 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="shopping-bag" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <i data-lucide="heart-pulse" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
                         <div>
-                            <p class="font-semibold text-sm">Commerces & Marchés</p>
-                            <p class="text-xs text-stone-500">Restaurants, boulangerie et supers marchés proches</p>
+                            <p class="font-semibold text-sm">Thalasso Côte Ouest</p>
+                            <p class="text-xs text-stone-500">2 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="compass" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <i data-lucide="map-pin" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
                         <div>
-                            <p class="font-semibold text-sm">Port & Remblai des Sables</p>
-                            <p class="text-xs text-stone-500">À quelques minutes en voiture ou en piste cyclable</p>
+                            <p class="font-semibold text-sm">Centre-ville & Grande Plage des Sables</p>
+                            <p class="text-xs text-stone-500">4 km</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="anchor" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <div>
+                            <p class="font-semibold text-sm">Port de Bourgenay</p>
+                            <p class="text-xs text-stone-500">7 km</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="waves" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <div>
+                            <p class="font-semibold text-sm">Plage du Veillon</p>
+                            <p class="text-xs text-stone-500">9 km</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <i data-lucide="bike" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <div>
+                            <p class="font-semibold text-sm">Piste cyclable</p>
+                            <p class="text-xs text-stone-500">Accès direct depuis la résidence</p>
                         </div>
                     </div>
                 </div>
@@ -383,6 +471,19 @@
                 <p class="text-xs text-stone-400 mt-4">
                     Le clic ouvrira directement votre application de messagerie (Gmail, Mail, Outlook).
                 </p>
+            </div>
+
+            <!-- Encart Airbnb -->
+            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700/50 max-w-xl mx-auto mb-8">
+                <div class="flex items-center gap-3 justify-center mb-2">
+                    <i data-lucide="home" class="text-rose-400 w-5 h-5"></i>
+                    <p class="font-semibold text-white">Vous préférez réserver via Airbnb ?</p>
+                </div>
+                <p class="text-sm text-stone-400 mb-4">Notre annonce est également disponible sur Airbnb si vous souhaitez passer par leur plateforme.</p>
+                <a href="AJOUTER-LIEN-AIRBNB" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition border border-stone-600">
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                    Voir l'annonce sur Airbnb
+                </a>
             </div>
 
             <!-- Coordonnées en clair -->
