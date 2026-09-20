@@ -29,5 +29,5 @@ jobs:
           git config user.email "action@github.com"
           git config user.name "GitHub Actions"
           git add data/calendar.json
-          git commit -m "🔄 Sync calendrier" || true
-          git push
+          git commit -m "🔄 Sync calendrier ($(date -u +'%Y-%m-%d %H:%M:%S UTC'))" || true
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
