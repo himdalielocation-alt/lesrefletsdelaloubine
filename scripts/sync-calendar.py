@@ -47,12 +47,16 @@ class SheetSynchronizer:
             for row in values[1:]:
                 if len(row) < 2:
                     continue
-                
-                # Colonne A = Date
-                date_str = row[0].strip() if len(row) > 0 else ""
-                if not date_str:
+
+                # Colonne A = Date (format JJ/MM/AAAA dans le Sheet)
+                raw_date = row[0].strip() if len(row) > 0 else ""
+                if not raw_date:
                     continue
-                
+                try:
+                    date_str = datetime.strptime(raw_date, "%d/%m/%Y").strftime("%Y-%m-%d")
+                except ValueError:
+                    continue
+
                 # Colonne D = Réservé (index 3)
                 reserved = row[3].strip().lower() if len(row) > 3 else ""
                 available = "oui" not in reserved
