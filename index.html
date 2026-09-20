@@ -437,19 +437,34 @@
             .openPopup();
 
         // Script du Calendrier
-        let currentDate = new Date();
+                let currentDate = new Date();
+        let calendarData = {};
 
-        // Dates d'exemples réservées (Format : AAAA-MM-JJ)
-        const bookedDates = [
-            "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18",
-            "2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04", "2026-08-05", "2026-08-06", "2026-08-07", "2026-08-08"
-        ];
+        async function loadCalendarData() {
+            try {
+                const response = await fetch('data/calendar.json');
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data = await response.json();
+                data.calendar.forEach(entry => {
+                    calendarData[entry.date] = {
+                        available: entry.available,
+                        price: entry.price,
+                        minStay: entry.minStay || 1
+                    };
+                });
+
+                renderCalendar();
+            } catch (error) {
+                console.error('Erreur:', error);
+            }
+        }
 
         function renderCalendar() {
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
 
-            const firstDayIndex = (new Date(year, month, 1).getDay() + 6) % 7; // Lundi = 0
+            const firstDayIndex = (new Date(year, month, 1).getDay() + 6) % 7;
             const lastDay = new Date(year, month + 1, 0).getDate();
 
             const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
@@ -459,25 +474,33 @@
             const grid = document.getElementById('calendarGrid');
             grid.innerHTML = '';
 
-            // Cases vides début de mois
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = 'h-10 border border-transparent';
                 grid.appendChild(emptyCell);
             }
 
-            // Jours du mois
             for (let day = 1; day <= lastDay; day++) {
                 const dayCell = document.createElement('div');
                 const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const isBooked = bookedDates.includes(dateString);
+                const dayInfo = calendarData[dateString];
 
-                let bgClasses = isBooked 
-                    ? 'bg-rose-100 text-rose-800 border-rose-200 line-through font-semibold'
-                    : 'bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100';
+                let bgClasses, content;
+                if (dayInfo) {
+                    if (dayInfo.available) {
+                        bgClasses = 'bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100';
+                        content = `<div class="font-medium">${day}</div><div class="text-xs text-emerald-700">${dayInfo.price}€</div>`;
+                    } else {
+                        bgClasses = 'bg-rose-100 text-rose-800 border-rose-200 line-through font-semibold';
+                        content = day;
+                    }
+                } else {
+                    bgClasses = 'bg-gray-50 text-gray-400 border-gray-200';
+                    content = day;
+                }
 
-                dayCell.className = `h-10 flex items-center justify-center rounded-lg border text-sm transition font-medium ${bgClasses}`;
-                dayCell.textContent = day;
+                dayCell.className = `h-10 flex flex-col items-center justify-center rounded-lg border text-sm transition font-medium ${bgClasses}`;
+                dayCell.innerHTML = typeof content === 'number' ? content : content;
                 grid.appendChild(dayCell);
             }
         }
@@ -492,8 +515,7 @@
             renderCalendar();
         });
 
-        // Premier rendu du calendrier
-        renderCalendar();
+        loadCalendarData();
     </script>
 </body>
 </html>
