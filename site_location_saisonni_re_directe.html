@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Cocon des Oliviers | Location Saisonnière en Direct</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        terracotta: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#e07a5f',
+                            600: '#d15d3d',
+                            700: '#b84324',
+                        },
+                        sable: {
+                            50: '#faf8f5',
+                            100: '#f4efe6',
+                            200: '#e7ddcb',
+                            300: '#d7c4a8',
+                        },
+                        sauge: {
+                            100: '#e3e9e3',
+                            500: '#81b29a',
+                            600: '#62967d',
+                            700: '#48715e',
+                        },
+                        ardoise: '#3d405b'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS & JS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #3d405b;
+            background-color: #faf8f5;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .bg-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-terracotta-500 selection:text-white">
+
+    <!-- Navigation Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass border-b border-sable-200/50" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-full bg-terracotta-500 text-white flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:scale-105 transition-transform">
+                    C
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-lg font-bold text-ardoise leading-tight">Le Cocon des Oliviers</span>
+                    <span class="text-xs text-sauge-700 tracking-wider uppercase font-semibold">Gîte & Villa en Provence</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#presentation" class="hover:text-terracotta-500 transition-colors">Découvrir</a>
+                <a href="#equipements" class="hover:text-terracotta-500 transition-colors">Équipements</a>
+                <a href="#tarifs" class="hover:text-terracotta-500 transition-colors">Tarifs</a>
+                <a href="#avis" class="hover:text-terracotta-500 transition-colors">Avis</a>
+                <a href="#localisation" class="hover:text-terracotta-500 transition-colors">Situation</a>
+                <button onclick="toggleModal('guide-modal')" class="text-xs bg-sauge-100 text-sauge-700 px-3 py-1.5 rounded-full font-semibold hover:bg-sauge-500 hover:text-white transition-all flex items-center gap-1">
+                    <i data-lucide="help-circle" class="w-3.5 h-3.5"></i> Guide Hébergement
+                </button>
+            </nav>
+
+            <a href="#reservation" class="hidden sm:inline-flex items-center gap-2 bg-terracotta-500 text-white px-5 py-2.5 rounded-full font-medium hover:bg-terracotta-600 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                <span>Réserver en direct</span>
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 rounded-lg text-ardoise hover:bg-sable-100" onclick="toggleMobileMenu()" aria-label="Menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-sable-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#presentation" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-terracotta-500">Découvrir le logement</a>
+            <a href="#equipements" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-terracotta-500">Équipements</a>
+            <a href="#tarifs" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-terracotta-500">Tarifs & Disponibilités</a>
+            <a href="#avis" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-terracotta-500">Avis clients</a>
+            <a href="#localisation" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-terracotta-500">Localisation</a>
+            <button onclick="toggleMobileMenu(); toggleModal('guide-modal');" class="w-full text-left py-2 text-base font-medium text-sauge-700 flex items-center gap-2">
+                <i data-lucide="help-circle" class="w-5 h-5"></i> Comment mettre en ligne ce site ?
+            </button>
+            <a href="#reservation" onclick="toggleMobileMenu()" class="block w-full text-center bg-terracotta-500 text-white py-3 rounded-xl font-semibold shadow">
+                Réserver en direct
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center bg-hero pt-20 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto text-center text-white z-10 py-16">
+            
+            <!-- Direct Booking Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md border border-white/30 px-4 py-2 rounded-full text-sm font-medium mb-8 animate-fade-in shadow-xl">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Meilleur prix garanti en direct (sans frais Airbnb/Booking)</span>
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6 drop-shadow-md">
+                Le Cocon des Oliviers
+            </h1>
+            
+            <p class="text-lg sm:text-2xl font-light text-sable-100 max-w-2xl mx-auto mb-10 leading-relaxed drop-shadow">
+                Un havre de paix confidentiel avec piscine chauffée au cœur de la Provence sauvage.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#reservation" class="w-full sm:w-auto bg-terracotta-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-terracotta-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 flex items-center justify-center gap-3">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    <span>Réserver en direct</span>
+                </a>
+                <a href="#presentation" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2">
+                    <span>Découvrir le logement</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+            <!-- Highlights Quick Specs -->
+            <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto bg-black/30 backdrop-blur-md p-4 sm:p-6 rounded-2xl border border-white/10">
+                <div class="flex flex-col items-center">
+                    <i data-lucide="users" class="w-6 h-6 text-terracotta-500 mb-1"></i>
+                    <span class="text-sm text-gray-300">Capacité</span>
+                    <span class="font-semibold text-white">4 à 6 Personnes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-lucide="bed" class="w-6 h-6 text-terracotta-500 mb-1"></i>
+                    <span class="text-sm text-gray-300">Chambres</span>
+                    <span class="font-semibold text-white">2 Suites</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-lucide="waves" class="w-6 h-6 text-terracotta-500 mb-1"></i>
+                    <span class="text-sm text-gray-300">Piscine</span>
+                    <span class="font-semibold text-white">Chauffée 28°C</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <i data-lucide="wifi" class="w-6 h-6 text-terracotta-500 mb-1"></i>
+                    <span class="text-sm text-gray-300">Internet</span>
+                    <span class="font-semibold text-white">Fibre Wifi 6</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Banner (Avantages de réserver en direct) -->
+    <section class="bg-sauge-700 text-white py-12 px-4 sm:px-6 relative z-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase font-bold tracking-widest text-sauge-100 bg-sauge-600/50 px-3 py-1 rounded-full">Transparence & Économies</span>
+                <h2 class="font-serif text-2xl sm:text-3xl font-bold mt-2">Pourquoi réserver directement chez nous ?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="bg-sauge-600/40 p-5 rounded-2xl border border-sauge-500/30 flex items-start gap-4">
+                    <div class="p-3 bg-terracotta-500 rounded-xl text-white shrink-0">
+                        <i data-lucide="percent" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-white mb-1">-15% Moins Cher</h3>
+                        <p class="text-sm text-sauge-100">Aucun frais de commission ou d'intermédiaire prélevé par les plateformes.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sauge-600/40 p-5 rounded-2xl border border-sauge-500/30 flex items-start gap-4">
+                    <div class="p-3 bg-terracotta-500 rounded-xl text-white shrink-0">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-white mb-1">Paiement Sécurisé</h3>
+                        <p class="text-sm text-sauge-100">Acompte clair, contrat officiel et reçu direct délivré à la réservation.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sauge-600/40 p-5 rounded-2xl border border-sauge-500/30 flex items-start gap-4">
+                    <div class="p-3 bg-terracotta-500 rounded-xl text-white shrink-0">
+                        <i data-lucide="message-square" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-white mb-1">Contact Direct Host</h3>
+                        <p class="text-sm text-sauge-100">Réponse rapide, conseils sur-mesure et accueil personnalisé sur place.</p>
+                    </div>
+                </div>
+
+                <div class="bg-sauge-600/40 p-5 rounded-2xl border border-sauge-500/30 flex items-start gap-4">
+                    <div class="p-3 bg-terracotta-500 rounded-xl text-white shrink-0">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg text-white mb-1">Flexibilité Arrivée</h3>
+                        <p class="text-sm text-sauge-100">Arrivée autonome possible via boîte à clés ou accueil chaleureux en personne.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentation & Photo Gallery Section -->
+    <section id="presentation" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-terracotta-600 text-sm font-bold tracking-widest uppercase">Bienvenue en Provence</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise leading-tight">
+                    Une parenthèse enchantée au milieu des oliviers
+                </h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Niché au cœur d'un domaine privé de 3 000 m², le <strong>Cocon des Oliviers</strong> vous offre le mariage parfait entre charme authentique provençal et confort moderne ultra-soigné.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Profitez de la piscine privée chauffée de mai à octobre, des petits-déjeuners sous la tonnelle d'ombrage et des couchers de soleil imprenables sur le Luberon. À seulement 10 minutes des villages classés.
+                </p>
+
+                <!-- Key details grid -->
+                <div class="grid grid-cols-2 gap-4 pt-4 border-t border-sable-200">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-sauge-600"></i>
+                        <span class="text-sm font-medium">Superficie : 95 m²</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-sauge-600"></i>
+                        <span class="text-sm font-medium">Terrain : 3 000 m²</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-sauge-600"></i>
+                        <span class="text-sm font-medium">Climatisation silencieuse</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-sauge-600"></i>
+                        <span class="text-sm font-medium">Parking privé 3 places</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Gallery Grid -->
+            <div class="lg:col-span-7">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl cursor-pointer shadow-md" onclick="openLightbox(0)">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Vue extérieure et piscine" class="w-full h-80 sm:h-96 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                            <span class="opacity-0 group-hover:opacity-100 text-white bg-black/50 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm transition-opacity flex items-center gap-2">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i> Agrandir
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md" onclick="openLightbox(1)">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=600&q=80" alt="Salon chaleureux" class="w-full h-40 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md" onclick="openLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=600&q=80" alt="Chambre principale suite" class="w-full h-40 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md" onclick="openLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Cuisine équipée" class="w-full h-40 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                    </div>
+
+                    <div class="relative group overflow-hidden rounded-2xl cursor-pointer shadow-md" onclick="openLightbox(4)">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Salle de bain design" class="w-full h-40 sm:h-44 object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                            <span class="text-white text-xs font-semibold bg-terracotta-500/90 px-3 py-1.5 rounded-full">+ Galerie (5)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Amenities / Équipements Section -->
+    <section id="equipements" class="bg-sable-100 py-20 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-terracotta-600 text-sm font-bold tracking-widest uppercase">Tout le confort comme chez vous</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise mt-2">
+                    Équipements & Prestations Incluses
+                </h2>
+                <p class="text-gray-600 mt-3">Pensé dans le moindre détail pour vous assurer des vacances sereines et relaxantes.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Amenity item -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sauge-100 text-sauge-700 flex items-center justify-center mb-4">
+                        <i data-lucide="waves" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Piscine Chauffée</h3>
+                    <p class="text-sm text-gray-500">Bain de soleil, parasols, transats premium et traitement au sel.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-4">
+                        <i data-lucide="wind" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Climatisation Réversible</h3>
+                    <p class="text-sm text-gray-500">Réglage indépendant de la température dans chaque chambre.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sauge-100 text-sauge-700 flex items-center justify-center mb-4">
+                        <i data-lucide="wifi" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Fibre & Wifi Haut Débit</h3>
+                    <p class="text-sm text-gray-500">Connexion rapide idéale pour le télétravail ou le streaming 4K.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-4">
+                        <i data-lucide="utensils" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Cuisine Équipée</h3>
+                    <p class="text-sm text-gray-500">Nespresso, lave-vaisselle, four, plaques induction & grille-pain.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sauge-100 text-sauge-700 flex items-center justify-center mb-4">
+                        <i data-lucide="flame" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Barbecue & Plancha</h3>
+                    <p class="text-sm text-gray-500">Espace repas ombragé à l'extérieur avec grande table en bois.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-4">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Draps & Serviettes Inclus</h3>
+                    <p class="text-sm text-gray-500">Linge de lit de qualité hôtelière et serviettes de bain fournies.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sauge-100 text-sauge-700 flex items-center justify-center mb-4">
+                        <i data-lucide="car" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Parking Privé Protégé</h3>
+                    <p class="text-sm text-gray-500">Stationnement gratuit dans la propriété sécurisée avec portail auto.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-sable-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-terracotta-50 text-terracotta-600 flex items-center justify-center mb-4">
+                        <i data-lucide="baby" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-lg text-ardoise mb-1">Kit Bébés Sur Demande</h3>
+                    <p class="text-sm text-gray-500">Lit parapluie, chaise haute et baignoire bébé mis à disposition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rates & Calendar Availability Section -->
+    <section id="tarifs" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-terracotta-600 text-sm font-bold tracking-widest uppercase">Transparence des Prix</span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise mt-2">
+                Tarifs par Saison
+            </h2>
+            <p class="text-gray-600 mt-3">Tarifs directs sans mauvaises surprises. Taxe de séjour et ménage inclus.</p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            <!-- Basse Saison -->
+            <div class="bg-white rounded-3xl p-8 border border-sable-200 shadow-sm hover:border-sauge-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sauge-700 bg-sauge-100 px-3 py-1 rounded-full">Novembre — Mars</span>
+                    <h3 class="font-serif text-2xl font-bold text-ardoise mt-4">Basse Saison</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-ardoise">110€</span>
+                        <span class="text-gray-500">/ nuit</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Minimum 2 nuits</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Wifi & Chauffage inclus</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Option ménage fin de séjour</li>
+                    </ul>
+                </div>
+                <a href="#reservation" class="w-full text-center bg-sable-100 hover:bg-sable-200 text-ardoise font-semibold py-3 rounded-xl transition-colors">Choisir cette période</a>
+            </div>
+
+            <!-- Moyenne Saison (Featured) -->
+            <div class="bg-white rounded-3xl p-8 border-2 border-terracotta-500 shadow-xl relative flex flex-col justify-between scale-105">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-terracotta-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md">
+                    Le Plus Populaire
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-terracotta-600 bg-terracotta-50 px-3 py-1 rounded-full">Avril — Juin / Sept — Oct</span>
+                    <h3 class="font-serif text-2xl font-bold text-ardoise mt-4">Moyenne Saison</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-terracotta-600">150€</span>
+                        <span class="text-gray-500">/ nuit</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-terracotta-500"></i> Minimum 3 nuits</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-terracotta-500"></i> Piscine ouverte & chauffée</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-terracotta-500"></i> Welcome basket offertem</li>
+                    </ul>
+                </div>
+                <a href="#reservation" class="w-full text-center bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold py-3 rounded-xl transition-all shadow-md">Choisir cette période</a>
+            </div>
+
+            <!-- Haute Saison -->
+            <div class="bg-white rounded-3xl p-8 border border-sable-200 shadow-sm hover:border-sauge-500 transition-all flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sauge-700 bg-sauge-100 px-3 py-1 rounded-full">Juillet — Août</span>
+                    <h3 class="font-serif text-2xl font-bold text-ardoise mt-4">Haute Saison</h3>
+                    <div class="my-6">
+                        <span class="text-4xl font-bold text-ardoise">210€</span>
+                        <span class="text-gray-500">/ nuit</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-gray-600 mb-8">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Du samedi au samedi (7 nuits)</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Accès piscine 100% privé</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-sauge-600"></i> Apéritif d'accueil provençal</li>
+                    </ul>
+                </div>
+                <a href="#reservation" class="w-full text-center bg-sable-100 hover:bg-sable-200 text-ardoise font-semibold py-3 rounded-xl transition-colors">Choisir cette période</a>
+            </div>
+        </div>
+
+        <!-- Availability Widget Preview -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-sable-200 shadow-sm max-w-4xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-ardoise">Aperçu du Calendrier</h3>
+                    <p class="text-sm text-gray-500">Mise à jour quotidienne des disponibilités</p>
+                </div>
+                <div class="flex items-center gap-4 text-xs font-medium">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-emerald-500"></span> Disponible</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-rose-400"></span> Réservé</span>
+                </div>
+            </div>
+
+            <!-- Fake Calendar Month View -->
+            <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-semibold text-gray-400 mb-2">
+                <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+            </div>
+            <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center text-sm">
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">1</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">2</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">3</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">4</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">5</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">6</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">7</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">8</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">9</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">10</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">11</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">12</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">13</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">14</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-rose-100 text-rose-500 line-through">15</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">16</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">17</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">18</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">19</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">20</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">21</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">22</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">23</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">24</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">25</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">26</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">27</span>
+                <span class="p-2 sm:p-3 rounded-xl bg-emerald-50 text-emerald-800 font-medium">28</span>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-4">* Pour vérifier la disponibilité de vos dates exactes, remplissez le formulaire de réservation ci-dessous.</p>
+        </div>
+    </section>
+
+    <!-- Guest Reviews Section -->
+    <section id="avis" class="bg-sauge-100/50 py-20 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="flex items-center justify-center gap-1 text-amber-400 mb-2">
+                    <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                    <span class="text-ardoise font-bold text-sm ml-2">4.98 / 5 sur 42 avis</span>
+                </div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise">
+                    Ce que nos voyageurs en disent
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review Card 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sable-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed mb-6">
+                            « Séjour fabuleux ! La maison est encore plus belle en vrai. Réserver en direct nous a permis d'économiser près de 200€ sur notre semaine par rapport à Airbnb, et l'accueil des hôtes était d'une rare gentillesse ! »
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sable-100">
+                        <div class="w-10 h-10 rounded-full bg-sauge-500 text-white font-bold flex items-center justify-center text-sm">
+                            SL
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-ardoise">Sophie & Laurent</h4>
+                            <span class="text-xs text-gray-400">Août 2025 • Lyon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sable-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed mb-6">
+                            « Calme absolu, piscine parfaitement chauffée, literie extrêmement confortable. Tout était parfait. Nous reviendrons sans hésiter l'année prochaine ! »
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sable-100">
+                        <div class="w-10 h-10 rounded-full bg-terracotta-500 text-white font-bold flex items-center justify-center text-sm">
+                            MD
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-ardoise">Marc D.</h4>
+                            <span class="text-xs text-gray-400">Juillet 2025 • Bruxelles</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sable-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-amber-400 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm italic leading-relaxed mb-6">
+                            « Très bonne communication et conseils au top pour visiter les marchés locaux et restos secrets du coin. Une très belle adresse à garder précieusement. »
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-sable-100">
+                        <div class="w-10 h-10 rounded-full bg-ardoise text-white font-bold flex items-center justify-center text-sm">
+                            EA
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-sm text-ardoise">Elena & Alex</h4>
+                            <span class="text-xs text-gray-400">Juin 2025 • Genève</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Nearby Activities Section -->
+    <section id="localisation" class="py-20 px-4 sm:px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-terracotta-600 text-sm font-bold tracking-widest uppercase">Localisation Idéale</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise">
+                    Entre nature et villages de charme
+                </h2>
+                <p class="text-gray-600 leading-relaxed">
+                    Situé dans un cadre paisible préservé du bruit tout en restant proche de tous les commerces, restaurants typiques et sentiers de randonnée.
+                </p>
+
+                <!-- Nearby highlights -->
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-start gap-4">
+                        <div class="p-2.5 bg-sauge-100 text-sauge-700 rounded-xl shrink-0">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-ardoise">Villages classés du Luberon</h4>
+                            <p class="text-sm text-gray-500">Gordes, Roussillon et Ménerbes à 15 minutes en voiture.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-2.5 bg-terracotta-50 text-terracotta-600 rounded-xl shrink-0">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-ardoise">Commerces & Marché Provençal</h4>
+                            <p class="text-sm text-gray-500">Boulangerie et primeur à 3 min, grand marché provençal le dimanche.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="p-2.5 bg-sauge-100 text-sauge-700 rounded-xl shrink-0">
+                            <i data-lucide="plane" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-ardoise">Accès & Transports</h4>
+                            <p class="text-sm text-gray-500">Gare TGV Avignon à 35 min, Aéroport Marseille Provence à 50 min.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaflet Interactive Map -->
+            <div class="lg:col-span-7">
+                <div class="bg-white p-3 rounded-3xl shadow-md border border-sable-200">
+                    <div id="map" class="w-full h-96 rounded-2xl z-10"></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Direct Booking Request Form with Instant Calculator -->
+    <section id="reservation" class="py-20 px-4 sm:px-6 bg-sable-100">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-sable-200">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-terracotta-600 bg-terracotta-50 px-3 py-1 rounded-full">Sans frais intermédiaire</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-ardoise mt-3">
+                    Demande de Réservation Directe
+                </h2>
+                <p class="text-sm text-gray-500 mt-2">Remplissez le formulaire ci-dessous pour vérifier la disponibilité et recevoir une proposition personnalisée sans engagement sous 2 heures.</p>
+            </div>
+
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-6">
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Prénom & Nom *</label>
+                        <input type="text" required placeholder="ex: Claire Dupont" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Adresse Email *</label>
+                        <input type="email" required placeholder="ex: claire@example.com" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Numéro de Téléphone *</label>
+                        <input type="tel" required placeholder="ex: 06 12 34 56 78" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Période / Saison souhaitée *</label>
+                        <select id="season-select" onchange="calculatePrice()" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm bg-white">
+                            <option value="110">Basse Saison (110€ / nuit)</option>
+                            <option value="150" selected>Moyenne Saison (150€ / nuit)</option>
+                            <option value="210">Haute Saison (210€ / nuit)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Date d'arrivée *</label>
+                        <input type="date" required id="checkin-date" onchange="calculatePrice()" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Date de départ *</label>
+                        <input type="date" required id="checkout-date" onchange="calculatePrice()" class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-ardoise mb-2">Nombre de voyageurs *</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm bg-white">
+                            <option>1 à 2 Personnes</option>
+                            <option selected>3 à 4 Personnes</option>
+                            <option>5 à 6 Personnes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Dynamic Price Estimator Widget -->
+                <div class="bg-sauge-100/60 p-5 rounded-2xl border border-sauge-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2.5 bg-sauge-600 text-white rounded-xl">
+                            <i data-lucide="calculator" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase font-bold text-sauge-700 tracking-wider">Estimation Automatique</span>
+                            <div class="text-sm font-medium text-ardoise" id="nights-count">Sélectionnez vos dates ci-dessus</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-gray-500 block">Montant total estimé :</span>
+                        <span class="text-2xl font-bold text-terracotta-600" id="total-price">0 €</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-ardoise mb-2">Message ou demandes particulières</label>
+                    <textarea rows="3" placeholder="Arrivée tardive, kit bébé souhaité, questions..." class="w-full px-4 py-3 rounded-xl border border-sable-200 focus:outline-none focus:ring-2 focus:ring-terracotta-500 transition-all text-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white font-semibold py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all text-base flex items-center justify-center gap-2">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                    <span>Envoyer la demande de réservation</span>
+                </button>
+
+                <p class="text-center text-xs text-gray-400">
+                    <i data-lucide="lock" class="w-3.5 h-3.5 inline mr-1"></i> Vos informations sont confidentielles et ne seront jamais partagées à des tiers.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-ardoise text-white pt-16 pb-12 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-gray-700">
+            
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-terracotta-500 text-white flex items-center justify-center font-serif font-bold">C</div>
+                    <span class="font-serif text-lg font-bold">Le Cocon des Oliviers</span>
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Location de vacances de charme en Provence avec piscine chauffée. Réservation directe sans frais.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-base mb-4 text-sable-100">Navigation</h4>
+                <ul class="space-y-2 text-sm text-gray-400">
+                    <li><a href="#presentation" class="hover:text-terracotta-500 transition-colors">Le Logement</a></li>
+                    <li><a href="#equipements" class="hover:text-terracotta-500 transition-colors">Équipements</a></li>
+                    <li><a href="#tarifs" class="hover:text-terracotta-500 transition-colors">Tarifs & Disponibilités</a></li>
+                    <li><a href="#localisation" class="hover:text-terracotta-500 transition-colors">Plan d'accès</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-base mb-4 text-sable-100">Contact Direct</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4 text-terracotta-500"></i>
+                        <span>+33 (0)6 12 34 56 78</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4 text-terracotta-500"></i>
+                        <span>contact@lecocondesoliviers.fr</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i>
+                        <span>WhatsApp disponible</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-base mb-4 text-sable-100">Héberger mon site</h4>
+                <p class="text-xs text-gray-400 mb-4 leading-relaxed">
+                    Vous avez généré ce site avec Claude ? Cliquez ci-dessous pour apprendre à le mettre en ligne 100% gratuitement.
+                </p>
+                <button onclick="toggleModal('guide-modal')" class="bg-sauge-600 hover:bg-sauge-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all w-full flex items-center justify-center gap-2">
+                    <i data-lucide="rocket" class="w-4 h-4"></i> Guide de mise en ligne gratuit
+                </button>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+            <p>© 2026 Le Cocon des Oliviers. Tous droits réservés.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-white">Mentions Légales</a>
+                <a href="#" class="hover:text-white">Politique de Confidentialité</a>
+                <a href="#" class="hover:text-white">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Lightbox Photo Gallery -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-terracotta-500 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Agrandissement photo" class="max-w-full max-h-[85vh] rounded-2xl object-contain">
+    </div>
+
+    <!-- Modal Guide d'Hébergement Gratuit Pas-à-Pas -->
+    <div id="guide-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="toggleModal('guide-modal')" class="absolute top-6 right-6 text-gray-400 hover:text-ardoise p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="flex items-center gap-3 text-sauge-700 mb-2">
+                <i data-lucide="sparkles" class="w-6 h-6"></i>
+                <span class="text-xs font-bold uppercase tracking-wider">Tutoriel Sans Code</span>
+            </div>
+            
+            <h3 class="font-serif text-2xl font-bold text-ardoise mb-4">
+                Comment mettre votre site en ligne GRATUITEMENT ?
+            </h3>
+
+            <div class="space-y-6 text-sm text-gray-600">
+                <p>Suivez ces 3 étapes très simples pour publier votre site internet sur Google gratuitement et sans abonnement !</p>
+
+                <div class="bg-sable-100 p-4 rounded-2xl border border-sable-200">
+                    <h4 class="font-bold text-ardoise flex items-center gap-2 mb-1">
+                        <span class="w-6 h-6 rounded-full bg-terracotta-500 text-white text-xs flex items-center justify-center">1</span>
+                        Enregistrer le code sur votre ordinateur
+                    </h4>
+                    <p class="text-xs text-gray-500 pl-8">
+                        Copiez tout ce code HTML, ouvrez le <strong>Bloc-notes</strong> (sur Windows) ou <strong>TextEdit</strong> (sur Mac), collez-y le code, puis enregistrez le fichier sous le nom exact : <code class="bg-white px-2 py-0.5 rounded font-mono text-terracotta-600">index.html</code>.
+                    </p>
+                </div>
+
+                <div class="bg-sable-100 p-4 rounded-2xl border border-sable-200">
+                    <h4 class="font-bold text-ardoise flex items-center gap-2 mb-1">
+                        <span class="w-6 h-6 rounded-full bg-terracotta-500 text-white text-xs flex items-center justify-center">2</span>
+                        Glisser-déposer sur Netlify Drop
+                    </h4>
+                    <p class="text-xs text-gray-500 pl-8">
+                        Rendez-vous gratuitement sur le site <a href="https://app.netlify.com/drop" target="_blank" class="text-terracotta-600 underline font-semibold">app.netlify.com/drop</a> et faites simplement glisser votre fichier <code class="bg-white px-2 py-0.5 rounded font-mono">index.html</code> sur la zone prévue.
+                    </p>
+                </div>
+
+                <div class="bg-sable-100 p-4 rounded-2xl border border-sable-200">
+                    <h4 class="font-bold text-ardoise flex items-center gap-2 mb-1">
+                        <span class="w-6 h-6 rounded-full bg-terracotta-500 text-white text-xs flex items-center justify-center">3</span>
+                        Votre site est en ligne !
+                    </h4>
+                    <p class="text-xs text-gray-500 pl-8">
+                        En moins de 5 secondes, Netlify vous génère un lien web gratuit (ex: <em>mon-gite-provence.netlify.app</em>) que vous pouvez envoyer à vos clients ou lier à vos cartes de visite !
+                    </p>
+                </div>
+
+                <div class="border-t pt-4">
+                    <h5 class="font-semibold text-ardoise mb-2">Astuce : Connecter Formspree pour recevoir les demandes par email !</h5>
+                    <p class="text-xs text-gray-500">
+                        Pour que le formulaire de réservation vous envoie un e-mail direct, créez un compte gratuit sur <a href="https://formspree.io" target="_blank" class="text-terracotta-600 underline">Formspree.io</a> et remplacez simplement l'attribut action dans le formulaire !
+                    </p>
+                </div>
+            </div>
+
+            <button onclick="toggleModal('guide-modal')" class="w-full mt-6 bg-ardoise text-white font-semibold py-3 rounded-xl hover:bg-black transition-colors text-sm">
+                J'ai compris, fermer
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Photo Gallery Images Array
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80"
+        ];
+
+        function openLightbox(index) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            img.src = galleryImages[index];
+            modal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        // Toggle Generic Modals
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Price Calculation Logic
+        function calculatePrice() {
+            const checkin = document.getElementById('checkin-date').value;
+            const checkout = document.getElementById('checkout-date').value;
+            const seasonPrice = parseInt(document.getElementById('season-select').value);
+            
+            const nightsLabel = document.getElementById('nights-count');
+            const priceLabel = document.getElementById('total-price');
+
+            if (checkin && checkout) {
+                const d1 = new Date(checkin);
+                const d2 = new Date(checkout);
+                const timeDiff = d2.getTime() - d1.getTime();
+                const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                if (nights > 0) {
+                    const total = nights * seasonPrice;
+                    nightsLabel.textContent = `${nights} nuit(s) × ${seasonPrice}€ / nuit`;
+                    priceLabel.textContent = `${total} €`;
+                } else {
+                    nightsLabel.textContent = "La date de départ doit être après l'arrivée";
+                    priceLabel.textContent = "0 €";
+                }
+            } else {
+                nightsLabel.textContent = "Sélectionnez vos dates ci-dessus";
+                priceLabel.textContent = "0 €";
+            }
+        }
+
+        // Booking Submission Demo Notice
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            
+            // Custom modern message box without using native alert()
+            const total = document.getElementById('total-price').textContent;
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-6 right-6 bg-emerald-600 text-white p-6 rounded-2xl shadow-2xl z-50 max-w-md animate-bounce';
+            notification.innerHTML = `
+                <div class="flex items-start gap-3">
+                    <i data-lucide="check-circle" class="w-6 h-6 shrink-0 mt-0.5"></i>
+                    <div>
+                        <h4 class="font-bold text-base mb-1">Demande envoyée avec succès !</h4>
+                        <p class="text-xs text-emerald-100">Merci ! Votre simulation (${total}) a été prise en compte. Le propriétaire vous recontactera très rapidement.</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+
+            form.reset();
+            calculatePrice();
+        }
+
+        // Leaflet Interactive Map Initialization
+        window.onload = function() {
+            // Luberon coordinates (e.g. Gordes / Roussillon area)
+            const lat = 43.9115;
+            const lng = 5.2001;
+
+            const map = L.map('map', {
+                scrollWheelZoom: false
+            }).setView([lat, lng], 12);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            // Custom Marker Styling
+            const customIcon = L.divIcon({
+                className: 'custom-pin',
+                html: `<div style="background-color: #e07a5f; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.3);"></div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+
+            L.marker([lat, lng], { icon: customIcon }).addTo(map)
+                .bindPopup('<b>Le Cocon des Oliviers</b><br>Gîte de charme avec piscine')
+                .openPopup();
+        };
+    </script>
+</body>
+</html>
