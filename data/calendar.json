@@ -1,0 +1,22 @@
+{
+  "lastUpdate": "2026-09-20T18:00:00Z",
+  "property": {
+    "name": "Les Reflets de la Loubine",
+    "location": "Château-d'Olonne, Vendée",
+    "capacity": "2 pièces, 4 personnes"
+  },
+  "calendar": [
+    {
+      "date": "2026-09-01",
+      "available": true,
+      "price": 89,
+      "minStay": 1
+    },
+    {
+      "date": "2026-09-02",
+      "available": false,
+      "price": 89,
+      "minStay": 1
+    }
+  ]
+}
