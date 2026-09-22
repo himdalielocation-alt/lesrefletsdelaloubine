@@ -189,6 +189,18 @@
             width: 200%;
             will-change: transform;
         }
+
+        #swimFish.swim {
+            animation: swim-away 3.2s cubic-bezier(.4, .7, .3, 1) forwards;
+        }
+        @keyframes swim-away {
+            0%   { opacity: 0; transform: translate(0, 0) rotate(0deg) scale(1); }
+            8%   { opacity: 1; transform: translate(6px, 16px) rotate(10deg) scale(1); }
+            30%  { transform: translate(-14px, 130px) rotate(-14deg) scale(0.92); }
+            55%  { transform: translate(16px, 260px) rotate(12deg) scale(0.82); }
+            80%  { transform: translate(-10px, 380px) rotate(-8deg) scale(0.7); }
+            100% { opacity: 0; transform: translate(6px, 460px) rotate(6deg) scale(0.55); }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-reflet selection:text-encre">
@@ -213,6 +225,9 @@
             </a>
         </div>
     </header>
+
+    <!-- La loubine s'échappe du logo et nage vers le bas au premier scroll -->
+    <span class="icono fixed top-5 left-4 sm:left-8 w-7 h-6 z-30 text-bleu-loubine opacity-0" id="swimFish" style="mask-image:url('brand/logos/marque-le-reflet.svg');-webkit-mask-image:url('brand/logos/marque-le-reflet.svg')" aria-hidden="true"></span>
 
     <!-- Hero Section (BandeauAccueil) -->
     <section class="relative pt-32 pb-0 md:pt-40 bg-ecume">
@@ -771,6 +786,20 @@
                 waveVisible = true;
                 updateWaveOffset();
             }
+        }
+
+        // La loubine s'échappe du logo et nage vers le bas, une seule fois au premier scroll
+        const swimFish = document.getElementById('swimFish');
+        if (swimFish && !prefersReducedMotion) {
+            let hasSwum = false;
+            window.addEventListener('scroll', () => {
+                if (hasSwum || window.scrollY < 30) return;
+                hasSwum = true;
+                swimFish.classList.add('swim');
+                swimFish.addEventListener('animationend', () => {
+                    swimFish.style.display = 'none';
+                }, { once: true });
+            }, { passive: true });
         }
     </script>
 </body>
