@@ -184,6 +184,21 @@
             -webkit-mask-size: contain;
             mask-size: contain;
         }
+
+        .wave-track {
+            width: 200%;
+            will-change: transform;
+        }
+        .wave-track.playing {
+            animation: wave-flow 14s linear infinite;
+        }
+        @keyframes wave-flow {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .wave-track.playing { animation: none; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-reflet selection:text-encre">
@@ -247,7 +262,12 @@
                 </div>
             </div>
         </div>
-        <span class="icono w-full aspect-[1200/80] text-bleu-loubine" style="mask-image:url('brand/motifs/bandeau-vagues.svg');-webkit-mask-image:url('brand/motifs/bandeau-vagues.svg')" aria-hidden="true"></span>
+        <div class="w-full overflow-hidden" id="waveMotif" aria-hidden="true">
+            <div class="flex wave-track" id="waveTrack">
+                <svg class="w-1/2 aspect-[600/80] shrink-0 text-bleu-loubine" viewBox="0 0 600 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bandeau de vagues"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M0 30c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0" stroke-width="3"></path><path d="M0 54c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0" stroke-width="1.6" opacity=".5"></path></g></svg>
+                <svg class="w-1/2 aspect-[600/80] shrink-0 text-bleu-loubine" viewBox="0 0 600 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bandeau de vagues"><g fill="none" stroke="currentColor" stroke-linecap="round"><path d="M0 30c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0" stroke-width="3"></path><path d="M0 54c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0c28.50 -13.00 46.50 -13.00 75.00 0c28.50 13.00 46.50 13.00 75.00 0" stroke-width="1.6" opacity=".5"></path></g></svg>
+            </div>
+        </div>
     </section>
 
     <!-- Pourquoi réserver en direct -->
@@ -713,6 +733,18 @@
         });
 
         loadCalendarData();
+
+        // Anime le motif "vagues" quand il apparaît au scroll
+        const waveMotif = document.getElementById('waveMotif');
+        const waveTrack = document.getElementById('waveTrack');
+        if (waveMotif && waveTrack && 'IntersectionObserver' in window) {
+            const waveObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    waveTrack.classList.toggle('playing', entry.isIntersecting);
+                });
+            }, { threshold: 0.2 });
+            waveObserver.observe(waveMotif);
+        }
     </script>
 </body>
 </html>
