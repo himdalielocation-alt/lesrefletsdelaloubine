@@ -181,8 +181,14 @@
     <header class="fixed top-0 left-0 right-0 bg-ecume z-40 border-b border-dune">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center btn-focus">
-                <img src="brand/logos/logo-horizontal.svg" alt="Les Reflets de la Loubine" class="hidden sm:block h-11 w-auto">
-                <img src="brand/logos/marque-le-reflet.svg" alt="Les Reflets de la Loubine" class="sm:hidden h-9 w-auto">
+                <picture class="hidden sm:block">
+                    <source srcset="brand/logos/logo-horizontal-ecume.svg" media="(prefers-color-scheme: dark)">
+                    <img src="brand/logos/logo-horizontal.svg" alt="Les Reflets de la Loubine" class="h-11 w-auto">
+                </picture>
+                <picture class="sm:hidden">
+                    <source srcset="brand/logos/marque-le-reflet-ecume.svg" media="(prefers-color-scheme: dark)">
+                    <img src="brand/logos/marque-le-reflet.svg" alt="Les Reflets de la Loubine" class="h-9 w-auto">
+                </picture>
             </a>
 
             <nav class="hidden md:flex items-center gap-8 corps text-encre-douce">
