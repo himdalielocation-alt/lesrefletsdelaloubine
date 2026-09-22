@@ -8,6 +8,13 @@
     <meta name="google-site-verification" content="2eS_3_hDGjSf4t1hywJI_mETRfnnpDDXBLifhzVjJDY" />
     <meta name="theme-color" content="#134a52">
     <link rel="icon" type="image/svg+xml" href="brand/logos/avatar-rond.svg">
+    <link rel="canonical" href="https://lesrefletsdelaloubine.fr/">
+    <meta property="og:title" content="Les Reflets de la Loubine - Location Saisonnière aux Sables d'Olonne">
+    <meta property="og:description" content="Appartement vue mer directe, face au Puits d'Enfer, au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne. 2 piscines chauffées (15 mai - 15 octobre), idéal pour un couple, jusqu'à 4 personnes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lesrefletsdelaloubine.fr/">
+    <meta property="og:image" content="https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg">
+    <meta property="og:locale" content="fr_FR">
 
     <!-- Schema.org JSON-LD : Location saisonnière -->
     <script type="application/ld+json">
@@ -218,17 +225,41 @@
                 <a href="#equipements" class="hover:text-bleu-loubine transition btn-focus">Équipements</a>
                 <a href="#tarifs" class="hover:text-bleu-loubine transition btn-focus">Tarifs & Disponibilités</a>
                 <a href="#localisation" class="hover:text-bleu-loubine transition btn-focus">Localisation</a>
+                <a href="activites-sables-d-olonne.html" class="hover:text-bleu-loubine transition btn-focus">Que faire ?</a>
             </nav>
 
             <div class="flex items-center gap-2 sm:gap-3">
-                <a href="guide.html" class="btn-focus inline-flex items-center justify-center gap-2 border border-dune text-bleu-loubine hover:bg-sable px-3 sm:px-4 py-3 rounded-rayon-md corps-fort text-sm transition">
+                <a href="guide.html" class="btn-focus hidden sm:inline-flex items-center justify-center gap-2 border border-dune text-bleu-loubine hover:bg-sable px-3 sm:px-4 py-3 rounded-rayon-md corps-fort text-sm transition">
                     <span class="icono w-4 h-4 shrink-0" style="mask-image:url('brand/icons/cle.svg');-webkit-mask-image:url('brand/icons/cle.svg')" aria-hidden="true"></span>
                     <span class="hidden sm:inline">Espace locataire</span>
                 </a>
-                <a href="#reservation" class="btn-focus inline-flex items-center justify-center bg-bleu-loubine hover:bg-bleu-estran text-ecume px-5 py-3 rounded-rayon-md corps-fort text-sm transition">
+                <a href="#reservation" class="btn-focus inline-flex items-center justify-center bg-bleu-loubine hover:bg-bleu-estran text-ecume px-4 sm:px-5 py-3 rounded-rayon-md corps-fort text-sm transition">
                     Réserver en direct
                 </a>
+                <button
+                    type="button"
+                    id="menuToggle"
+                    class="btn-focus md:hidden inline-flex items-center justify-center w-11 h-11 shrink-0 border border-dune rounded-rayon-md text-bleu-loubine"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+                    aria-label="Ouvrir le menu"
+                >
+                    <svg id="menuIconOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+                    <svg id="menuIconClose" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" class="hidden"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
             </div>
+        </div>
+
+        <!-- Panneau du menu mobile -->
+        <div id="mobileMenu" class="md:hidden hidden border-t border-dune bg-ecume">
+            <nav class="max-w-6xl mx-auto px-4 sm:px-8 py-4 flex flex-col corps text-encre">
+                <a href="#presentation" class="py-3 border-b border-dune hover:text-bleu-loubine transition btn-focus">Présentation</a>
+                <a href="#equipements" class="py-3 border-b border-dune hover:text-bleu-loubine transition btn-focus">Équipements</a>
+                <a href="#tarifs" class="py-3 border-b border-dune hover:text-bleu-loubine transition btn-focus">Tarifs & Disponibilités</a>
+                <a href="#localisation" class="py-3 border-b border-dune hover:text-bleu-loubine transition btn-focus">Localisation</a>
+                <a href="activites-sables-d-olonne.html" class="py-3 border-b border-dune hover:text-bleu-loubine transition btn-focus">Que faire ?</a>
+                <a href="guide.html" class="py-3 hover:text-bleu-loubine transition btn-focus">Espace locataire</a>
+            </nav>
         </div>
     </header>
 
@@ -585,6 +616,10 @@
                             <p class="legende">Accès direct depuis la résidence</p>
                         </div>
                     </div>
+
+                    <a href="activites-sables-d-olonne.html" class="btn-focus inline-flex items-center gap-1.5 text-bleu-loubine hover:text-bleu-estran corps-fort pt-2">
+                        Découvrir toutes nos idées d'activités →
+                    </a>
                 </div>
             </div>
         </div>
@@ -822,6 +857,36 @@
                     swimFish.style.display = 'none';
                 }, { once: true });
             }, { passive: true });
+        }
+
+        // Menu mobile (burger)
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIconOpen = document.getElementById('menuIconOpen');
+        const menuIconClose = document.getElementById('menuIconClose');
+
+        if (menuToggle && mobileMenu) {
+            function closeMobileMenu() {
+                mobileMenu.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            }
+            function openMobileMenu() {
+                mobileMenu.classList.remove('hidden');
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.setAttribute('aria-label', 'Fermer le menu');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+            menuToggle.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('hidden')) openMobileMenu();
+                else closeMobileMenu();
+            });
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', closeMobileMenu);
+            });
         }
     </script>
 </body>
