@@ -6,6 +6,8 @@
     <title>Les Reflets de la Loubine - Location Saisonnière aux Sables d'Olonne</title>
     <meta name="description" content="Appartement vue mer directe, face au Puits d'Enfer, au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne. 2 piscines chauffées (15 mai - 15 octobre), idéal pour un couple, jusqu'à 4 personnes.">
     <meta name="google-site-verification" content="2eS_3_hDGjSf4t1hywJI_mETRfnnpDDXBLifhzVjJDY" />
+    <meta name="theme-color" content="#134a52">
+    <link rel="icon" type="image/svg+xml" href="brand/logos/avatar-rond.svg">
 
     <!-- Schema.org JSON-LD : Location saisonnière -->
     <script type="application/ld+json">
@@ -41,8 +43,7 @@
         { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Télévision", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Accès direct piste cyclable", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Espaces verts", "value": true }
+        { "@type": "LocationFeatureSpecification", "name": "Accès direct piste cyclable", "value": true }
       ],
       "checkinTime": "16:00",
       "checkoutTime": "10:00",
@@ -58,168 +59,264 @@
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts : Playfair Display (titres) & Inter (texte) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bleu-loubine': 'var(--bleu-loubine)',
+                        'bleu-estran': 'var(--bleu-estran)',
+                        'reflet': 'var(--reflet)',
+                        'ecume': 'var(--ecume)',
+                        'sable': 'var(--sable)',
+                        'blanc-coquille': 'var(--blanc-coquille)',
+                        'dune': 'var(--dune)',
+                        'encre': 'var(--encre)',
+                        'encre-douce': 'var(--encre-douce)',
+                        'nuit': 'var(--nuit)',
+                        'tamaris': 'var(--tamaris)',
+                        'tamaris-pale': 'var(--tamaris-pale)',
+                        'varech': 'var(--varech)',
+                        'ajonc': 'var(--ajonc)',
+                    },
+                    fontFamily: {
+                        titre: ['Fraunces Reflets', 'Georgia', 'Times New Roman', 'serif'],
+                        texte: ['Karla Reflets', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'rayon-sm': '6px',
+                        'rayon-md': '12px',
+                        'rayon-lg': '20px',
+                        'rayon-pilule': '999px',
+                    },
+                    boxShadow: {
+                        posee: 'var(--ombre-posee)',
+                        relief: 'var(--ombre-relief)',
+                    },
+                }
+            }
+        }
+    </script>
     <!-- Leaflet CSS & JS pour la carte -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <style>
-        body {
-            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        @font-face {
+            font-family: 'Fraunces Reflets';
+            src: url('fonts/Fraunces-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
         }
-        .font-serif-title {
-            font-family: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
+        @font-face {
+            font-family: 'Karla Reflets';
+            src: url('fonts/Karla-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
         }
+
+        :root {
+            --bleu-loubine: #134a52;
+            --bleu-estran: #2e747a;
+            --reflet: #a9ced0;
+            --ecume: #fbf8f2;
+            --sable: #f1e8d8;
+            --blanc-coquille: #ffffff;
+            --dune: #d9c9ae;
+            --encre: #12211f;
+            --encre-douce: #4c5a58;
+            --nuit: #0c1719;
+            --tamaris: #a8493f;
+            --tamaris-pale: #f6e3dd;
+            --varech: #3e6b4f;
+            --ajonc: #d9a441;
+            --ombre-posee: 0 1px 2px rgba(18,33,31,0.05), 0 6px 20px rgba(18,33,31,0.07);
+            --ombre-relief: 0 12px 40px rgba(18,33,31,0.14);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bleu-loubine: #8fc3c6;
+                --bleu-estran: #5ea3a8;
+                --reflet: #2f585d;
+                --ecume: #0f1b1e;
+                --sable: #17272b;
+                --blanc-coquille: #14242a;
+                --dune: #2c4045;
+                --encre: #f4efe6;
+                --encre-douce: #b9c5c2;
+                --nuit: #06100f;
+                --tamaris: #e9a196;
+                --tamaris-pale: #38251f;
+                --varech: #86b694;
+                --ajonc: #e6bd67;
+                --ombre-posee: 0 1px 2px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.45);
+                --ombre-relief: 0 12px 40px rgba(0,0,0,0.6);
+            }
+        }
+
+        body { font-family: 'Karla Reflets', 'Helvetica Neue', Arial, sans-serif; background: var(--ecume); color: var(--encre); }
+
+        .affiche { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 40px; line-height: 42px; letter-spacing: -0.01em; }
+        @media (min-width: 640px) { .affiche { font-size: 60px; line-height: 60px; } }
+        .titre-1 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 30px; line-height: 36px; }
+        @media (min-width: 640px) { .titre-1 { font-size: 40px; line-height: 46px; } }
+        .titre-2 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 27px; line-height: 34px; }
+        .titre-3 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 20px; line-height: 27px; }
+        .chapo { font-weight: 400; font-size: 19px; line-height: 30px; }
+        .corps { font-weight: 400; font-size: 16px; line-height: 26px; }
+        .corps-fort { font-weight: 600; font-size: 16px; line-height: 26px; }
+        .legende { font-weight: 400; font-size: 13.5px; line-height: 20px; color: var(--encre-douce); }
+        .surtitre { font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+        .btn-focus:focus-visible { outline: 2px solid var(--bleu-estran); outline-offset: 3px; }
+
+        .pastille { display: inline-block; width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-800 antialiased selection:bg-cyan-100 selection:text-cyan-900">
+<body class="antialiased selection:bg-reflet selection:text-encre">
 
     <!-- Header / Navigation -->
-    <header class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-40 border-b border-stone-200">
-        <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2">
-                <i data-lucide="waves" class="w-7 h-7 text-cyan-600"></i>
-                <span class="font-serif-title text-xl font-bold tracking-tight text-stone-900">Les Reflets de la Loubine</span>
+    <header class="fixed top-0 left-0 right-0 bg-ecume z-40 border-b border-dune">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center btn-focus">
+                <img src="brand/logos/logo-horizontal.svg" alt="Les Reflets de la Loubine" class="hidden sm:block h-11 w-auto">
+                <img src="brand/logos/marque-le-reflet.svg" alt="Les Reflets de la Loubine" class="sm:hidden h-9 w-auto">
             </a>
-            
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-stone-600">
-                <a href="#presentation" class="hover:text-cyan-600 transition">Présentation</a>
-                <a href="#equipements" class="hover:text-cyan-600 transition">Équipements</a>
-                <a href="#tarifs" class="hover:text-cyan-600 transition">Tarifs & Disponibilités</a>
-                <a href="#localisation" class="hover:text-cyan-600 transition">Localisation</a>
+
+            <nav class="hidden md:flex items-center gap-8 corps text-encre-douce">
+                <a href="#presentation" class="hover:text-bleu-loubine transition btn-focus">Présentation</a>
+                <a href="#equipements" class="hover:text-bleu-loubine transition btn-focus">Équipements</a>
+                <a href="#tarifs" class="hover:text-bleu-loubine transition btn-focus">Tarifs & Disponibilités</a>
+                <a href="#localisation" class="hover:text-bleu-loubine transition btn-focus">Localisation</a>
             </nav>
 
-            <a href="#reservation" class="bg-cyan-700 hover:bg-cyan-800 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition shadow-sm hover:shadow">
+            <a href="#reservation" class="btn-focus inline-flex items-center justify-center bg-bleu-loubine hover:bg-bleu-estran text-ecume px-5 py-3 rounded-rayon-md corps-fort text-sm transition">
                 Réserver en direct
             </a>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-cyan-50/50 to-stone-50">
-        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+    <!-- Hero Section (BandeauAccueil) -->
+    <section class="relative pt-32 pb-0 md:pt-40 bg-ecume">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 grid md:grid-cols-2 gap-12 items-center pb-16 md:pb-20">
             <div>
-                <div class="inline-flex items-center gap-2 bg-cyan-100 text-cyan-800 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    Meilleur prix garanti en direct
-                </div>
-                <h1 class="font-serif-title text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">
-                    Votre séjour face à l'océan aux Sables d'Olonne
+                <span class="surtitre text-bleu-loubine block mb-4">Les Sables-d'Olonne</span>
+                <h1 class="affiche text-bleu-loubine mb-6">
+                    Votre séjour face à l'océan
                 </h1>
-                <p class="text-stone-600 text-lg mb-4 leading-relaxed">
-                    Bienvenue aux <strong>Reflets de la Loubine</strong>. Appartement pour <strong>4 personnes</strong> au sein de la résidence de Lagrange Vacances L'Estran.
+                <p class="chapo text-encre mb-8 max-w-md">
+                    Bienvenue aux Reflets de la Loubine : appartement pour 4 personnes au sein de la résidence Lagrange Vacances L'Estran, vue mer directe, 2 piscines chauffées du 15 mai au 15 octobre.
                 </p>
-                <p class="text-stone-600 text-lg mb-8 leading-relaxed">
-                    Vue mer directe depuis le salon et la terrasse, 2 piscines extérieures chauffées ouvertes du 15 mai au 15 octobre, et le cadre préservé de la côte vendéenne.
-                </p>
+                <div class="inline-flex items-center gap-2 bg-reflet text-encre px-4 py-2 rounded-rayon-pilule surtitre mb-8">
+                    Jusqu'à 15% d'économie, en direct
+                </div>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#reservation" class="inline-flex items-center justify-center gap-2 bg-cyan-700 hover:bg-cyan-800 text-white px-6 py-3.5 rounded-xl font-medium transition shadow-md">
-                        <i data-lucide="calendar"></i>
+                    <a href="#reservation" class="btn-focus inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume px-6 py-3 rounded-rayon-md corps-fort transition">
                         Demander une réservation
                     </a>
-                    <a href="#presentation" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-stone-100 text-stone-700 px-6 py-3.5 rounded-xl font-medium border border-stone-200 transition">
+                    <a href="#presentation" class="btn-focus inline-flex items-center justify-center gap-2 bg-transparent hover:bg-sable border border-dune text-bleu-loubine px-6 py-3 rounded-rayon-md corps-fort transition">
                         Découvrir le logement
                     </a>
                 </div>
             </div>
             <div class="relative">
-                <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <div class="aspect-[4/3] rounded-rayon-lg overflow-hidden shadow-posee">
                     <img src="images/sables-olonne-plage.jpg" alt="Coucher de soleil sur la plage des Sables d'Olonne" class="w-full h-full object-cover">
                 </div>
-                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg border border-stone-100 hidden sm:flex items-center gap-4">
-                    <div class="p-3 bg-cyan-50 text-cyan-700 rounded-lg">
-                        <i data-lucide="waves" class="w-6 h-6"></i>
+                <div class="absolute -bottom-6 -left-6 bg-blanc-coquille p-4 rounded-rayon-md shadow-posee border border-dune hidden sm:flex items-center gap-4">
+                    <div class="p-2.5 bg-reflet rounded-rayon-sm">
+                        <img src="brand/icons/piscine.svg" alt="" class="w-6 h-6">
                     </div>
                     <div>
-                        <p class="text-sm font-bold text-stone-900">2 Piscines chauffées</p>
-                        <p class="text-xs text-stone-500">Du 15 mai au 15 octobre</p>
+                        <p class="corps-fort text-encre">2 Piscines chauffées</p>
+                        <p class="legende">Du 15 mai au 15 octobre</p>
                     </div>
                 </div>
             </div>
         </div>
+        <img src="brand/motifs/bandeau-vagues.svg" alt="" class="w-full h-auto text-bleu-loubine" aria-hidden="true">
     </section>
 
     <!-- Pourquoi réserver en direct -->
-    <section class="py-12 bg-white border-y border-stone-200">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="p-4">
-                <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="piggy-bank" class="w-6 h-6"></i>
+    <section class="py-16 bg-sable">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+                <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-6 h-6">
                 </div>
-                <h3 class="font-bold text-stone-900 mb-1">Économisez jusqu'à 15%</h3>
-                <p class="text-sm text-stone-600">Aucune commission ni frais de service prélevés par les plateformes (Airbnb, Booking).</p>
+                <h3 class="titre-3 text-encre mb-2">Économisez jusqu'à 15%</h3>
+                <p class="corps text-encre-douce">Aucune commission ni frais de service prélevés par les plateformes.</p>
             </div>
-            <div class="p-4">
-                <div class="w-12 h-12 bg-cyan-50 text-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="message-square-heart" class="w-6 h-6"></i>
+            <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+                <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-6 h-6">
                 </div>
-                <h3 class="font-bold text-stone-900 mb-1">Contact Direct avec le Propriétaire</h3>
-                <p class="text-sm text-stone-600">Une communication fluide, personnalisée et des conseils locaux sur-mesure pour votre séjour.</p>
+                <h3 class="titre-3 text-encre mb-2">Contact direct avec le propriétaire</h3>
+                <p class="corps text-encre-douce">Une communication fluide, personnalisée et des conseils locaux sur mesure.</p>
             </div>
-            <div class="p-4">
-                <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+            <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+                <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-6 h-6">
                 </div>
-                <h3 class="font-bold text-stone-900 mb-1">Au sein de la Résidence Lagrange L'Estran</h3>
-                <p class="text-sm text-stone-600">Profitez des infrastructures complètes de la résidence (piscines, aires, cadre privilégié).</p>
+                <h3 class="titre-3 text-encre mb-2">Au sein de la Résidence Lagrange L'Estran</h3>
+                <p class="corps text-encre-douce">Profitez des infrastructures complètes de la résidence (piscines, aires, cadre privilégié).</p>
             </div>
         </div>
     </section>
 
     <!-- Présentation & Galerie -->
-    <section id="presentation" class="py-20">
-        <div class="max-w-6xl mx-auto px-4">
+    <section id="presentation" class="py-20 bg-ecume">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-serif-title text-3xl font-bold text-stone-900 mb-4">Le Logement : Les Reflets de la Loubine</h2>
-                <p class="text-stone-600">Découvrez votre pied-à-terre idéal aux Sables d'Olonne, conçu pour accueillir confortablement jusqu'à 4 personnes.</p>
+                <h2 class="titre-1 text-encre mb-4">Le Logement : Les Reflets de la Loubine</h2>
+                <p class="corps text-encre-douce">Découvrez votre pied-à-terre idéal aux Sables d'Olonne, conçu pour accueillir confortablement jusqu'à 4 personnes.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="md:col-span-2 aspect-[16/10] rounded-2xl overflow-hidden shadow-md">
+                <div class="md:col-span-2 aspect-[16/10] rounded-rayon-lg overflow-hidden shadow-posee">
                     <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="Intérieur appartement" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
                 <div class="grid grid-rows-2 gap-6">
-                    <div class="aspect-[16/10] md:aspect-auto rounded-2xl overflow-hidden shadow-md">
+                    <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg overflow-hidden shadow-posee">
                         <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" alt="Piscine résidence" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                     </div>
-                    <div class="aspect-[16/10] md:aspect-auto rounded-2xl overflow-hidden shadow-md">
+                    <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg overflow-hidden shadow-posee">
                         <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Plage des Sables d'Olonne" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                     </div>
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm max-w-4xl mx-auto">
-                <h3 class="font-bold text-xl mb-4 text-stone-900">À propos de l'appartement</h3>
-                <p class="text-stone-600 mb-4 leading-relaxed">
-                    Au sein de la résidence de vacances <strong>Lagrange L'Estran</strong> aux Sables d'Olonne, face au Puits d'Enfer, cet appartement offre une vue mer directe depuis le salon et la terrasse. Un véritable cocon entre la baie de Cayola et la plage de Tanchet, idéal pour un couple (jusqu'à 4 personnes).
+            <div class="max-w-4xl mx-auto">
+                <h3 class="titre-3 text-encre mb-4">À propos de l'appartement</h3>
+                <p class="corps text-encre-douce mb-6">
+                    Au sein de la résidence de vacances <strong class="text-encre">Lagrange L'Estran</strong> aux Sables d'Olonne, face au Puits d'Enfer, cet appartement offre une vue mer directe depuis le salon et la terrasse. Un véritable cocon entre la baie de Cayola et la plage de Tanchet, idéal pour un couple (jusqu'à 4 personnes).
                 </p>
-                <div class="grid sm:grid-cols-2 gap-4 text-stone-700 pt-2">
+                <img src="brand/motifs/filet-reflet.svg" alt="" class="w-full max-w-sm h-auto text-bleu-loubine mb-6" aria-hidden="true">
+                <div class="grid sm:grid-cols-2 gap-4 corps text-encre">
                     <div class="flex items-center gap-3">
-                        <i data-lucide="users" class="text-cyan-600"></i>
+                        <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-5 h-5 shrink-0">
                         <span>Capacité : <strong>4 Personnes</strong></span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="waves" class="text-cyan-600"></i>
+                        <img src="brand/icons/piscine.svg" alt="" class="w-5 h-5 shrink-0">
                         <span><strong>2 piscines chauffées</strong> (15 mai au 15 octobre)</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="eye" class="text-cyan-600"></i>
+                        <img src="brand/icons/vague.svg" alt="" class="w-5 h-5 shrink-0">
                         <span>Vue mer directe (salon & terrasse)</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="bed-double" class="text-cyan-600"></i>
+                        <img src="brand/icons/couchage.svg" alt="" class="w-5 h-5 shrink-0">
                         <span>Chambre : 2 lits simples + lit armoire (véritable matelas)</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="map-pin" class="text-cyan-600"></i>
+                        <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-5 h-5 shrink-0">
                         <span>Résidence Lagrange Vacances L'Estran</span>
                     </div>
                     <div class="flex items-center gap-3">
-                        <i data-lucide="car" class="text-cyan-600"></i>
+                        <img src="brand/icons/parking.svg" alt="" class="w-5 h-5 shrink-0">
                         <span>Parking gratuit</span>
                     </div>
                 </div>
@@ -228,142 +325,146 @@
     </section>
 
     <!-- Équipements -->
-    <section id="equipements" class="py-20 bg-stone-100">
-        <div class="max-w-6xl mx-auto px-4">
+    <section id="equipements" class="py-20 bg-ecume">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-serif-title text-3xl font-bold text-stone-900 mb-4">Équipements & Services</h2>
-                <p class="text-stone-600">Tout est pensé pour que vous vous sentiez comme chez vous dès votre arrivée.</p>
+                <h2 class="titre-1 text-encre mb-4">Équipements & Services</h2>
+                <p class="corps text-encre-douce">Tout est pensé pour que vous vous sentiez comme chez vous dès votre arrivée.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="eye" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Vue Mer Directe</h4>
-                    <p class="text-xs text-stone-500">Depuis le salon et la terrasse</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 text-center">
+                <div>
+                    <img src="brand/icons/vague.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Vue Mer Directe</h4>
+                    <p class="legende">Depuis le salon et la terrasse</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="waves" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">2 Piscines Chauffées</h4>
-                    <p class="text-xs text-stone-500">Ouvertes du 15 mai au 15 octobre</p>
+                <div>
+                    <img src="brand/icons/piscine.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">2 Piscines Chauffées</h4>
+                    <p class="legende">Du 15 mai au 15 octobre</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="bed-double" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Literie</h4>
-                    <p class="text-xs text-stone-500">Chambre : 2 lits simples + lit armoire (véritable matelas)</p>
+                <div>
+                    <img src="brand/icons/couchage.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Literie</h4>
+                    <p class="legende">2 lits simples + lit armoire (véritable matelas)</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="utensils" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Cuisine Équipée</h4>
-                    <p class="text-xs text-stone-500">Plaques, micro-ondes, frigo, vaisselle</p>
+                <div>
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Cuisine Équipée</h4>
+                    <p class="legende">Plaques, micro-ondes, frigo, vaisselle</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="tv" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Télévision</h4>
-                    <p class="text-xs text-stone-500">Écran plat pour vos soirées détente</p>
+                <div>
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Télévision</h4>
+                    <p class="legende">Écran plat pour vos soirées détente</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="car" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Parking</h4>
-                    <p class="text-xs text-stone-500">Stationnement gratuit dans la résidence</p>
+                <div>
+                    <img src="brand/icons/parking.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Parking</h4>
+                    <p class="legende">Stationnement gratuit dans la résidence</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="coffee" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Cafetière & Théière</h4>
-                    <p class="text-xs text-stone-500">Pour bien démarrer vos journées</p>
+                <div>
+                    <img src="brand/icons/cafe.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Cafetière & Théière</h4>
+                    <p class="legende">Pour bien démarrer vos journées</p>
                 </div>
-                <div class="bg-white p-6 rounded-2xl border border-stone-200/80 text-center shadow-sm">
-                    <i data-lucide="bike" class="w-8 h-8 text-cyan-600 mx-auto mb-3"></i>
-                    <h4 class="font-bold text-stone-900 mb-1">Pistes Cyclables</h4>
-                    <p class="text-xs text-stone-500">Départ direct au pied de la résidence</p>
+                <div>
+                    <img src="brand/icons/velo.svg" alt="" class="w-8 h-8 mx-auto mb-3">
+                    <h4 class="titre-3 text-encre mb-1">Pistes Cyclables</h4>
+                    <p class="legende">Départ direct au pied de la résidence</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tarifs & Calendrier -->
-    <section id="tarifs" class="py-20">
-        <div class="max-w-6xl mx-auto px-4">
+    <section id="tarifs" class="py-20 bg-sable">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-serif-title text-3xl font-bold text-stone-900 mb-4">Tarifs & Disponibilités</h2>
-                <p class="text-stone-600">Saisons, tarifs et aperçu des disponibilités pour votre séjour.</p>
+                <h2 class="titre-1 text-encre mb-4">Tarifs & Disponibilités</h2>
+                <p class="corps text-encre-douce">Saisons, tarifs et aperçu des disponibilités pour votre séjour.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="grid md:grid-cols-3 gap-8 mb-6">
                 <!-- Basse Saison -->
-                <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm flex flex-col">
-                    <h3 class="font-serif-title text-xl font-bold text-stone-900 mb-2">Basse Saison</h3>
-                    <p class="text-sm text-stone-500 mb-6">Novembre à Avril (Hors vacances)</p>
-                    <div class="text-3xl font-bold text-stone-900 mb-6">À partir de 50€ <span class="text-sm font-normal text-stone-500">/ nuit</span></div>
-                    <ul class="text-sm text-stone-600 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Minimum 2 nuits</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Calme absolu</li>
+                <div class="bg-blanc-coquille p-8 rounded-rayon-lg border border-dune flex flex-col">
+                    <span class="inline-flex items-center self-start bg-blanc-coquille border border-dune text-encre-douce px-4 py-2 rounded-rayon-pilule surtitre mb-4">Basse saison</span>
+                    <h3 class="titre-2 text-encre mb-1">Basse Saison</h3>
+                    <p class="legende mb-4">Novembre à Avril (Hors vacances)</p>
+                    <div class="titre-1 text-bleu-loubine mb-1">À partir de 50€ <span class="corps text-encre-douce">/ nuit</span></div>
+                    <p class="legende mb-6">Minimum 2 nuits</p>
+                    <ul class="corps text-encre space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Calme absolu</li>
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Tarif le plus accessible</li>
                     </ul>
-                    <a href="#reservation" class="w-full text-center bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium py-3 rounded-xl transition">Réserver cette période</a>
+                    <a href="#reservation" class="btn-focus w-full text-center bg-transparent hover:bg-sable border border-dune text-bleu-loubine corps-fort py-3 rounded-rayon-md transition">Réserver cette période</a>
                 </div>
 
-                <!-- Moyenne Saison -->
-                <div class="bg-white p-8 rounded-2xl border-2 border-cyan-600 shadow-md flex flex-col relative">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-xs px-3 py-1 rounded-full font-semibold">Inclus Piscine</span>
-                    <h3 class="font-serif-title text-xl font-bold text-stone-900 mb-2">Moyenne Saison</h3>
-                    <p class="text-sm text-stone-500 mb-6">Mai, Juin, Septembre, Octobre</p>
-                    <div class="text-3xl font-bold text-stone-900 mb-6">À partir de 75€ <span class="text-sm font-normal text-stone-500">/ nuit</span></div>
-                    <ul class="text-sm text-stone-600 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> <strong>Accès aux 2 piscines</strong></li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Météo agréable</li>
+                <!-- Moyenne Saison (mise en avant) -->
+                <div class="bg-blanc-coquille p-8 rounded-rayon-lg border-2 border-bleu-loubine shadow-relief flex flex-col relative">
+                    <span class="inline-flex items-center self-start bg-reflet text-encre px-4 py-2 rounded-rayon-pilule surtitre mb-4">Épaule</span>
+                    <h3 class="titre-2 text-encre mb-1">Moyenne Saison</h3>
+                    <p class="legende mb-4">Mai, Juin, Septembre, Octobre</p>
+                    <div class="titre-1 text-bleu-loubine mb-6">À partir de 75€ <span class="corps text-encre-douce">/ nuit</span></div>
+                    <ul class="corps text-encre space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Accès aux 2 piscines chauffées</li>
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Météo agréable</li>
                     </ul>
-                    <a href="#reservation" class="w-full text-center bg-cyan-700 hover:bg-cyan-800 text-white font-medium py-3 rounded-xl transition">Réserver cette période</a>
+                    <a href="#reservation" class="btn-focus w-full text-center bg-bleu-loubine hover:bg-bleu-estran text-ecume corps-fort py-3 rounded-rayon-md transition">Réserver cette période</a>
                 </div>
 
                 <!-- Haute Saison -->
-                <div class="bg-white p-8 rounded-2xl border border-stone-200 shadow-sm flex flex-col">
-                    <h3 class="font-serif-title text-xl font-bold text-stone-900 mb-2">Haute Saison</h3>
-                    <p class="text-sm text-stone-500 mb-6">Juillet & Août</p>
-                    <div class="text-3xl font-bold text-stone-900 mb-6">À partir de 110€ <span class="text-sm font-normal text-stone-500">/ nuit</span></div>
-                    <ul class="text-sm text-stone-600 space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Piscines ouvertes</li>
-                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Location à la semaine en priorité</li>
+                <div class="bg-blanc-coquille p-8 rounded-rayon-lg border border-dune flex flex-col">
+                    <span class="inline-flex items-center self-start bg-ajonc text-encre px-4 py-2 rounded-rayon-pilule surtitre mb-4">Haute saison</span>
+                    <h3 class="titre-2 text-encre mb-1">Haute Saison</h3>
+                    <p class="legende mb-4">Juillet & Août</p>
+                    <div class="titre-1 text-bleu-loubine mb-1">À partir de 110€ <span class="corps text-encre-douce">/ nuit</span></div>
+                    <p class="legende mb-6">Séjour à la semaine, arrivée le samedi</p>
+                    <ul class="corps text-encre space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Piscines ouvertes</li>
                     </ul>
-                    <a href="#reservation" class="w-full text-center bg-stone-100 hover:bg-stone-200 text-stone-800 font-medium py-3 rounded-xl transition">Réserver cette période</a>
+                    <a href="#reservation" class="btn-focus w-full text-center bg-transparent hover:bg-sable border border-dune text-bleu-loubine corps-fort py-3 rounded-rayon-md transition">Réserver cette période</a>
                 </div>
             </div>
 
+            <p class="legende text-center mb-10">Taxe de séjour et frais de ménage non inclus, précisés lors de la réservation.</p>
+
             <!-- Calendrier de Disponibilités -->
-            <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-6 md:p-8 max-w-4xl mx-auto">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-stone-100">
+            <div class="bg-blanc-coquille rounded-rayon-lg border border-dune p-6 md:p-8 max-w-4xl mx-auto">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-dune">
                     <div>
-                        <h3 class="font-serif-title text-2xl font-bold text-stone-900 flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-6 h-6 text-cyan-600"></i>
+                        <h3 class="titre-2 text-encre flex items-center gap-2">
                             Calendrier des disponibilités
                         </h3>
-                        <p class="text-xs text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1 rounded-md inline-block mt-2 font-medium">
+                        <p class="legende bg-sable border border-dune px-3 py-1 rounded-rayon-sm inline-block mt-2">
                             * Calendrier à titre indicatif, mis à jour 1 fois par jour.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 self-center sm:self-auto">
-                        <button id="prevMonth" class="p-2 hover:bg-stone-100 rounded-lg text-stone-600 transition border border-stone-200" aria-label="Mois précédent">
-                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        <button id="prevMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois précédent">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
                         </button>
-                        <span id="currentMonthYear" class="font-bold text-stone-800 min-w-[140px] text-center capitalize"></span>
-                        <button id="nextMonth" class="p-2 hover:bg-stone-100 rounded-lg text-stone-600 transition border border-stone-200" aria-label="Mois suivant">
-                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        <span id="currentMonthYear" class="corps-fort text-encre min-w-[140px] text-center capitalize"></span>
+                        <button id="nextMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois suivant">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
                         </button>
                     </div>
                 </div>
 
                 <!-- Légende simplifiée (sans prix) -->
-                <div class="flex flex-wrap gap-4 text-xs font-medium text-stone-600 mb-6 bg-stone-50 p-3 rounded-xl">
+                <div class="flex flex-wrap gap-4 legende mb-6 bg-sable p-3 rounded-rayon-md">
                     <div class="flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-100 border border-emerald-300"></span>
+                        <span class="pastille bg-varech"></span>
                         <span>Disponible</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-rose-100 border border-rose-200"></span>
+                        <span class="pastille bg-dune"></span>
                         <span>Occupé / Indisponible</span>
                     </div>
                 </div>
 
                 <!-- Grille des jours de la semaine -->
-                <div class="grid grid-cols-7 gap-1 text-center font-bold text-xs text-stone-400 uppercase tracking-wider mb-2">
+                <div class="grid grid-cols-7 gap-1 text-center surtitre text-encre-douce mb-2">
                     <div>Lun</div>
                     <div>Mar</div>
                     <div>Mer</div>
@@ -380,66 +481,66 @@
     </section>
 
     <!-- Localisation -->
-    <section id="localisation" class="py-20 bg-stone-100">
-        <div class="max-w-6xl mx-auto px-4">
+    <section id="localisation" class="py-20 bg-ecume">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="font-serif-title text-3xl font-bold text-stone-900 mb-4">Emplacement aux Sables d'Olonne</h2>
-                <p class="text-stone-600">Résidence en bord de mer, face au Puits d'Enfer, entre la baie de Cayola et la plage de Tanchet.</p>
+                <h2 class="titre-1 text-encre mb-4">Emplacement aux Sables d'Olonne</h2>
+                <p class="corps text-encre-douce">Résidence en bord de mer, face au Puits d'Enfer, entre la baie de Cayola et la plage de Tanchet.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-start">
-                <div class="md:col-span-2 bg-white p-2 rounded-2xl shadow-sm border border-stone-200">
-                    <div id="map" class="w-full h-96 rounded-xl"></div>
+                <div class="md:col-span-2 rounded-rayon-lg overflow-hidden border border-dune shadow-posee">
+                    <div id="map" class="w-full h-96"></div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-6">
-                    <h3 class="font-bold text-lg text-stone-900">À proximité :</h3>
+                <div class="space-y-6">
+                    <h3 class="titre-3 text-encre">À proximité :</h3>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="waves" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/icons/vague.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Plage du Tanchet</p>
-                            <p class="text-xs text-stone-500">1,5 km</p>
+                            <p class="corps-fort text-encre">Plage du Tanchet</p>
+                            <p class="legende">1,5 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="heart-pulse" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Thalasso Côte Ouest</p>
-                            <p class="text-xs text-stone-500">2 km</p>
+                            <p class="corps-fort text-encre">Thalasso Côte Ouest</p>
+                            <p class="legende">2 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/icons/vague.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Centre-ville & Grande Plage des Sables</p>
-                            <p class="text-xs text-stone-500">4 km</p>
+                            <p class="corps-fort text-encre">Centre-ville & Grande Plage des Sables</p>
+                            <p class="legende">4 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="anchor" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Port de Bourgenay</p>
-                            <p class="text-xs text-stone-500">7 km</p>
+                            <p class="corps-fort text-encre">Port de Bourgenay</p>
+                            <p class="legende">7 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="waves" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/icons/vague.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Plage du Veillon</p>
-                            <p class="text-xs text-stone-500">9 km</p>
+                            <p class="corps-fort text-encre">Plage du Veillon</p>
+                            <p class="legende">9 km</p>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <i data-lucide="bike" class="w-5 h-5 text-cyan-600 shrink-0 mt-1"></i>
+                        <img src="brand/icons/velo.svg" alt="" class="w-5 h-5 shrink-0 mt-1">
                         <div>
-                            <p class="font-semibold text-sm">Piste cyclable</p>
-                            <p class="text-xs text-stone-500">Accès direct depuis la résidence</p>
+                            <p class="corps-fort text-encre">Piste cyclable</p>
+                            <p class="legende">Accès direct depuis la résidence</p>
                         </div>
                     </div>
                 </div>
@@ -448,65 +549,61 @@
     </section>
 
     <!-- Section Réservation / Contact Mailto -->
-    <section id="reservation" class="py-20 bg-stone-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <span class="text-cyan-400 font-semibold text-xs uppercase tracking-wider mb-2 block">Réservation directe sans frais</span>
-            <h2 class="font-serif-title text-3xl md:text-4xl font-bold mb-6">Réserver votre séjour aux Reflets de la Loubine</h2>
-            <p class="text-stone-300 max-w-2xl mx-auto mb-10 text-lg">
+    <section id="reservation" class="py-20 bg-nuit text-ecume">
+        <div class="max-w-4xl mx-auto px-4 sm:px-8 text-center">
+            <span class="surtitre text-bleu-loubine mb-2 block">Réservation directe sans frais</span>
+            <h2 class="titre-1 mb-6">Réserver votre séjour aux Reflets de la Loubine</h2>
+            <p class="chapo text-encre-douce max-w-2xl mx-auto mb-10">
                 Pour vérifier la disponibilité exacte ou faire une demande de réservation, cliquez sur le bouton ci-dessous pour m'envoyer directement un e-mail pré-rempli.
             </p>
 
-            <!-- Bouton Mailto Principal -->
-            <div class="bg-stone-800 p-8 rounded-2xl border border-stone-700 shadow-xl max-w-xl mx-auto mb-8">
-                <a 
+            <!-- Bouton Mailto Principal (Bouton Direct) -->
+            <div class="p-8 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume) 6%, transparent);">
+                <a
                     href="mailto:himdalielocation@gmail.com?subject=Demande%20de%20réservation%20-%20Les%20Reflets%20de%20la%20Loubine&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20me%20renseigner%20pour%20une%20réservation%20dans%20votre%20appartement%20%22Les%20Reflets%20de%20la%20Loubine%22%20(Résidence%20Lagrange%20L'Estran).%0D%0A%0D%0A-%20Date%20d'arrivée%20souhaitée%20:%20%0D%0A-%20Date%20de%20départ%20souhaitée%20:%20%0D%0A-%20Nombre%20de%20personnes%20(Max%204)%20:%20%0D%0A%0D%0AMes%20coordonnées%20:%0D%0A-%20Nom%20%2F%20Prénom%20:%20%0D%0A-%20Numéro%20de%20téléphone%20:%20%0D%0A%0D%0ACommentaires%20ou%20questions%20particulières%20:%20%0D%0A%0D%0AMerci%20!"
-                    class="inline-flex items-center justify-center gap-3 bg-cyan-600 hover:bg-cyan-500 text-white text-lg font-bold px-8 py-4 rounded-xl transition w-full shadow-lg"
+                    class="btn-focus inline-flex items-center justify-center gap-2 bg-tamaris hover:opacity-90 text-ecume corps-fort text-lg px-6 py-3 rounded-rayon-md transition w-full"
                 >
-                    <i data-lucide="mail" class="w-6 h-6"></i>
-                    Envoyer une demande par E-mail
+                    Envoyer une demande par e-mail
                 </a>
 
-                <p class="text-xs text-stone-400 mt-4">
+                <p class="legende mt-4">
                     Le clic ouvrira directement votre application de messagerie (Gmail, Mail, Outlook).
                 </p>
             </div>
 
             <!-- Encart Airbnb -->
-            <div class="bg-stone-800/50 p-6 rounded-2xl border border-stone-700/50 max-w-xl mx-auto mb-8">
+            <div class="p-6 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
                 <div class="flex items-center gap-3 justify-center mb-2">
-                    <i data-lucide="home" class="text-rose-400 w-5 h-5"></i>
-                    <p class="font-semibold text-white">Vous préférez réserver via Airbnb ?</p>
+                    <img src="brand/logos/marque-le-reflet.svg" alt="" class="w-5 h-5">
+                    <p class="corps-fort">Vous préférez réserver via Airbnb ?</p>
                 </div>
-                <p class="text-sm text-stone-400 mb-4">Notre annonce est également disponible sur Airbnb si vous souhaitez passer par leur plateforme.</p>
-                <span class="inline-flex items-center justify-center gap-2 bg-white/5 text-stone-400 px-5 py-2.5 rounded-xl font-medium text-sm border border-stone-700 cursor-not-allowed">
-                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                <p class="legende mb-4">Notre annonce est également disponible sur Airbnb si vous souhaitez passer par leur plateforme.</p>
+                <span class="inline-flex items-center justify-center gap-2 border border-dune text-encre-douce px-5 py-3 rounded-rayon-md corps-fort text-sm cursor-not-allowed">
                     Lien disponible prochainement
                 </span>
             </div>
 
             <!-- Coordonnées en clair -->
-            <div class="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto text-stone-300 text-sm">
-                <div class="bg-stone-800/50 p-4 rounded-xl border border-stone-700/50 flex items-center gap-3 justify-center">
-                    <i data-lucide="mail" class="text-cyan-400"></i>
+            <div class="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto corps">
+                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
                     <span>E-mail : <strong>himdalielocation@gmail.com</strong></span>
                 </div>
-                <div class="bg-stone-800/50 p-4 rounded-xl border border-stone-700/50 flex items-center gap-3 justify-center">
-                    <i data-lucide="phone" class="text-cyan-400"></i>
+                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
                     <span>Téléphone : <strong>06 XX XX XX XX</strong></span>
                 </div>
             </div>
-            
-            <p class="text-xs text-stone-500 mt-8">
+
+            <p class="legende mt-8">
                 Vos données personnelles sont uniquement utilisées pour échanger avec vous concernant votre réservation, conformément aux recommandations de la CNIL et au RGPD.
             </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-stone-950 text-stone-400 py-8 border-t border-stone-800 text-xs">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+    <footer class="bg-nuit text-encre-douce py-8 border-t border-dune legende">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
-                <p class="font-bold text-stone-200">Les Reflets de la Loubine - Les Sables d'Olonne</p>
+                <p class="corps-fort text-ecume">Les Reflets de la Loubine - Les Sables d'Olonne</p>
                 <p>Résidence Lagrange Vacances L'Estran</p>
             </div>
             <div>
@@ -517,13 +614,10 @@
 
     <!-- Initialisation des scripts -->
     <script>
-        // Initialiser les icônes Lucide
-        lucide.createIcons();
-
         // Initialiser la carte sur Les Sables d'Olonne
         const lat = 46.4741;
         const lng = -1.7483;
-        
+
         const map = L.map('map').setView([lat, lng], 14);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -536,7 +630,7 @@
             .openPopup();
 
         // Script du Calendrier
-                let currentDate = new Date();
+        let currentDate = new Date();
         let calendarData = {};
 
         async function loadCalendarData() {
@@ -565,7 +659,7 @@
             const lastDay = new Date(year, month + 1, 0).getDate();
 
             const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
-            
+
             document.getElementById('currentMonthYear').textContent = `${monthNames[month]} ${year}`;
 
             const grid = document.getElementById('calendarGrid');
@@ -585,13 +679,13 @@
                 let bgClasses;
                 if (dayInfo) {
                     bgClasses = dayInfo.available
-                        ? 'bg-emerald-50 text-emerald-900 border-emerald-200 hover:bg-emerald-100'
-                        : 'bg-rose-100 text-rose-800 border-rose-200 line-through font-semibold';
+                        ? 'bg-reflet text-bleu-loubine border-reflet'
+                        : 'bg-dune text-encre-douce border-dune line-through';
                 } else {
-                    bgClasses = 'bg-gray-50 text-gray-400 border-gray-200';
+                    bgClasses = 'bg-sable text-encre-douce border-dune';
                 }
 
-                dayCell.className = `h-10 flex items-center justify-center rounded-lg border text-sm transition font-medium ${bgClasses}`;
+                dayCell.className = `h-10 flex items-center justify-center rounded-rayon-sm border text-sm transition corps-fort ${bgClasses}`;
                 dayCell.textContent = day;
                 grid.appendChild(dayCell);
             }
