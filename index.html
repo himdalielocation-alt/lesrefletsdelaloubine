@@ -189,16 +189,6 @@
             width: 200%;
             will-change: transform;
         }
-        .wave-track.playing {
-            animation: wave-flow 14s linear infinite;
-        }
-        @keyframes wave-flow {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .wave-track.playing { animation: none; }
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-reflet selection:text-encre">
@@ -734,16 +724,53 @@
 
         loadCalendarData();
 
-        // Anime le motif "vagues" quand il apparaît au scroll
+        // Fait défiler le motif "vagues" au rythme du scroll (jamais tout seul)
         const waveMotif = document.getElementById('waveMotif');
         const waveTrack = document.getElementById('waveTrack');
-        if (waveMotif && waveTrack && 'IntersectionObserver' in window) {
-            const waveObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    waveTrack.classList.toggle('playing', entry.isIntersecting);
-                });
-            }, { threshold: 0.2 });
-            waveObserver.observe(waveMotif);
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (waveMotif && waveTrack && !prefersReducedMotion) {
+            let waveVisible = false;
+            let waveTileWidth = 0;
+            let waveTicking = false;
+
+            function measureWaveTile() {
+                const firstTile = waveTrack.querySelector('svg');
+                waveTileWidth = firstTile ? firstTile.getBoundingClientRect().width : 0;
+            }
+
+            function updateWaveOffset() {
+                waveTicking = false;
+                if (!waveVisible || !waveTileWidth) return;
+                const offset = ((window.scrollY * 0.5) % waveTileWidth + waveTileWidth) % waveTileWidth;
+                waveTrack.style.transform = `translateX(${-offset}px)`;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!waveTicking) {
+                    waveTicking = true;
+                    requestAnimationFrame(updateWaveOffset);
+                }
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                measureWaveTile();
+                updateWaveOffset();
+            });
+
+            measureWaveTile();
+
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        waveVisible = entry.isIntersecting;
+                        if (waveVisible) updateWaveOffset();
+                    });
+                }, { threshold: 0 }).observe(waveMotif);
+            } else {
+                waveVisible = true;
+                updateWaveOffset();
+            }
         }
     </script>
 </body>
