@@ -85,6 +85,7 @@
                         'tamaris-pale': 'var(--tamaris-pale)',
                         'varech': 'var(--varech)',
                         'ajonc': 'var(--ajonc)',
+                        'ecume-nuit': 'var(--ecume-nuit)',
                     },
                     fontFamily: {
                         titre: ['Fraunces Reflets', 'Georgia', 'Times New Roman', 'serif'],
@@ -139,6 +140,7 @@
             --tamaris-pale: #f6e3dd;
             --varech: #3e6b4f;
             --ajonc: #d9a441;
+            --ecume-nuit: #fbf8f2;
             --ombre-posee: 0 1px 2px rgba(18,33,31,0.05), 0 6px 20px rgba(18,33,31,0.07);
             --ombre-relief: 0 12px 40px rgba(18,33,31,0.14);
         }
@@ -160,6 +162,11 @@
                 --ajonc: #e6bd67;
                 --ombre-posee: 0 1px 2px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.45);
                 --ombre-relief: 0 12px 40px rgba(0,0,0,0.6);
+            }
+            /* #reservation reste une bande sombre dans les deux thèmes : ses bordures doivent
+               rester claires plutôt que de suivre --dune (qui s'assombrit en mode sombre). */
+            #reservation {
+                --dune: #d9c9ae;
             }
         }
 
@@ -612,7 +619,7 @@
     </section>
 
     <!-- Section Réservation / Contact Mailto -->
-    <section id="reservation" class="py-20 bg-nuit text-ecume">
+    <section id="reservation" class="py-20 bg-nuit text-ecume-nuit">
         <div class="max-w-4xl mx-auto px-4 sm:px-8 text-center">
             <span class="surtitre text-bleu-loubine mb-2 block">Réservation directe sans frais</span>
             <h2 class="titre-1 mb-6">Réserver votre séjour aux Reflets de la Loubine</h2>
@@ -621,7 +628,7 @@
             </p>
 
             <!-- Bouton Mailto Principal (Bouton Direct) -->
-            <div class="p-8 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume) 6%, transparent);">
+            <div class="p-8 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume-nuit) 6%, transparent);">
                 <a
                     href="mailto:himdalielocation@gmail.com?subject=Demande%20de%20réservation%20-%20Les%20Reflets%20de%20la%20Loubine&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20me%20renseigner%20pour%20une%20réservation%20dans%20votre%20appartement%20%22Les%20Reflets%20de%20la%20Loubine%22%20(Résidence%20Lagrange%20L'Estran).%0D%0A%0D%0A-%20Date%20d'arrivée%20souhaitée%20:%20%0D%0A-%20Date%20de%20départ%20souhaitée%20:%20%0D%0A-%20Nombre%20de%20personnes%20(Max%204)%20:%20%0D%0A%0D%0AMes%20coordonnées%20:%0D%0A-%20Nom%20%2F%20Prénom%20:%20%0D%0A-%20Numéro%20de%20téléphone%20:%20%0D%0A%0D%0ACommentaires%20ou%20questions%20particulières%20:%20%0D%0A%0D%0AMerci%20!"
                     class="btn-focus inline-flex items-center justify-center gap-2 bg-tamaris hover:opacity-90 text-ecume corps-fort text-lg px-6 py-3 rounded-rayon-md transition w-full"
@@ -635,9 +642,9 @@
             </div>
 
             <!-- Encart Airbnb -->
-            <div class="p-6 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
+            <div class="p-6 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                 <div class="flex items-center gap-3 justify-center mb-2">
-                    <span class="icono w-5 h-5 text-ecume" style="mask-image:url('brand/icons/lien-externe.svg');-webkit-mask-image:url('brand/icons/lien-externe.svg')" aria-hidden="true"></span>
+                    <span class="icono w-5 h-5 text-ecume-nuit" style="mask-image:url('brand/icons/lien-externe.svg');-webkit-mask-image:url('brand/icons/lien-externe.svg')" aria-hidden="true"></span>
                     <p class="corps-fort">Vous préférez réserver via Airbnb ?</p>
                 </div>
                 <p class="legende mb-4">Notre annonce est également disponible sur Airbnb si vous souhaitez passer par leur plateforme.</p>
@@ -648,10 +655,10 @@
 
             <!-- Coordonnées en clair -->
             <div class="grid sm:grid-cols-2 gap-4 max-w-xl mx-auto corps">
-                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
+                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                     <span>E-mail : <strong>himdalielocation@gmail.com</strong></span>
                 </div>
-                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume) 4%, transparent);">
+                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                     <span>Téléphone : <strong>06 XX XX XX XX</strong></span>
                 </div>
             </div>
@@ -666,7 +673,7 @@
     <footer class="bg-nuit text-encre-douce py-8 border-t border-dune legende">
         <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <div>
-                <p class="corps-fort text-ecume">Les Reflets de la Loubine - Les Sables d'Olonne</p>
+                <p class="corps-fort text-ecume-nuit">Les Reflets de la Loubine - Les Sables d'Olonne</p>
                 <p>Résidence Lagrange Vacances L'Estran</p>
             </div>
             <div>
