@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Générateur — Guide du séjour (outil local)</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bleu-loubine': 'var(--bleu-loubine)',
+                        'bleu-estran': 'var(--bleu-estran)',
+                        'reflet': 'var(--reflet)',
+                        'ecume': 'var(--ecume)',
+                        'sable': 'var(--sable)',
+                        'blanc-coquille': 'var(--blanc-coquille)',
+                        'dune': 'var(--dune)',
+                        'encre': 'var(--encre)',
+                        'encre-douce': 'var(--encre-douce)',
+                        'tamaris': 'var(--tamaris)',
+                        'varech': 'var(--varech)',
+                    },
+                    borderRadius: { 'rayon-md': '12px', 'rayon-lg': '20px' },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bleu-loubine: #134a52;
+            --bleu-estran: #2e747a;
+            --reflet: #a9ced0;
+            --ecume: #fbf8f2;
+            --sable: #f1e8d8;
+            --blanc-coquille: #ffffff;
+            --dune: #d9c9ae;
+            --encre: #12211f;
+            --encre-douce: #4c5a58;
+            --tamaris: #a8493f;
+            --varech: #3e6b4f;
+        }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: var(--sable); color: var(--encre); }
+        textarea { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.5; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-3xl mx-auto px-4 py-10">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold text-[var(--bleu-loubine)] mb-2">Générateur du guide du séjour</h1>
+            <p class="text-sm text-[var(--encre-douce)]">
+                Outil local, à ouvrir dans votre navigateur — rien n'est envoyé nulle part, tout se passe dans cette page.
+                Modifiez le contenu ci-dessous (remplacez les <code class="bg-white px-1 rounded">{{PLACEHOLDERS}}</code>),
+                choisissez un mot de passe, puis générez le fichier <code class="bg-white px-1 rounded">guide.html</code> à copier dans le dépôt.
+            </p>
+        </div>
+
+        <div class="bg-white border border-[var(--dune)] rounded-rayon-lg p-5 mb-6">
+            <label for="contentInput" class="block font-semibold mb-2">1. Contenu du guide (HTML)</label>
+            <textarea id="contentInput" rows="18" class="w-full border border-[var(--dune)] rounded-rayon-md p-3 bg-[var(--ecume)]"><div class="border-b border-dune bg-blanc-coquille">
+    <div class="max-w-3xl mx-auto px-4 sm:px-8 py-6 flex items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <img src="brand/logos/avatar-rond.svg" alt="" class="w-9 h-9 rounded-full">
+            <div>
+                <p class="corps-fort text-encre leading-tight">Les Reflets de la Loubine</p>
+                <p class="legende leading-tight">Guide du séjour</p>
+            </div>
+        </div>
+        <a href="index.html" class="btn-focus legende text-bleu-loubine hover:text-bleu-estran transition">&larr; Retour au site</a>
+    </div>
+</div>
+
+<main class="max-w-3xl mx-auto px-4 sm:px-8 py-10">
+    <div class="mb-8">
+        <h1 class="affiche text-bleu-loubine mb-3">Bienvenue !</h1>
+        <p class="chapo text-encre-douce">Tout ce qu'il faut pour votre séjour : accès, équipements, bonnes adresses. En cas de doute, un message suffit.</p>
+    </div>
+
+    <div class="flex gap-2 overflow-x-auto pb-2 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0" role="tablist" aria-label="Sections du guide">
+        <button class="tab-btn btn-focus" role="tab" id="tabbtn-avant" aria-controls="tab-avant" aria-selected="true" data-tab="avant">Avant l'arrivée</button>
+        <button class="tab-btn btn-focus" role="tab" id="tabbtn-logement" aria-controls="tab-logement" aria-selected="false" data-tab="logement">Dans le logement</button>
+        <button class="tab-btn btn-focus" role="tab" id="tabbtn-pratique" aria-controls="tab-pratique" aria-selected="false" data-tab="pratique">Infos pratiques</button>
+        <button class="tab-btn btn-focus" role="tab" id="tabbtn-decouvrir" aria-controls="tab-decouvrir" aria-selected="false" data-tab="decouvrir">À découvrir</button>
+    </div>
+
+    <section id="tab-avant" class="tab-panel space-y-6" role="tabpanel" aria-labelledby="tabbtn-avant">
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="clock" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Arrivée &amp; départ</h2>
+            </div>
+            <ul class="corps text-encre space-y-2">
+                <li><strong>Arrivée :</strong> à partir de 16h00</li>
+                <li><strong>Départ :</strong> avant 10h00</li>
+                <li><strong>Modalités des clés / code d'accès :</strong> {{MODALITES_CLES}}</li>
+            </ul>
+            <p class="legende mt-3">Besoin d'arriver plus tôt ou de partir plus tard ? Demandez, on s'arrange souvent selon les réservations autour de la vôtre.</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="map-pin" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Adresse</h2>
+            </div>
+            <p class="corps text-encre">{{ADRESSE_COMPLETE}}</p>
+            <p class="legende mt-1">Résidence Lagrange Vacances L'Estran, La Pironnière, Château-d'Olonne — Les Sables d'Olonne (85100)</p>
+            <a href="https://www.google.com/maps?q=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus inline-flex items-center gap-1.5 text-bleu-loubine hover:text-bleu-estran corps-fort mt-3">
+                <i data-lucide="navigation" class="w-4 h-4"></i> Ouvrir dans Google Maps
+            </a>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="car" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Venir en voiture</h2>
+            </div>
+            <p class="corps text-encre">{{ACCES_VOITURE}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="train-front" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Venir en train</h2>
+            </div>
+            <p class="corps text-encre">{{ACCES_TRAIN}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="square-parking" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Parking</h2>
+            </div>
+            <p class="corps text-encre">Parking gratuit dans la résidence. {{PARKING_DETAILS}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="luggage" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Quoi apporter</h2>
+            </div>
+            <p class="corps text-encre">{{A_APPORTER}}</p>
+        </div>
+
+    </section>
+
+    <section id="tab-logement" class="tab-panel space-y-6 hidden" role="tabpanel" aria-labelledby="tabbtn-logement">
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="list-checks" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">L'appartement en un coup d'œil</h2>
+            </div>
+            <ul class="corps text-encre space-y-1.5">
+                <li>T2 pour 4 personnes, vue mer directe (salon &amp; terrasse)</li>
+                <li>Chambre : 2 lits simples + lit armoire (véritable matelas)</li>
+                <li>Cuisine équipée, télévision, accès aux 2 piscines chauffées (15 mai – 15 octobre)</li>
+            </ul>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="wifi" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Wifi</h2>
+            </div>
+            <ul class="corps text-encre space-y-1">
+                <li><strong>Réseau :</strong> {{WIFI_NOM}}</li>
+                <li><strong>Mot de passe :</strong> {{WIFI_MDP}}</li>
+            </ul>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="thermometer" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Chauffage</h2>
+            </div>
+            <p class="corps text-encre">{{CHAUFFAGE_MODE_EMPLOI}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="washing-machine" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Lave-linge</h2>
+            </div>
+            <p class="corps text-encre">{{LAVE_LINGE_MODE_EMPLOI}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="tv" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Télévision</h2>
+            </div>
+            <p class="corps text-encre">{{TV_MODE_EMPLOI}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="scroll-text" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Règles de la résidence</h2>
+            </div>
+            <p class="corps text-encre">{{REGLES_RESIDENCE}}</p>
+        </div>
+
+    </section>
+
+    <section id="tab-pratique" class="tab-panel space-y-6 hidden" role="tabpanel" aria-labelledby="tabbtn-pratique">
+
+        <div class="bg-tamaris-pale border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="siren" class="w-5 h-5" style="color: var(--tamaris);"></i>
+                <h2 class="titre-3 text-encre">Urgences</h2>
+            </div>
+            <ul class="corps text-encre space-y-1">
+                <li><strong>SAMU :</strong> 15</li>
+                <li><strong>Police / Gendarmerie :</strong> 17</li>
+                <li><strong>Pompiers :</strong> 18</li>
+                <li><strong>Numéro d'urgence européen :</strong> 112</li>
+                <li><strong>Nous contacter :</strong> {{TELEPHONE_PROPRIETAIRE}} · himdalielocation@gmail.com</li>
+            </ul>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="cross" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Pharmacie</h2>
+            </div>
+            <p class="corps text-encre">{{PHARMACIE_INFOS}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="shopping-cart" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Supermarchés</h2>
+            </div>
+            <p class="corps text-encre">{{SUPERMARCHES_INFOS}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="carrot" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Marché</h2>
+            </div>
+            <p class="corps text-encre">{{MARCHE_INFOS}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="bike" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Location de vélos</h2>
+            </div>
+            <p class="corps text-encre">{{LOCATION_VELOS_INFOS}}</p>
+            <p class="legende mt-2">La piste cyclable de la Vélodyssée passe au pied de la résidence.</p>
+        </div>
+
+    </section>
+
+    <section id="tab-decouvrir" class="tab-panel space-y-6 hidden" role="tabpanel" aria-labelledby="tabbtn-decouvrir">
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="waves" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Plages</h2>
+            </div>
+            <ul class="corps text-encre space-y-1.5">
+                <li><strong>Plage du Tanchet</strong> — 1,5 km, accès direct piste cyclable</li>
+                <li><strong>Centre-ville &amp; Grande Plage des Sables</strong> — 4 km</li>
+                <li><strong>Plage du Veillon</strong> — 9 km</li>
+            </ul>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="utensils" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Restaurants</h2>
+            </div>
+            <p class="corps text-encre">{{RESTAURANTS_RECOMMANDES}}</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="ticket" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Activités</h2>
+            </div>
+            <p class="corps text-encre">{{ACTIVITES_INFOS}}</p>
+            <p class="legende mt-2">Thalasso Côte Ouest à 2 km · Port de Bourgenay à 7 km</p>
+        </div>
+
+        <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
+            <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="cloud-rain" class="w-5 h-5 text-bleu-loubine"></i>
+                <h2 class="titre-3 text-encre">Idées selon la météo</h2>
+            </div>
+            <p class="corps text-encre">{{IDEES_METEO}}</p>
+        </div>
+
+    </section>
+
+    <p class="legende text-center mt-12 pt-8 border-t border-dune">
+        Une question qui ne trouve pas sa réponse ici ? Écrivez-nous : himdalielocation@gmail.com
+    </p>
+</main></textarea>
+        </div>
+
+        <div class="bg-white border border-[var(--dune)] rounded-rayon-lg p-5 mb-6">
+            <label for="buildPassword" class="block font-semibold mb-2">2. Mot de passe partagé</label>
+            <p class="text-sm text-[var(--encre-douce)] mb-3">
+                Le même pour tous les voyageurs. Espaces en début/fin ignorés, insensible à la casse.
+                Choisissez quelque chose de facile à recopier depuis un e-mail (évitez les caractères ambigus 0/O, 1/l).
+            </p>
+            <input type="text" id="buildPassword" class="w-full border border-[var(--dune)] rounded-rayon-md p-3 bg-[var(--ecume)]" placeholder="ex : loubine-marée-2026" autocomplete="off">
+        </div>
+
+        <div class="bg-white border border-[var(--dune)] rounded-rayon-lg p-5 mb-6">
+            <label class="block font-semibold mb-2">3. Générer</label>
+            <button id="generateBtn" class="inline-flex items-center gap-2 bg-[var(--bleu-loubine)] hover:opacity-90 text-white font-semibold px-6 py-3 rounded-rayon-md transition">
+                Générer guide.html
+            </button>
+            <p id="genStatus" class="text-sm mt-3"></p>
+        </div>
+
+        <div id="resultBox" class="bg-white border border-[var(--varech)] rounded-rayon-lg p-5 hidden">
+            <p class="font-semibold mb-2" style="color: var(--varech);">✓ Fichier généré</p>
+            <p class="text-sm text-[var(--encre-douce)] mb-3">
+                Téléchargez <code class="bg-[var(--ecume)] px-1 rounded">guide.html</code> et copiez-le à la racine de votre dépôt,
+                à côté de <code class="bg-[var(--ecume)] px-1 rounded">index.html</code>.
+            </p>
+            <a id="downloadLink" download="guide.html" class="inline-flex items-center gap-2 bg-[var(--varech)] hover:opacity-90 text-white font-semibold px-6 py-3 rounded-rayon-md transition">
+                Télécharger guide.html
+            </a>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         GABARIT DE guide.html — identique au fichier livré dans le dépôt, avec
+         %%CRYPTO_PAYLOAD%% comme unique point de substitution. Si vous modifiez la
+         mise en page/le style de guide.html, reportez le même changement ici.
+         ========================================================================== -->
+
+    <script>
+        const ITERATIONS = 210000;
+
+        const GUIDE_SHELL_TEMPLATE = `<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Guide du séjour — Les Reflets de la Loubine</title>
+    <meta name="theme-color" content="#134a52">
+    <link rel="icon" type="image/svg+xml" href="brand/logos/avatar-rond.svg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bleu-loubine': 'var(--bleu-loubine)',
+                        'bleu-estran': 'var(--bleu-estran)',
+                        'reflet': 'var(--reflet)',
+                        'ecume': 'var(--ecume)',
+                        'sable': 'var(--sable)',
+                        'blanc-coquille': 'var(--blanc-coquille)',
+                        'dune': 'var(--dune)',
+                        'encre': 'var(--encre)',
+                        'encre-douce': 'var(--encre-douce)',
+                        'nuit': 'var(--nuit)',
+                        'tamaris': 'var(--tamaris)',
+                        'tamaris-pale': 'var(--tamaris-pale)',
+                        'varech': 'var(--varech)',
+                        'ajonc': 'var(--ajonc)',
+                    },
+                    fontFamily: {
+                        titre: ['Fraunces Reflets', 'Georgia', 'Times New Roman', 'serif'],
+                        texte: ['Karla Reflets', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'rayon-sm': '6px',
+                        'rayon-md': '12px',
+                        'rayon-lg': '20px',
+                        'rayon-pilule': '999px',
+                    },
+                    boxShadow: {
+                        posee: 'var(--ombre-posee)',
+                        relief: 'var(--ombre-relief)',
+                    },
+                }
+            }
+        }
+    <\/script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"><\/script>
+
+    <style>
+        @font-face {
+            font-family: 'Fraunces Reflets';
+            src: url('fonts/Fraunces-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Karla Reflets';
+            src: url('fonts/Karla-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bleu-loubine: #134a52;
+            --bleu-estran: #2e747a;
+            --reflet: #a9ced0;
+            --ecume: #fbf8f2;
+            --sable: #f1e8d8;
+            --blanc-coquille: #ffffff;
+            --dune: #d9c9ae;
+            --encre: #12211f;
+            --encre-douce: #4c5a58;
+            --nuit: #0c1719;
+            --tamaris: #a8493f;
+            --tamaris-pale: #f6e3dd;
+            --varech: #3e6b4f;
+            --ajonc: #d9a441;
+            --ombre-posee: 0 1px 2px rgba(18,33,31,0.05), 0 6px 20px rgba(18,33,31,0.07);
+            --ombre-relief: 0 12px 40px rgba(18,33,31,0.14);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bleu-loubine: #8fc3c6;
+                --bleu-estran: #5ea3a8;
+                --reflet: #2f585d;
+                --ecume: #0f1b1e;
+                --sable: #17272b;
+                --blanc-coquille: #14242a;
+                --dune: #2c4045;
+                --encre: #f4efe6;
+                --encre-douce: #b9c5c2;
+                --nuit: #06100f;
+                --tamaris: #e9a196;
+                --tamaris-pale: #38251f;
+                --varech: #86b694;
+                --ajonc: #e6bd67;
+                --ombre-posee: 0 1px 2px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.45);
+                --ombre-relief: 0 12px 40px rgba(0,0,0,0.6);
+            }
+        }
+
+        body { font-family: 'Karla Reflets', 'Helvetica Neue', Arial, sans-serif; background: var(--ecume); color: var(--encre); }
+
+        .affiche { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 32px; line-height: 36px; letter-spacing: -0.01em; }
+        @media (min-width: 640px) { .affiche { font-size: 44px; line-height: 46px; } }
+        .titre-1 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 27px; line-height: 32px; }
+        .titre-2 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 22px; line-height: 28px; }
+        .titre-3 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 18px; line-height: 24px; }
+        .chapo { font-weight: 400; font-size: 17px; line-height: 27px; }
+        .corps { font-weight: 400; font-size: 16px; line-height: 26px; }
+        .corps-fort { font-weight: 600; font-size: 16px; line-height: 26px; }
+        .legende { font-weight: 400; font-size: 13.5px; line-height: 20px; color: var(--encre-douce); }
+        .surtitre { font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+        .btn-focus:focus-visible { outline: 2px solid var(--bleu-estran); outline-offset: 3px; }
+
+        .tab-btn {
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--dune);
+            color: var(--encre-douce);
+            background: var(--blanc-coquille);
+            transition: all .15s ease;
+        }
+        .tab-btn[aria-selected="true"] {
+            background: var(--bleu-loubine);
+            border-color: var(--bleu-loubine);
+            color: var(--ecume);
+        }
+        .tab-panel[hidden] { display: none; }
+
+        html:not(.content-ready) #guideContent { display: none; }
+        html.content-ready #gate { display: none; }
+
+        .spinner {
+            width: 18px; height: 18px; border-radius: 999px;
+            border: 2px solid currentColor; border-top-color: transparent;
+            animation: spin .7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ============ PORTE D'ACCÈS (mot de passe) ============ -->
+    <div id="gate" class="min-h-screen flex items-center justify-center px-4 py-16">
+        <div class="w-full max-w-sm">
+            <div class="text-center mb-8">
+                <img src="brand/logos/avatar-rond.svg" alt="" class="w-14 h-14 mx-auto mb-4 rounded-full">
+                <h1 class="titre-2 text-encre mb-2">Guide du séjour</h1>
+                <p class="corps text-encre-douce">Les Reflets de la Loubine</p>
+            </div>
+            <form id="gateForm" class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6 shadow-posee" novalidate>
+                <label for="gatePassword" class="corps-fort text-encre block mb-2">Mot de passe</label>
+                <p class="legende mb-3">Communiqué à la confirmation de votre réservation.</p>
+                <input
+                    type="password"
+                    id="gatePassword"
+                    name="gatePassword"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    class="btn-focus w-full corps px-4 py-3 rounded-rayon-md border border-dune bg-ecume text-encre mb-4"
+                    placeholder="••••••••"
+                >
+                <button
+                    type="submit"
+                    id="gateSubmit"
+                    class="btn-focus w-full inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume corps-fort px-6 py-3 rounded-rayon-md transition"
+                >
+                    <span id="gateSubmitLabel">Accéder au guide</span>
+                </button>
+                <p id="gateError" class="legende mt-3 hidden" style="color: var(--tamaris);" role="alert"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============ CONTENU DU GUIDE ============ -->
+    <!-- Vide dans le code source : rempli uniquement en mémoire après déchiffrement réussi. -->
+    <div id="guideContent"></div>
+
+    <script>
+        // ============ Paramètres chiffrés (générés par build-guide.html — ne pas éditer à la main) ============
+        const CRYPTO_PAYLOAD = %%CRYPTO_PAYLOAD%%;
+
+        function base64ToBytes(base64) {
+            const binary = atob(base64);
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+            return bytes;
+        }
+
+        function normalizePassword(raw) {
+            return raw.trim().toLowerCase();
+        }
+
+        async function deriveKey(password, saltBytes, iterations) {
+            const baseKey = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
+            );
+            return crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt: saltBytes, iterations, hash: 'SHA-256' },
+                baseKey,
+                { name: 'AES-GCM', length: 256 },
+                false,
+                ['decrypt']
+            );
+        }
+
+        async function tryDecrypt(rawPassword) {
+            const password = normalizePassword(rawPassword);
+            const salt = base64ToBytes(CRYPTO_PAYLOAD.salt);
+            const iv = base64ToBytes(CRYPTO_PAYLOAD.iv);
+            const ciphertext = base64ToBytes(CRYPTO_PAYLOAD.ciphertext);
+            const key = await deriveKey(password, salt, CRYPTO_PAYLOAD.iterations);
+            const plainBuffer = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext);
+            return new TextDecoder().decode(plainBuffer);
+        }
+
+        function initGuideInteractions() {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    buttons.forEach((b) => {
+                        b.setAttribute('aria-selected', 'false');
+                        const panel = document.getElementById('tab-' + b.dataset.tab);
+                        if (panel) panel.hidden = true;
+                    });
+                    btn.setAttribute('aria-selected', 'true');
+                    const panel = document.getElementById('tab-' + btn.dataset.tab);
+                    if (panel) panel.hidden = false;
+                });
+            });
+            if (window.lucide) lucide.createIcons();
+        }
+
+        const gateForm = document.getElementById('gateForm');
+        const gatePassword = document.getElementById('gatePassword');
+        const gateError = document.getElementById('gateError');
+        const gateSubmit = document.getElementById('gateSubmit');
+        const gateSubmitLabel = document.getElementById('gateSubmitLabel');
+
+        gateForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            gateError.classList.add('hidden');
+            gateSubmit.disabled = true;
+            gateSubmitLabel.innerHTML = '<span class="spinner"></span>';
+
+            try {
+                const html = await tryDecrypt(gatePassword.value);
+                document.getElementById('guideContent').innerHTML = html;
+                document.documentElement.classList.add('content-ready');
+                initGuideInteractions();
+                window.scrollTo(0, 0);
+            } catch (err) {
+                gateError.textContent = 'Mot de passe incorrect. Vérifiez la casse et les espaces, puis réessayez.';
+                gateError.classList.remove('hidden');
+                gatePassword.value = '';
+                gatePassword.focus();
+            } finally {
+                gateSubmit.disabled = false;
+                gateSubmitLabel.textContent = 'Accéder au guide';
+            }
+        });
+
+        gatePassword.focus();
+    <\/script>
+</body>
+</html>
+`;
+
+        function bytesToBase64(bytes) {
+            let binary = '';
+            bytes.forEach((b) => { binary += String.fromCharCode(b); });
+            return btoa(binary);
+        }
+
+        function normalizePassword(raw) {
+            return raw.trim().toLowerCase();
+        }
+
+        async function deriveKey(password, saltBytes, iterations) {
+            const baseKey = await crypto.subtle.importKey(
+                'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
+            );
+            return crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt: saltBytes, iterations, hash: 'SHA-256' },
+                baseKey,
+                { name: 'AES-GCM', length: 256 },
+                false,
+                ['encrypt']
+            );
+        }
+
+        async function encryptContent(plainText, rawPassword) {
+            const password = normalizePassword(rawPassword);
+            const salt = crypto.getRandomValues(new Uint8Array(16));
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const key = await deriveKey(password, salt, ITERATIONS);
+            const ciphertextBuffer = await crypto.subtle.encrypt(
+                { name: 'AES-GCM', iv },
+                key,
+                new TextEncoder().encode(plainText)
+            );
+            return {
+                salt: bytesToBase64(salt),
+                iv: bytesToBase64(iv),
+                iterations: ITERATIONS,
+                ciphertext: bytesToBase64(new Uint8Array(ciphertextBuffer)),
+            };
+        }
+
+        const generateBtn = document.getElementById('generateBtn');
+        const genStatus = document.getElementById('genStatus');
+        const resultBox = document.getElementById('resultBox');
+        const downloadLink = document.getElementById('downloadLink');
+
+        generateBtn.addEventListener('click', async () => {
+            const content = document.getElementById('contentInput').value;
+            const password = document.getElementById('buildPassword').value;
+
+            resultBox.classList.add('hidden');
+            genStatus.textContent = '';
+            genStatus.style.color = '';
+
+            if (!password.trim()) {
+                genStatus.textContent = 'Choisissez un mot de passe avant de générer.';
+                genStatus.style.color = 'var(--tamaris)';
+                return;
+            }
+            if (!content.trim()) {
+                genStatus.textContent = 'Le contenu du guide est vide.';
+                genStatus.style.color = 'var(--tamaris)';
+                return;
+            }
+
+            generateBtn.disabled = true;
+            genStatus.textContent = 'Chiffrement en cours…';
+
+            try {
+                const payload = await encryptContent(content, password);
+                const template = GUIDE_SHELL_TEMPLATE;
+                const finalHtml = template.replace('%%CRYPTO_PAYLOAD%%', JSON.stringify(payload));
+
+                const blob = new Blob([finalHtml], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                downloadLink.href = url;
+
+                resultBox.classList.remove('hidden');
+                genStatus.textContent = 'Fichier prêt (' + Math.round(finalHtml.length / 1024) + ' Ko).';
+                genStatus.style.color = 'var(--varech)';
+            } catch (err) {
+                console.error(err);
+                genStatus.textContent = 'Erreur pendant la génération : ' + err.message;
+                genStatus.style.color = 'var(--tamaris)';
+            } finally {
+                generateBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
