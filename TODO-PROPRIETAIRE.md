@@ -17,6 +17,8 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [ ] Horaires d'arrivée et de départ (utilisés dans le JSON-LD `checkinTime`/`checkoutTime`, actuellement retirés faute de confirmation)
 - [ ] Caution
 - [ ] Conditions d'annulation
+- [ ] Mode(s) de paiement accepté(s) une fois la demande confirmée (virement, chèque, espèces...)
+- [ ] Délai de réponse habituel à une demande envoyée par e-mail (ex. « sous 24h », « sous 48h ») — vous avez indiqué ne pas vouloir vous engager sur un délai précis pour l'instant ; rien n'est donc affiché sur le site à ce sujet (voir le `<!-- TODO(proprio) -->` dans la section réservation de `templates/pages/index.html`)
 - [ ] Numéro d'enregistrement du meublé de tourisme
 - [ ] Numéro de téléphone (actuellement « 06 XX XX XX XX » factice)
 - [ ] Lien de l'annonce Airbnb (actuellement « Lien disponible prochainement »)
@@ -61,6 +63,10 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - [ ] Tester le JSON-LD sur [validator.schema.org](https://validator.schema.org) et sur le [test des résultats enrichis de Google](https://search.google.com/test/rich-results)
 - [ ] Ajouter le site dans Bing Webmaster Tools
 
+## Décision restant à prendre
+
+- [ ] **Piste visuelle A ou B** pour la refonte de la page d'accueil (mission UX/accessibilité, Phase 3) : Piste A = évolution discrète (mêmes couleurs/polices, hiérarchie et contrastes corrigés), Piste B = évolution plus affirmée (vue mer comme élément fort, moins de cartes, typographie plus marquée — toujours avec les mêmes polices). Volontairement remis à plus tard pour ne pas mélanger accessibilité et esthétique dans les mêmes commits ; les corrections d'accessibilité (Phase 1) avancent en attendant.
+
 ## Décisions déjà prises avec votre accord
 
 - Header/footer désormais générés depuis `templates/` (voir `CLAUDE.md`) — éditez `templates/pages/` et `templates/includes/`, pas les fichiers à la racine
@@ -68,3 +74,5 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - Title, meta description et H1 de l'accueil choisis parmi 3 propositions chacun
 - CSS compilé via Tailwind CLI à la place du CDN — **à vérifier après le premier push** (voir la mise en garde dans `CLAUDE.md`)
 - Pages Mentions légales et Politique de confidentialité créées et liées depuis le footer
+- Verbe unique pour l'action de réservation partout sur le site : « Demander mes dates » (mission UX/accessibilité, Phase 1) — remplace les 4 formulations différentes qui coexistaient (« Réserver en direct », « Demander une réservation », « Envoyer une demande par e-mail », « Réserver »)
+- Pas de bouton ni de widget d'accessibilité : conformément à la règle du brief UX/accessibilité (les overlays d'accessibilité ne rendent pas un site réellement accessible), confirmé explicitement par vous

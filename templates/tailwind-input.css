@@ -55,11 +55,17 @@
                 --ombre-posee: 0 1px 2px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.45);
                 --ombre-relief: 0 12px 40px rgba(0,0,0,0.6);
             }
-            /* #reservation reste une bande sombre dans les deux thèmes : ses bordures doivent
-               rester claires plutôt que de suivre --dune (qui s'assombrit en mode sombre). */
-            #reservation {
-                --dune: #d9c9ae;
-            }
+        }
+
+        /* Bandes toujours sombres (section réservation, CTA activités, footer) : --nuit ne
+           change presque pas entre les deux thèmes, donc leur texte et leurs bordures doivent
+           toujours utiliser la variante claire de chaque jeton, dans les deux thèmes — sans
+           quoi le mode clair (par défaut) hérite des variantes sombres pensées pour des fonds
+           clairs, illisibles sur --nuit. Valeurs fixes, volontairement indépendantes du thème. */
+        .bande-sombre {
+            --bleu-loubine: #8fc3c6;
+            --encre-douce: #b9c5c2;
+            --dune: #d9c9ae;
         }
 
         body { font-family: 'Karla Reflets', 'Helvetica Neue', Arial, sans-serif; background: var(--ecume); color: var(--encre); }
