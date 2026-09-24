@@ -99,9 +99,6 @@
             }
         }
     </script>
-    <!-- Leaflet CSS & JS pour la carte -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <style>
         @font-face {
@@ -627,20 +624,53 @@
 
     <!-- Initialisation des scripts -->
     <script>
-        // Initialiser la carte sur Les Sables d'Olonne
-        const lat = 46.4741;
-        const lng = -1.7483;
+        // Carte : chargée à la demande (Leaflet n'est ni dans le <head> ni chargé au
+        // premier affichage), déclenchée quand la carte approche de l'écran.
+        function chargerLeaflet(callback) {
+            if (window.L) { callback(); return; }
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+            document.head.appendChild(link);
 
-        const map = L.map('map').setView([lat, lng], 14);
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+            script.onload = callback;
+            document.head.appendChild(script);
+        }
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap'
-        }).addTo(map);
+        function initMap() {
+            const lat = 46.4741;
+            const lng = -1.7483;
 
-        L.marker([lat, lng]).addTo(map)
-            .bindPopup('<b>Les Reflets de la Loubine</b><br>Résidence Lagrange Vacances L\'Estran')
-            .openPopup();
+            const map = L.map('map').setView([lat, lng], 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">contributeurs OpenStreetMap</a>'
+            }).addTo(map);
+
+            L.marker([lat, lng]).addTo(map)
+                .bindPopup('<b>Les Reflets de la Loubine</b><br>Résidence Lagrange Vacances L\'Estran')
+                .openPopup();
+        }
+
+        const mapEl = document.getElementById('map');
+        if (mapEl) {
+            if ('IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            chargerLeaflet(initMap);
+                            mapObserver.disconnect();
+                        }
+                    });
+                }, { rootMargin: '400px' });
+                mapObserver.observe(mapEl);
+            } else {
+                chargerLeaflet(initMap);
+            }
+        }
 
         // Script du Calendrier
         let currentDate = new Date();
