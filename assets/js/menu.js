@@ -26,4 +26,10 @@ if (menuToggle && mobileMenu) {
     mobileMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', closeMobileMenu);
     });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+            closeMobileMenu();
+            menuToggle.focus();
+        }
+    });
 }

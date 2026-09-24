@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr" class="motion-safe:scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,7 +79,7 @@
 </head>
 <body class="antialiased selection:bg-reflet selection:text-encre">
 
-    <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
+    <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume border border-transparent px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
 
     {{HEADER}}
 
@@ -99,7 +99,7 @@
                     Jusqu'à 15% d'économie, en direct
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#reservation" class="btn-focus inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume px-6 py-3 rounded-rayon-md corps-fort transition">
+                    <a href="#reservation" class="btn-focus inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume border border-transparent px-6 py-3 rounded-rayon-md corps-fort transition">
                         Demander une réservation
                     </a>
                     <a href="#presentation" class="btn-focus inline-flex items-center justify-center gap-2 bg-transparent hover:bg-sable border border-dune text-bleu-loubine px-6 py-3 rounded-rayon-md corps-fort transition">
@@ -169,18 +169,18 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <div class="md:col-span-2 aspect-[16/10] rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
                     <!-- Photo à ajouter : images/sejour-les-reflets-de-la-loubine.jpg — alt="Séjour de l'appartement Les Reflets de la Loubine, vue mer directe" -->
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
                     <p class="legende">Photo à ajouter : le séjour</p>
                 </div>
                 <div class="grid grid-rows-2 gap-6">
                     <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
                         <!-- Photo à ajouter : images/piscines-residence-estran.jpg — alt="Les 2 piscines extérieures chauffées de la résidence Lagrange Vacances L'Estran" -->
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
                         <p class="legende">Photo à ajouter : les piscines</p>
                     </div>
                     <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
                         <!-- Photo à ajouter : images/plage-tanchet-les-sables-olonne.jpg — alt="Plage du Tanchet, à proximité de la résidence Les Reflets de la Loubine" -->
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
                         <p class="legende">Photo à ajouter : la plage</p>
                     </div>
                 </div>
@@ -343,11 +343,11 @@
                     </div>
                     <div class="flex items-center gap-2 self-center sm:self-auto">
                         <button id="prevMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois précédent">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>
                         </button>
                         <span id="currentMonthYear" class="corps-fort text-encre min-w-[140px] text-center capitalize" aria-live="polite"></span>
                         <button id="nextMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois suivant">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>
                         </button>
                     </div>
                 </div>
@@ -471,7 +471,7 @@
             <div class="p-8 rounded-rayon-lg border border-dune max-w-xl mx-auto mb-8" style="background: color-mix(in srgb, var(--ecume-nuit) 6%, transparent);">
                 <a
                     href="mailto:himdalielocation@gmail.com?subject=Demande%20de%20réservation%20-%20Les%20Reflets%20de%20la%20Loubine&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20me%20renseigner%20pour%20une%20réservation%20dans%20votre%20appartement%20%22Les%20Reflets%20de%20la%20Loubine%22%20(Résidence%20Lagrange%20L'Estran).%0D%0A%0D%0A-%20Date%20d'arrivée%20souhaitée%20:%20%0D%0A-%20Date%20de%20départ%20souhaitée%20:%20%0D%0A-%20Nombre%20de%20personnes%20(Max%204)%20:%20%0D%0A%0D%0AMes%20coordonnées%20:%0D%0A-%20Nom%20%2F%20Prénom%20:%20%0D%0A-%20Numéro%20de%20téléphone%20:%20%0D%0A%0D%0ACommentaires%20ou%20questions%20particulières%20:%20%0D%0A%0D%0AMerci%20!"
-                    class="btn-focus inline-flex items-center justify-center gap-2 bg-tamaris hover:opacity-90 text-ecume corps-fort text-lg px-6 py-3 rounded-rayon-md transition w-full"
+                    class="btn-focus inline-flex items-center justify-center gap-2 bg-tamaris hover:opacity-90 text-ecume border border-transparent corps-fort text-lg px-6 py-3 rounded-rayon-md transition w-full"
                 >
                     Envoyer une demande par e-mail
                 </a>
