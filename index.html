@@ -593,8 +593,25 @@
         function initMap() {
             const lat = 46.4741;
             const lng = -1.7483;
+            // Sur mobile/tactile, un glisser à un doigt sur la carte ne doit pas capturer le
+            // défilement de la page : le déplacement de la carte y est donc désactivé (la liste
+            // de distances et les liens « Itinéraire » ci-contre restent l'alternative complète).
+            // Sur ordinateur, le glisser à la souris reste actif (il n'entre pas en conflit avec
+            // le défilement de la page, qui se fait à la molette).
+            const isTouch = L.Browser.mobile;
 
-            const map = L.map('map').setView([lat, lng], 14);
+            const map = L.map('map', {
+                scrollWheelZoom: false,
+                dragging: !isTouch,
+                tap: !isTouch,
+                zoomControl: false,
+            }).setView([lat, lng], 14);
+
+            L.control.zoom({
+                position: 'topleft',
+                zoomInTitle: 'Zoomer',
+                zoomOutTitle: 'Dézoomer',
+            }).addTo(map);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 maxZoom: 19,
