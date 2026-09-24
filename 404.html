@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page introuvable - Les Reflets de la Loubine</title>
+    <meta name="description" content="Cette page n'existe pas ou plus. Retrouvez l'appartement Les Reflets de la Loubine aux Sables-d'Olonne, nos idées d'activités, et le lien pour réserver.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#134a52">
+    <link rel="icon" type="image/svg+xml" href="brand/logos/avatar-rond.svg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bleu-loubine': 'var(--bleu-loubine)',
+                        'bleu-estran': 'var(--bleu-estran)',
+                        'reflet': 'var(--reflet)',
+                        'ecume': 'var(--ecume)',
+                        'sable': 'var(--sable)',
+                        'blanc-coquille': 'var(--blanc-coquille)',
+                        'dune': 'var(--dune)',
+                        'encre': 'var(--encre)',
+                        'encre-douce': 'var(--encre-douce)',
+                        'nuit': 'var(--nuit)',
+                        'tamaris': 'var(--tamaris)',
+                        'tamaris-pale': 'var(--tamaris-pale)',
+                        'varech': 'var(--varech)',
+                        'ajonc': 'var(--ajonc)',
+                        'ecume-nuit': 'var(--ecume-nuit)',
+                    },
+                    fontFamily: {
+                        titre: ['Fraunces Reflets', 'Georgia', 'Times New Roman', 'serif'],
+                        texte: ['Karla Reflets', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'rayon-sm': '6px',
+                        'rayon-md': '12px',
+                        'rayon-lg': '20px',
+                        'rayon-pilule': '999px',
+                    },
+                    boxShadow: {
+                        posee: 'var(--ombre-posee)',
+                        relief: 'var(--ombre-relief)',
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'Fraunces Reflets';
+            src: url('fonts/Fraunces-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Karla Reflets';
+            src: url('fonts/Karla-Reflets.woff2') format('woff2');
+            font-weight: 400 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --bleu-loubine: #134a52;
+            --bleu-estran: #2e747a;
+            --reflet: #a9ced0;
+            --ecume: #fbf8f2;
+            --sable: #f1e8d8;
+            --blanc-coquille: #ffffff;
+            --dune: #d9c9ae;
+            --encre: #12211f;
+            --encre-douce: #4c5a58;
+            --nuit: #0c1719;
+            --tamaris: #a8493f;
+            --tamaris-pale: #f6e3dd;
+            --varech: #3e6b4f;
+            --ajonc: #d9a441;
+            --ecume-nuit: #fbf8f2;
+            --ombre-posee: 0 1px 2px rgba(18,33,31,0.05), 0 6px 20px rgba(18,33,31,0.07);
+            --ombre-relief: 0 12px 40px rgba(18,33,31,0.14);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bleu-loubine: #8fc3c6;
+                --bleu-estran: #5ea3a8;
+                --reflet: #2f585d;
+                --ecume: #0f1b1e;
+                --sable: #17272b;
+                --blanc-coquille: #14242a;
+                --dune: #2c4045;
+                --encre: #f4efe6;
+                --encre-douce: #b9c5c2;
+                --nuit: #06100f;
+                --tamaris: #e9a196;
+                --tamaris-pale: #38251f;
+                --varech: #86b694;
+                --ajonc: #e6bd67;
+                --ombre-posee: 0 1px 2px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.45);
+                --ombre-relief: 0 12px 40px rgba(0,0,0,0.6);
+            }
+        }
+
+        body { font-family: 'Karla Reflets', 'Helvetica Neue', Arial, sans-serif; background: var(--ecume); color: var(--encre); }
+
+        .affiche { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 40px; line-height: 42px; letter-spacing: -0.01em; }
+        @media (min-width: 640px) { .affiche { font-size: 60px; line-height: 60px; } }
+        .titre-3 { font-family: 'Fraunces Reflets', Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 20px; line-height: 27px; }
+        .chapo { font-weight: 400; font-size: 19px; line-height: 30px; }
+        .corps-fort { font-weight: 600; font-size: 16px; line-height: 26px; }
+        .legende { font-weight: 400; font-size: 13.5px; line-height: 20px; color: var(--encre-douce); }
+        .surtitre { font-weight: 700; font-size: 12px; line-height: 16px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+        .btn-focus:focus-visible { outline: 2px solid var(--bleu-estran); outline-offset: 3px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-reflet selection:text-encre">
+
+    <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
+
+    <header class="border-b border-dune">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center">
+            <a href="/" class="flex items-center btn-focus" aria-label="Les Reflets de la Loubine — Accueil">
+                <span class="text-bleu-loubine"><svg class="h-9 w-auto" viewBox="0 0 111.0 92.2" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Marque Le Reflet"><g transform="translate(-4.50 -13.90) scale(1.0000)" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M8 60C26 21 74 13 112 60" stroke-width="7"></path><path d="M8 60C26 99 74 107 112 60" stroke-width="2.6"></path><circle cx="86" cy="52" r="3.8" fill="currentColor" stroke="none"></circle></g></svg></span>
+                <span class="corps-fort text-bleu-loubine ml-3">Les Reflets de la Loubine</span>
+            </a>
+        </div>
+    </header>
+
+    <main id="contenu-principal" class="min-h-[60vh] flex items-center">
+        <div class="max-w-2xl mx-auto px-4 sm:px-8 py-20 text-center">
+            <span class="surtitre text-bleu-loubine block mb-4">Erreur 404</span>
+            <h1 class="affiche text-bleu-loubine mb-6">Cette page n'existe pas</h1>
+            <p class="chapo text-encre mb-10">
+                Le lien suivi ne correspond à aucune page du site. Vous pouvez retrouver l'appartement, nos idées d'activités aux Sables-d'Olonne, ou demander une réservation ci-dessous.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="btn-focus inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume px-6 py-3 rounded-rayon-md corps-fort transition">
+                    Retour à l'accueil
+                </a>
+                <a href="/activites-sables-d-olonne.html" class="btn-focus inline-flex items-center justify-center gap-2 bg-transparent hover:bg-sable border border-dune text-bleu-loubine px-6 py-3 rounded-rayon-md corps-fort transition">
+                    Idées d'activités
+                </a>
+                <a href="/#reservation" class="btn-focus inline-flex items-center justify-center gap-2 bg-transparent hover:bg-sable border border-dune text-bleu-loubine px-6 py-3 rounded-rayon-md corps-fort transition">
+                    Réserver
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-nuit text-encre-douce py-8 border-t border-dune legende">
+        <div class="max-w-6xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="corps-fort text-ecume-nuit">Les Reflets de la Loubine - Les Sables d'Olonne</p>
+                <p>Résidence Lagrange Vacances L'Estran</p>
+            </div>
+            <div>
+                <p>&copy; 2026 - Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
