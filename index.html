@@ -394,7 +394,7 @@
                         <button id="prevMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois précédent">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
                         </button>
-                        <span id="currentMonthYear" class="corps-fort text-encre min-w-[140px] text-center capitalize"></span>
+                        <span id="currentMonthYear" class="corps-fort text-encre min-w-[140px] text-center capitalize" aria-live="polite"></span>
                         <button id="nextMonth" class="btn-focus p-2 hover:bg-sable rounded-rayon-sm text-bleu-loubine transition border border-dune" aria-label="Mois suivant">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
                         </button>
@@ -409,12 +409,17 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="pastille bg-dune"></span>
-                        <span>Occupé / Indisponible</span>
+                        <span>Occupé / indisponible (chiffre barré)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="pastille bg-sable border border-dune border-dashed"></span>
+                        <span>Information non disponible (contour pointillé)</span>
                     </div>
                 </div>
 
-                <!-- Grille des jours de la semaine -->
-                <div class="grid grid-cols-7 gap-1 text-center surtitre text-encre-douce mb-2">
+                <!-- Grille des jours de la semaine : décorative pour les lecteurs d'écran, le nom
+                     complet du jour est déjà annoncé dans le libellé de chaque case du calendrier. -->
+                <div class="grid grid-cols-7 gap-1 text-center surtitre text-encre-douce mb-2" aria-hidden="true">
                     <div>Lun</div>
                     <div>Mar</div>
                     <div>Mer</div>
@@ -647,6 +652,7 @@
             const lastDay = new Date(year, month + 1, 0).getDate();
 
             const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+            const dayNamesLongs = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 
             document.getElementById('currentMonthYear').textContent = `${monthNames[month]} ${year}`;
 
@@ -656,6 +662,7 @@
             for (let i = 0; i < firstDayIndex; i++) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = 'h-10 border border-transparent';
+                emptyCell.setAttribute('aria-hidden', 'true');
                 grid.appendChild(emptyCell);
             }
 
@@ -663,18 +670,22 @@
                 const dayCell = document.createElement('div');
                 const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
                 const dayInfo = calendarData[dateString];
+                const dayNameLong = dayNamesLongs[new Date(year, month, day).getDay()];
 
-                let bgClasses;
+                let bgClasses, statusLabel;
                 if (dayInfo) {
                     bgClasses = dayInfo.available
                         ? 'bg-varech text-ecume border-varech'
                         : 'bg-dune text-encre-douce border-dune line-through';
+                    statusLabel = dayInfo.available ? 'disponible' : 'indisponible';
                 } else {
-                    bgClasses = 'bg-sable text-encre-douce border-dune';
+                    bgClasses = 'bg-sable text-encre-douce border-dune border-dashed';
+                    statusLabel = 'information non disponible';
                 }
 
                 dayCell.className = `h-10 flex items-center justify-center rounded-rayon-sm border text-sm transition corps-fort ${bgClasses}`;
                 dayCell.textContent = day;
+                dayCell.setAttribute('aria-label', `${dayNameLong} ${day} ${monthNames[month].toLowerCase()} ${year}, ${statusLabel}`);
                 grid.appendChild(dayCell);
             }
         }
