@@ -31,8 +31,10 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [ ] Confirmation officielle de la date IRONMAN Les Sables-d'Olonne–Vendée (27 juin 2027 annoncé, à vérifier sur le site officiel)
 - [ ] Dates 2027 : ponts de mai, Vendée Va'a, Journées européennes du patrimoine
 
-### Mentions légales (Phase 5, à venir)
-- [ ] Identité de l'éditeur du site (nom, adresse) pour la page Mentions légales
+### Mentions légales et confidentialité
+- [ ] Identité de l'éditeur du site (nom, adresse) — dans `mentions-legales.html`, actuellement en TODO
+- [ ] Nom du directeur de la publication — idem
+- [ ] Durée de conservation des e-mails de réservation — dans `politique-de-confidentialite.html`, actuellement en TODO
 
 ## Photos à prendre (remplacent les placeholders actuels)
 
@@ -62,4 +64,7 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 ## Décisions déjà prises avec votre accord
 
 - Header/footer désormais générés depuis `templates/` (voir `CLAUDE.md`) — éditez `templates/pages/` et `templates/includes/`, pas les fichiers à la racine
-- JSON-LD nettoyé des faits non confirmés (voir `AUDIT-SEO.md`)
+- JSON-LD nettoyé des faits non confirmés puis restructuré en `WebSite` + `VacationRental` (voir `AUDIT-SEO.md`)
+- Title, meta description et H1 de l'accueil choisis parmi 3 propositions chacun
+- CSS compilé via Tailwind CLI à la place du CDN — **à vérifier après le premier push** (voir la mise en garde dans `CLAUDE.md`)
+- Pages Mentions légales et Politique de confidentialité créées et liées depuis le footer
