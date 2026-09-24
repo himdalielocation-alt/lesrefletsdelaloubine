@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-09-24T00:14:16.721875Z",
+  "lastUpdate": "2026-09-24T22:02:45.018866Z",
   "property": {
     "name": "Les Reflets de la Loubine",
     "location": "Château-d'Olonne, Vendée",
@@ -548,11 +548,11 @@
     },
     {
       "date": "2027-02-13",
-      "available": true
+      "available": false
     },
     {
       "date": "2027-02-14",
-      "available": true
+      "available": false
     },
     {
       "date": "2027-02-15",
