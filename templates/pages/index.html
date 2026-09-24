@@ -100,7 +100,7 @@
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="#reservation" class="btn-focus inline-flex items-center justify-center gap-2 bg-bleu-loubine hover:bg-bleu-estran text-ecume border border-transparent px-6 py-3 rounded-rayon-md corps-fort transition">
-                        Demander une réservation
+                        Demander mes dates
                     </a>
                     <a href="#presentation" class="btn-focus inline-flex items-center justify-center gap-2 bg-transparent hover:bg-sable border border-dune text-bleu-loubine px-6 py-3 rounded-rayon-md corps-fort transition">
                         Découvrir le logement
@@ -473,12 +473,15 @@
                     href="mailto:himdalielocation@gmail.com?subject=Demande%20de%20réservation%20-%20Les%20Reflets%20de%20la%20Loubine&body=Bonjour,%0D%0A%0D%0AJe%20souhaite%20me%20renseigner%20pour%20une%20réservation%20dans%20votre%20appartement%20%22Les%20Reflets%20de%20la%20Loubine%22%20(Résidence%20Lagrange%20L'Estran).%0D%0A%0D%0A-%20Date%20d'arrivée%20souhaitée%20:%20%0D%0A-%20Date%20de%20départ%20souhaitée%20:%20%0D%0A-%20Nombre%20de%20personnes%20(Max%204)%20:%20%0D%0A%0D%0AMes%20coordonnées%20:%0D%0A-%20Nom%20%2F%20Prénom%20:%20%0D%0A-%20Numéro%20de%20téléphone%20:%20%0D%0A%0D%0ACommentaires%20ou%20questions%20particulières%20:%20%0D%0A%0D%0AMerci%20!"
                     class="btn-focus inline-flex items-center justify-center gap-2 bg-tamaris hover:opacity-90 text-ecume border border-transparent corps-fort text-lg px-6 py-3 rounded-rayon-md transition w-full"
                 >
-                    Envoyer une demande par e-mail
+                    Demander mes dates
                 </a>
 
-                <p class="legende mt-4">
-                    Le clic ouvrira directement votre application de messagerie (Gmail, Mail, Outlook).
-                </p>
+                <ol class="legende mt-4 text-left max-w-sm mx-auto space-y-1.5 list-decimal list-inside">
+                    <li>Le clic ouvre votre application de messagerie (Gmail, Mail, Outlook) avec un e-mail pré-rempli.</li>
+                    <li>Vous complétez les informations manquantes (dates, coordonnées) et envoyez le message.</li>
+                    <!-- TODO(proprio) : préciser ici le délai de réponse habituel (ex. « sous 24h », « sous 48h ») une fois confirmé -->
+                    <li>Je vous réponds par e-mail pour confirmer la disponibilité et les modalités de votre séjour.</li>
+                </ol>
             </div>
 
             <!-- Encart Airbnb -->
@@ -494,9 +497,13 @@
             <!-- Coordonnées en clair -->
             <!-- TODO(proprio) : ajouter le téléphone une fois communiqué -->
             <address class="not-italic max-w-xl mx-auto corps">
-                <div class="p-4 rounded-rayon-md border border-dune flex items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
+                <div class="p-4 rounded-rayon-md border border-dune flex flex-col sm:flex-row items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                     <span>E-mail : <strong>himdalielocation@gmail.com</strong></span>
+                    <button type="button" id="copyEmailBtn" class="btn-focus inline-flex items-center gap-2 border border-dune hover:bg-dune hover:text-nuit text-ecume-nuit corps-fort text-sm px-3 py-2 rounded-rayon-sm transition">
+                        Copier l'adresse
+                    </button>
                 </div>
+                <p id="copyEmailStatus" class="sr-only" role="status" aria-live="polite"></p>
             </address>
 
             <p class="legende mt-8">
@@ -654,6 +661,34 @@
         });
 
         loadCalendarData();
+
+        // Bouton « Copier l'adresse » : alternative au mailto pour qui préfère copier-coller
+        // l'adresse dans son propre client de messagerie. Confirmation annoncée aux lecteurs
+        // d'écran via la région aria-live, en plus du changement visuel du texte du bouton.
+        const copyEmailBtn = document.getElementById('copyEmailBtn');
+        const copyEmailStatus = document.getElementById('copyEmailStatus');
+        if (copyEmailBtn && copyEmailStatus) {
+            const email = 'himdalielocation@gmail.com';
+            copyEmailBtn.addEventListener('click', async () => {
+                try {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        await navigator.clipboard.writeText(email);
+                    } else {
+                        const zoneTemporaire = document.createElement('textarea');
+                        zoneTemporaire.value = email;
+                        zoneTemporaire.style.position = 'fixed';
+                        zoneTemporaire.style.opacity = '0';
+                        document.body.appendChild(zoneTemporaire);
+                        zoneTemporaire.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(zoneTemporaire);
+                    }
+                    copyEmailStatus.textContent = 'Adresse e-mail copiée.';
+                } catch (error) {
+                    copyEmailStatus.textContent = `La copie a échoué. L'adresse est ${email}.`;
+                }
+            });
+        }
 
         // Fait défiler le motif "vagues" au rythme du scroll (jamais tout seul)
         const waveMotif = document.getElementById('waveMotif');
