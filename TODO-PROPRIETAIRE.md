@@ -48,6 +48,7 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - [ ] Salle de bain
 - [ ] Les 2 piscines de la résidence
 - [ ] Extérieurs / espaces verts de la résidence
+- [ ] Plage (Tanchet ou à proximité) — remplace la 3e photo « galerie » de l'accueil, actuellement en placeholder
 - [ ] Le Puits d'Enfer
 
 ## Actions techniques à faire vous-même (une fois le site en ligne)
