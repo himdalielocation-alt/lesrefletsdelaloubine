@@ -77,7 +77,7 @@
     <!-- CSS compilé (Tailwind CLI, voir CLAUDE.md) -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
-<body class="antialiased selection:bg-reflet selection:text-encre">
+<body id="top" class="antialiased selection:bg-reflet selection:text-encre">
 
     <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume border border-transparent px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
 
@@ -230,46 +230,63 @@
                 <p class="corps text-encre-douce">Tout est pensé pour que vous vous sentiez comme chez vous dès votre arrivée.</p>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12 text-center">
+            <div class="space-y-14">
                 <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/vague.svg');-webkit-mask-image:url('brand/icons/vague.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Vue Mer Directe</h3>
-                    <p class="legende">Depuis le salon et la terrasse</p>
+                    <h3 class="titre-3 text-encre mb-6 text-center">Dans l'appartement</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 text-center">
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/vague.svg');-webkit-mask-image:url('brand/icons/vague.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Vue Mer Directe</h4>
+                            <p class="legende">Depuis le salon et la terrasse</p>
+                        </div>
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/couchage.svg');-webkit-mask-image:url('brand/icons/couchage.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Literie</h4>
+                            <p class="legende">2 lits simples + lit armoire (véritable matelas)</p>
+                        </div>
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/cuisine.svg');-webkit-mask-image:url('brand/icons/cuisine.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Cuisine Équipée</h4>
+                            <p class="legende">Plaques, micro-ondes, frigo, vaisselle</p>
+                        </div>
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/television.svg');-webkit-mask-image:url('brand/icons/television.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Télévision</h4>
+                            <p class="legende">Écran plat pour vos soirées détente</p>
+                        </div>
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/cafe.svg');-webkit-mask-image:url('brand/icons/cafe.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Cafetière & Théière</h4>
+                            <p class="legende">Pour bien démarrer vos journées</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/piscine.svg');-webkit-mask-image:url('brand/icons/piscine.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">2 Piscines Chauffées</h3>
-                    <p class="legende">Du 15 mai au 15 octobre</p>
+                    <h3 class="titre-3 text-encre mb-6 text-center">Dans la résidence</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 text-center">
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/piscine.svg');-webkit-mask-image:url('brand/icons/piscine.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">2 Piscines Chauffées</h4>
+                            <p class="legende">Du 15 mai au 15 octobre</p>
+                        </div>
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/parking.svg');-webkit-mask-image:url('brand/icons/parking.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Parking</h4>
+                            <p class="legende">Stationnement gratuit dans la résidence</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/couchage.svg');-webkit-mask-image:url('brand/icons/couchage.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Literie</h3>
-                    <p class="legende">2 lits simples + lit armoire (véritable matelas)</p>
-                </div>
-                <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/cuisine.svg');-webkit-mask-image:url('brand/icons/cuisine.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Cuisine Équipée</h3>
-                    <p class="legende">Plaques, micro-ondes, frigo, vaisselle</p>
-                </div>
-                <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/television.svg');-webkit-mask-image:url('brand/icons/television.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Télévision</h3>
-                    <p class="legende">Écran plat pour vos soirées détente</p>
-                </div>
-                <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/parking.svg');-webkit-mask-image:url('brand/icons/parking.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Parking</h3>
-                    <p class="legende">Stationnement gratuit dans la résidence</p>
-                </div>
-                <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/cafe.svg');-webkit-mask-image:url('brand/icons/cafe.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Cafetière & Théière</h3>
-                    <p class="legende">Pour bien démarrer vos journées</p>
-                </div>
-                <div>
-                    <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/velo.svg');-webkit-mask-image:url('brand/icons/velo.svg')" aria-hidden="true"></span>
-                    <h3 class="titre-3 text-encre mb-1">Pistes Cyclables</h3>
-                    <p class="legende">Départ direct au pied de la résidence</p>
+                    <h3 class="titre-3 text-encre mb-6 text-center">À proximité</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 text-center">
+                        <div>
+                            <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('brand/icons/velo.svg');-webkit-mask-image:url('brand/icons/velo.svg')" aria-hidden="true"></span>
+                            <h4 class="titre-3 text-encre mb-1">Pistes Cyclables</h4>
+                            <p class="legende">Départ direct au pied de la résidence</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -382,6 +399,9 @@
 
                 <!-- Grille du Calendrier dynamique -->
                 <div id="calendarGrid" class="grid grid-cols-7 gap-1.5"></div>
+
+                <p id="calendarLastUpdate" class="legende mt-4"></p>
+                <p id="calendarError" class="legende mt-4 text-tamaris hidden" role="alert"></p>
             </div>
         </div>
     </section>
@@ -395,8 +415,17 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-start">
-                <div class="md:col-span-2 rounded-rayon-lg overflow-hidden border border-dune shadow-posee">
-                    <div id="map" class="w-full h-96"></div>
+                <div class="md:col-span-2">
+                    <div class="rounded-rayon-lg overflow-hidden border border-dune shadow-posee">
+                        <div id="map" class="w-full h-96"></div>
+                    </div>
+                    <address class="not-italic corps text-encre-douce mt-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+                        <span>65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne</span>
+                        <span class="flex items-center gap-3 corps-fort">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Google Maps)</a>
+                            <a href="https://maps.apple.com/?daddr=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Apple Plans)</a>
+                        </span>
+                    </address>
                 </div>
 
                 <div class="space-y-6">
@@ -587,6 +616,8 @@
         let calendarData = {};
 
         async function loadCalendarData() {
+            const errorEl = document.getElementById('calendarError');
+            const lastUpdateEl = document.getElementById('calendarLastUpdate');
             try {
                 const response = await fetch('data/calendar.json');
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -598,9 +629,18 @@
                     };
                 });
 
+                if (data.lastUpdate) {
+                    const formatted = new Date(data.lastUpdate).toLocaleDateString('fr-FR', {
+                        day: 'numeric', month: 'long', year: 'numeric',
+                    });
+                    lastUpdateEl.textContent = `Dernière mise à jour du calendrier : ${formatted}.`;
+                }
+
                 renderCalendar();
             } catch (error) {
                 console.error('Erreur:', error);
+                errorEl.textContent = "Le calendrier n'a pas pu être chargé pour le moment. Vous pouvez tout de même nous écrire pour connaître les disponibilités.";
+                errorEl.classList.remove('hidden');
             }
         }
 
