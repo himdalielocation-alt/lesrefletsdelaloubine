@@ -19,14 +19,24 @@
     <meta property="og:image" content="https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg">
     <meta property="og:locale" content="fr_FR">
 
-    <!-- Schema.org JSON-LD : Location saisonnière -->
+    <!-- Schema.org JSON-LD : nom du site -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
+      "@type": "WebSite",
+      "name": "Les Reflets de la Loubine",
+      "url": "https://lesrefletsdelaloubine.fr/"
+    }
+    </script>
+
+    <!-- Schema.org JSON-LD : location saisonnière -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VacationRental",
       "name": "Les Reflets de la Loubine",
       "description": "Appartement de vacances pour un couple (jusqu'à 4 personnes) au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne, face au Puits d'Enfer. Vue mer directe depuis le salon et la terrasse. 2 piscines extérieures chauffées, ouvertes du 15 mai au 15 octobre. Un cocon vue mer entre la baie de Cayola et la plage de Tanchet.",
-      "url": "https://lesrefletsdelaloubine.fr",
+      "url": "https://lesrefletsdelaloubine.fr/",
       "email": "himdalielocation@gmail.com",
       "address": {
         "@type": "PostalAddress",
@@ -42,21 +52,25 @@
       },
       "image": "https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg",
       "priceRange": "50€ - 110€ / nuit",
-      "numberOfRooms": 2,
-      "occupancy": {
-        "@type": "QuantitativeValue",
-        "maxValue": 4
-      },
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Vue mer directe", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Piscine chauffée (15 mai - 15 octobre)", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Télévision", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Accès direct piste cyclable", "value": true }
-      ],
       "currenciesAccepted": "EUR",
-      "touristType": ["Couple", "Famille"]
+      "touristType": ["Couple", "Famille"],
+      "containsPlace": {
+        "@type": "Accommodation",
+        "numberOfRooms": 2,
+        "occupancy": {
+          "@type": "QuantitativeValue",
+          "maxValue": 4
+        },
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Vue mer directe", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Piscine chauffée (15 mai - 15 octobre)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Cuisine équipée", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Télévision", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Accès direct piste cyclable", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Literie : 2 lits simples + 1 lit armoire (vrai matelas)", "value": true }
+        ]
+      }
     }
     </script>
 
