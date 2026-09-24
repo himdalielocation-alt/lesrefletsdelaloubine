@@ -3,6 +3,7 @@ module.exports = {
     content: [
         './templates/pages/**/*.html',
         './templates/includes/**/*.html',
+        './scripts/build_pages.py',
     ],
     theme: {
         extend: {
