@@ -1,0 +1,35 @@
+name: 🧩 Générer les pages depuis les templates
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'templates/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Générer les pages
+        run: python3 scripts/build_pages.py
+
+      - name: Commit et push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Actions"
+          for f in templates/pages/*.html; do
+            git add "$(basename "$f")"
+          done
+          git commit -m "🧩 Régénérer les pages (build_pages.py)" || true
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
