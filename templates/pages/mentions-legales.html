@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="/fonts/Fraunces-Reflets.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Karla-Reflets.woff2" as="font" type="font/woff2" crossorigin>
+    <title>Mentions légales - Les Reflets de la Loubine</title>
+    <meta name="description" content="Mentions légales du site Les Reflets de la Loubine : éditeur, hébergement, contact.">
+    <link rel="canonical" href="https://lesrefletsdelaloubine.fr/mentions-legales.html">
+    <meta name="theme-color" content="#134a52">
+    <link rel="icon" type="image/svg+xml" href="/brand/logos/avatar-rond.svg">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- CSS compilé (Tailwind CLI, voir CLAUDE.md) -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="antialiased selection:bg-reflet selection:text-encre">
+
+    <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
+
+    {{HEADER}}
+
+    <main id="contenu-principal" class="pt-28 sm:pt-32 pb-20">
+        <div class="max-w-2xl mx-auto px-4 sm:px-8">
+            <nav aria-label="Fil d'Ariane" class="legende mb-6">
+                <a href="/" class="hover:text-bleu-loubine transition btn-focus">Accueil</a>
+                <span aria-hidden="true"> &gt; </span>
+                <span>Mentions légales</span>
+            </nav>
+
+            <h1 class="titre-1 text-bleu-loubine mb-8">Mentions légales</h1>
+
+            <div class="corps text-encre space-y-8">
+                <section>
+                    <h2 class="titre-3 text-encre mb-2">Éditeur du site</h2>
+                    <!-- TODO(proprio) : nom et adresse de l'éditeur du site (personne physique ou morale) -->
+                    <p class="legende">Identité de l'éditeur à compléter.</p>
+                    <p>Contact : <a href="mailto:himdalielocation@gmail.com" class="text-bleu-loubine hover:text-bleu-estran underline underline-offset-2 btn-focus">himdalielocation@gmail.com</a></p>
+                </section>
+
+                <section>
+                    <h2 class="titre-3 text-encre mb-2">Directeur de la publication</h2>
+                    <!-- TODO(proprio) : nom du directeur de la publication (généralement l'éditeur ci-dessus) -->
+                    <p class="legende">À compléter.</p>
+                </section>
+
+                <section>
+                    <h2 class="titre-3 text-encre mb-2">Hébergement</h2>
+                    <p>
+                        Ce site est hébergé par GitHub Pages (GitHub, Inc., 88 Colin P Kelly Jr Street, San Francisco, CA 94107, États-Unis).
+                    </p>
+                </section>
+
+                <section>
+                    <h2 class="titre-3 text-encre mb-2">Meublé de tourisme</h2>
+                    <!-- TODO(proprio) : numéro d'enregistrement du meublé de tourisme, une fois obtenu -->
+                    <p class="legende">Numéro d'enregistrement à compléter.</p>
+                </section>
+
+                <section>
+                    <h2 class="titre-3 text-encre mb-2">Propriété intellectuelle</h2>
+                    <p>
+                        L'ensemble des textes, photographies et éléments graphiques de ce site est la propriété de l'éditeur, sauf mention contraire. Toute reproduction sans autorisation est interdite.
+                    </p>
+                </section>
+
+                <p class="legende">
+                    Pour toute question relative à vos données personnelles, consultez notre <a href="/politique-de-confidentialite.html" class="text-bleu-loubine hover:text-bleu-estran underline underline-offset-2 btn-focus">politique de confidentialité</a>.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    {{FOOTER}}
+
+    <script src="/assets/js/menu.js" defer></script>
+
+</body>
+</html>
