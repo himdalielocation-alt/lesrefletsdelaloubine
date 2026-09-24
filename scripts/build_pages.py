@@ -35,9 +35,35 @@ TRANSLATED_PAGES = [
     "politique-de-confidentialite.html",
 ]
 
-LANG_SWITCH_LABELS = {"fr": "FR", "en": "EN", "de": "DE"}
-LANG_SWITCH_FLAGS = {"fr": "🇫🇷", "en": "🇬🇧", "de": "🇩🇪"}
 LANG_SWITCH_NAMES = {"fr": "Français", "en": "English", "de": "Deutsch"}
+# Drapeaux en SVG plat (pas d'emoji, rendu différent selon les appareils) :
+# mêmes proportions pour les 3, coins arrondis + bordure via le span qui les
+# enveloppe (mêmes tokens .rounded-rayon-sm/.border-dune que le reste du site).
+LANG_SWITCH_FLAG_SVG = {
+    "fr": (
+        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<rect width="8" height="16" fill="#0055A4"/>'
+        '<rect x="8" width="8" height="16" fill="#fff"/>'
+        '<rect x="16" width="8" height="16" fill="#EF4135"/>'
+        '</svg>'
+    ),
+    "en": (
+        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<rect width="24" height="16" fill="#00247D"/>'
+        '<path d="M0,0 L24,16 M24,0 L0,16" stroke="#fff" stroke-width="2.4"/>'
+        '<path d="M0,0 L24,16 M24,0 L0,16" stroke="#CF142B" stroke-width="0.8"/>'
+        '<path d="M12,0 V16 M0,8 H24" stroke="#fff" stroke-width="4"/>'
+        '<path d="M12,0 V16 M0,8 H24" stroke="#CF142B" stroke-width="2.4"/>'
+        '</svg>'
+    ),
+    "de": (
+        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<rect width="24" height="5.34" fill="#000"/>'
+        '<rect y="5.33" width="24" height="5.34" fill="#DD0000"/>'
+        '<rect y="10.66" width="24" height="5.34" fill="#FFCE00"/>'
+        '</svg>'
+    ),
+}
 LANG_SWITCH_ARIA = {
     "fr": "Changer de langue",
     "en": "Change language",
@@ -71,24 +97,24 @@ def hreflang_block(slug: str) -> str:
 def lang_switch_block(current_lang: str, slug: str) -> str:
     items = []
     for lang in LANGUAGES:
-        flag = f'<span aria-hidden="true">{LANG_SWITCH_FLAGS[lang]}</span>'
+        flag = (
+            f'<span class="block w-4 h-4 rounded-rayon-sm overflow-hidden border border-dune shrink-0">'
+            f'{LANG_SWITCH_FLAG_SVG[lang]}</span>'
+        )
         if lang == current_lang:
             items.append(
-                f'<span aria-current="true" lang="{lang}" '
-                f'class="btn-focus inline-flex items-center gap-1.5 px-3 py-2 rounded-rayon-pilule '
-                f'bg-sable text-bleu-loubine corps-fort text-sm">'
-                f'{flag}{LANG_SWITCH_LABELS[lang]}</span>'
+                f'<span aria-current="true" lang="{lang}" class="btn-focus p-1 rounded-rayon-pilule bg-sable">'
+                f'{flag}<span class="sr-only">{LANG_SWITCH_NAMES[lang]}</span></span>'
             )
         else:
             items.append(
                 f'<a href="{page_path_for_link(lang, slug)}" lang="{lang}" hreflang="{lang}" '
-                f'class="btn-focus inline-flex items-center gap-1.5 px-3 py-2 rounded-rayon-pilule '
-                f'hover:bg-sable transition corps-fort text-sm" '
-                f'aria-label="{LANG_SWITCH_NAMES[lang]}">{flag}{LANG_SWITCH_LABELS[lang]}</a>'
+                f'class="btn-focus p-1 rounded-rayon-pilule hover:bg-sable transition" '
+                f'aria-label="{LANG_SWITCH_NAMES[lang]}">{flag}</a>'
             )
     aria = LANG_SWITCH_ARIA[current_lang]
     return (
-        f'<nav aria-label="{aria}" class="fixed bottom-4 right-4 z-30 flex items-center gap-1 '
+        f'<nav aria-label="{aria}" class="fixed bottom-4 right-4 z-30 flex items-center gap-0.5 '
         f'bg-blanc-coquille border border-dune rounded-rayon-pilule shadow-relief p-1">'
         + "".join(items)
         + "</nav>"
