@@ -77,7 +77,7 @@
     <!-- CSS compilé (Tailwind CLI, voir CLAUDE.md) -->
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
-<body class="antialiased selection:bg-reflet selection:text-encre">
+<body id="top" class="antialiased selection:bg-reflet selection:text-encre">
 
     <a href="#contenu-principal" class="btn-focus sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 bg-bleu-loubine text-ecume border border-transparent px-4 py-3 rounded-rayon-md corps-fort">Aller au contenu principal</a>
 
@@ -382,6 +382,9 @@
 
                 <!-- Grille du Calendrier dynamique -->
                 <div id="calendarGrid" class="grid grid-cols-7 gap-1.5"></div>
+
+                <p id="calendarLastUpdate" class="legende mt-4"></p>
+                <p id="calendarError" class="legende mt-4 text-tamaris hidden" role="alert"></p>
             </div>
         </div>
     </section>
@@ -395,8 +398,17 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-start">
-                <div class="md:col-span-2 rounded-rayon-lg overflow-hidden border border-dune shadow-posee">
-                    <div id="map" class="w-full h-96"></div>
+                <div class="md:col-span-2">
+                    <div class="rounded-rayon-lg overflow-hidden border border-dune shadow-posee">
+                        <div id="map" class="w-full h-96"></div>
+                    </div>
+                    <address class="not-italic corps text-encre-douce mt-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+                        <span>65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne</span>
+                        <span class="flex items-center gap-3 corps-fort">
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Google Maps)</a>
+                            <a href="https://maps.apple.com/?daddr=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Apple Plans)</a>
+                        </span>
+                    </address>
                 </div>
 
                 <div class="space-y-6">
@@ -587,6 +599,8 @@
         let calendarData = {};
 
         async function loadCalendarData() {
+            const errorEl = document.getElementById('calendarError');
+            const lastUpdateEl = document.getElementById('calendarLastUpdate');
             try {
                 const response = await fetch('data/calendar.json');
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -598,9 +612,18 @@
                     };
                 });
 
+                if (data.lastUpdate) {
+                    const formatted = new Date(data.lastUpdate).toLocaleDateString('fr-FR', {
+                        day: 'numeric', month: 'long', year: 'numeric',
+                    });
+                    lastUpdateEl.textContent = `Dernière mise à jour du calendrier : ${formatted}.`;
+                }
+
                 renderCalendar();
             } catch (error) {
                 console.error('Erreur:', error);
+                errorEl.textContent = "Le calendrier n'a pas pu être chargé pour le moment. Vous pouvez tout de même nous écrire pour connaître les disponibilités.";
+                errorEl.classList.remove('hidden');
             }
         }
 
