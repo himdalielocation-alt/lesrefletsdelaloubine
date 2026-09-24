@@ -37,18 +37,21 @@ TRANSLATED_PAGES = [
 
 LANG_SWITCH_NAMES = {"fr": "Français", "en": "English", "de": "Deutsch"}
 # Drapeaux en SVG plat (pas d'emoji, rendu différent selon les appareils) :
-# mêmes proportions pour les 3, coins arrondis + bordure via le span qui les
-# enveloppe (mêmes tokens .rounded-rayon-sm/.border-dune que le reste du site).
+# mêmes proportions pour les 3, recadrés en rond (preserveAspectRatio="slice",
+# comme un object-fit:cover) dans un badge circulaire avec bordure — même
+# traitement que les avatars/pastilles ronds déjà utilisés ailleurs sur le site.
 LANG_SWITCH_FLAG_SVG = {
     "fr": (
-        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<svg viewBox="0 0 24 16" preserveAspectRatio="xMidYMid slice" '
+        'class="absolute inset-0 w-full h-full" aria-hidden="true" focusable="false">'
         '<rect width="8" height="16" fill="#0055A4"/>'
         '<rect x="8" width="8" height="16" fill="#fff"/>'
         '<rect x="16" width="8" height="16" fill="#EF4135"/>'
         '</svg>'
     ),
     "en": (
-        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<svg viewBox="0 0 24 16" preserveAspectRatio="xMidYMid slice" '
+        'class="absolute inset-0 w-full h-full" aria-hidden="true" focusable="false">'
         '<rect width="24" height="16" fill="#00247D"/>'
         '<path d="M0,0 L24,16 M24,0 L0,16" stroke="#fff" stroke-width="2.4"/>'
         '<path d="M0,0 L24,16 M24,0 L0,16" stroke="#CF142B" stroke-width="0.8"/>'
@@ -57,7 +60,8 @@ LANG_SWITCH_FLAG_SVG = {
         '</svg>'
     ),
     "de": (
-        '<svg viewBox="0 0 24 16" class="block w-full h-full" aria-hidden="true" focusable="false">'
+        '<svg viewBox="0 0 24 16" preserveAspectRatio="xMidYMid slice" '
+        'class="absolute inset-0 w-full h-full" aria-hidden="true" focusable="false">'
         '<rect width="24" height="5.34" fill="#000"/>'
         '<rect y="5.33" width="24" height="5.34" fill="#DD0000"/>'
         '<rect y="10.66" width="24" height="5.34" fill="#FFCE00"/>'
@@ -98,24 +102,24 @@ def lang_switch_block(current_lang: str, slug: str) -> str:
     items = []
     for lang in LANGUAGES:
         flag = (
-            f'<span class="block w-4 h-4 rounded-rayon-sm overflow-hidden border border-dune shrink-0">'
+            f'<span class="relative block w-8 h-8 rounded-rayon-pilule overflow-hidden border border-dune shrink-0">'
             f'{LANG_SWITCH_FLAG_SVG[lang]}</span>'
         )
         if lang == current_lang:
             items.append(
-                f'<span aria-current="true" lang="{lang}" class="btn-focus p-1 rounded-rayon-pilule bg-sable">'
+                f'<span aria-current="true" lang="{lang}" class="btn-focus p-1.5 rounded-rayon-pilule bg-sable">'
                 f'{flag}<span class="sr-only">{LANG_SWITCH_NAMES[lang]}</span></span>'
             )
         else:
             items.append(
                 f'<a href="{page_path_for_link(lang, slug)}" lang="{lang}" hreflang="{lang}" '
-                f'class="btn-focus p-1 rounded-rayon-pilule hover:bg-sable transition" '
+                f'class="btn-focus p-1.5 rounded-rayon-pilule hover:bg-sable transition" '
                 f'aria-label="{LANG_SWITCH_NAMES[lang]}">{flag}</a>'
             )
     aria = LANG_SWITCH_ARIA[current_lang]
     return (
-        f'<nav aria-label="{aria}" class="fixed bottom-4 right-4 z-30 flex items-center gap-0.5 '
-        f'bg-blanc-coquille border border-dune rounded-rayon-pilule shadow-relief p-1">'
+        f'<nav aria-label="{aria}" class="fixed bottom-4 right-4 z-30 flex items-center gap-1 '
+        f'bg-blanc-coquille border border-dune rounded-rayon-pilule shadow-relief p-1.5">'
         + "".join(items)
         + "</nav>"
     )
