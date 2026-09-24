@@ -1,27 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lesrefletsdelaloubine.fr/</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/en/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/de/</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/en/activites-sables-d-olonne.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/de/activites-sables-d-olonne.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/activites-sables-d-olonne.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/mentions-legales.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/en/mentions-legales.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/de/mentions-legales.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/mentions-legales.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/mentions-legales.html"/>
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/en/politique-de-confidentialite.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/de/politique-de-confidentialite.html</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.2</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
   </url>
 </urlset>

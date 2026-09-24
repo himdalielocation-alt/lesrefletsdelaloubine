@@ -73,3 +73,9 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - Verbe unique pour l'action de réservation partout sur le site : « Demander mes dates » (mission UX/accessibilité, Phase 1) — remplace les 4 formulations différentes qui coexistaient (« Réserver en direct », « Demander une réservation », « Envoyer une demande par e-mail », « Réserver »)
 - Pas de bouton ni de widget d'accessibilité : conformément à la règle du brief UX/accessibilité (les overlays d'accessibilité ne rendent pas un site réellement accessible), confirmé explicitement par vous
 - Pas de refonte visuelle (pistes A/B refusées) : la mission UX/accessibilité continue uniquement sur les corrections fonctionnelles et d'accessibilité (structure, contenu, parcours), sans changement d'apparence proposé de votre propre initiative
+- Site traduit en anglais et en allemand (`/en/`, `/de/`), avec un bouton de langue flottant (drapeaux) en bas à droite de chaque page — architecture documentée dans `CLAUDE.md`
+
+## À vérifier : traductions
+
+- [ ] **Mentions légales et Politique de confidentialité en anglais et en allemand** : traduites par mes soins, mais un texte juridique traduit comporte toujours un risque de nuance incorrecte — à faire relire par vous ou un professionnel avant de les considérer définitives, notamment si vous visez particulièrement une clientèle DE/UK.
+- [ ] Le reste du contenu (accueil, page activités) a été traduit avec le même soin que le français d'origine, mais une relecture par un locuteur natif reste toujours une bonne pratique avant mise en ligne définitive.
