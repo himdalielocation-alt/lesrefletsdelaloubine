@@ -1,0 +1,11 @@
+{
+  "name": "lesrefletsdelaloubine-build",
+  "private": true,
+  "description": "Build CSS local (Tailwind CLI) pour lesrefletsdelaloubine.fr. Aucun code applicatif ici, uniquement l'outillage de compilation CSS — voir CLAUDE.md.",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./templates/tailwind-input.css -o ./assets/css/styles.css --minify"
+  }
+}

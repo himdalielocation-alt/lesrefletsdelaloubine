@@ -1,0 +1,40 @@
+name: 🎨 Compiler le CSS (Tailwind)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'templates/tailwind-input.css'
+      - 'tailwind.config.js'
+      - 'templates/pages/**'
+      - 'templates/includes/**'
+      - 'package.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Compiler le CSS
+        run: npm run build:css
+
+      - name: Commit et push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Actions"
+          git add assets/css/styles.css
+          git commit -m "🎨 Recompiler le CSS (Tailwind)" || true
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true

@@ -26,6 +26,26 @@ Ce script lit `templates/pages/*.html`, remplace `{{HEADER}}`/`{{FOOTER}}` par l
 2. Ajouter le lien vers cette page dans `templates/includes/header.html` (nav desktop + menu mobile) si elle doit apparaître dans la navigation.
 3. Lancer `python3 scripts/build_pages.py` pour vérifier localement (ou laisser le workflow le faire au push).
 4. Penser à l'ajouter dans `sitemap.xml`.
+5. Si la page utilise des classes Tailwind qui n'apparaissent sur aucune autre page, vérifier qu'elle est bien scannée par `tailwind.config.js` (`content: [...]`) — sinon ses classes ne seront pas générées dans le CSS compilé.
+
+## CSS (Tailwind CLI, plus de CDN)
+
+Le site chargeait `cdn.tailwindcss.com` en production (script de prototypage, déconseillé par Tailwind lui-même hors développement). Remplacé par un CSS compilé et minifié :
+
+- **Source** : `templates/tailwind-input.css` (directives `@tailwind` + tous les styles custom : polices, tokens de couleur clair/sombre, classes typographiques `.affiche`/`.titre-1`/etc., `.icono`, `.pastille`...). C'est là qu'on modifie les styles custom désormais, plus dans un `<style>` par page.
+- **Config** : `tailwind.config.js` à la racine (couleurs, polices, rayons, ombres — reprend exactement ce qui était avant dans chaque `<script>tailwind.config = {...}</script>`).
+- **Sortie** : `assets/css/styles.css`, référencé par `<link rel="stylesheet" href="/assets/css/styles.css">` sur chaque page.
+
+### Compiler
+
+```
+npm install
+npm run build:css
+```
+
+**En pratique**, comme pour les pages : le workflow `.github/workflows/build-css.yml` recompile et commit `assets/css/styles.css` automatiquement au push sur `main`, dès que `templates/tailwind-input.css`, `tailwind.config.js` ou le contenu de `templates/pages/`/`templates/includes/` changent.
+
+⚠️ **Cette étape n'a pas pu être testée dans l'environnement où elle a été écrite** (le registre npm y était bloqué, donc impossible d'installer le CLI Tailwind ni de vérifier le rendu avant de committer). Après le premier push touchant le CSS : vérifiez que `.github/workflows/build-css.yml` se termine en vert dans l'onglet Actions de GitHub, que `assets/css/styles.css` a bien été généré (non vide), et ouvrez le site pour comparer visuellement avec ce que vous connaissiez avant. Si quelque chose cloche, le plus simple est de me dire ce qui a changé visuellement, ou de rouvrir `assets/css/styles.css` généré et regarder si une classe utilisée dans le HTML semble absente du CSS (signe que `tailwind.config.js` ne scanne pas le bon fichier).
 
 ## Calendrier de disponibilités (ne pas modifier sans comprendre le mécanisme)
 
