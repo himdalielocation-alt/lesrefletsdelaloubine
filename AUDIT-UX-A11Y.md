@@ -154,3 +154,22 @@ Même parcours que ci-dessus, avec les commandes NVDA :
 - <kbd>Échap</kbd> : sur le menu mobile ouvert (si testé en largeur réduite), doit le refermer et ramener le focus sur le bouton burger.
 
 Le point de vérification le plus utile sur PC : naviguer au clavier pur (sans souris) de haut en bas de la page avec <kbd>Tab</kbd>, en vérifiant à chaque arrêt qu'un contour de focus est visible à l'écran et jamais masqué par le header fixe.
+
+---
+
+## Recette automatisée (Phase 5) — résultat, sur le contenu réellement déployé sur `main`
+
+Exécutée après fusion de toutes les corrections (contrastes, calendrier, structure, carte, parcours de réservation, localisation, FAQ), sur le HTML et le CSS tels que compilés par la CI et présents sur `main`. `axe-core`/Lighthouse restent inutilisables dans cet environnement (réseau bloqué) ; mêmes vérifications maison que pour l'audit initial, réexécutées sur l'état final.
+
+- **Contraste (AA)** : 0 échec sur 342 paires texte/fond testées, cumulées sur les 5 pages × 2 thèmes (clair/sombre).
+- **Réflow à 320px** : 0px de débordement horizontal sur les 5 pages.
+- **Zoom 200% (équivalent 640px)** : 0px de débordement horizontal sur l'accueil.
+- **Parcours clavier (accueil)** : 28 arrêts de tabulation, tous avec un contour de focus visible ; aucun arrêt sans nom accessible détecté.
+- **`prefers-reduced-motion: reduce`** : `scroll-behavior` reste `auto` (pas de défilement fluide forcé), l'animation de la bande de vagues décorative est bien arrêtée (`transform: none`).
+- **`forced-colors: active`** : le bouton « Demander mes dates » du header conserve une bordure visible (1px solide, couleur système), comme les autres boutons pleins du site.
+- **Calendrier** : la date de dernière mise à jour s'affiche correctement à partir des vraies données (`data/calendar.json`), 31 cases générées pour le mois en cours, aucun message d'erreur affiché (chargement réussi).
+- **Non-régression SEO** : un seul H1 par page, `canonical` présent sur les pages qui doivent être indexées (absent sur `404.html`, normal), `google-site-verification` intact, JSON-LD toujours valide (`WebSite` + second bloc `VacationRental`), `sitemap.xml` toujours cohérent (4 pages listées, `404.html` volontairement absent).
+- **Mailto** : lien de réservation toujours fonctionnel, sujet et corps pré-remplis intacts.
+- **Console JavaScript** : aucune erreur sur les 5 pages au chargement.
+
+Non vérifié automatiquement (nécessite un vrai appareil ou une confirmation humaine) : rendu réel de la carte Leaflet (chargée depuis un domaine bloqué dans cet environnement), test VoiceOver/NVDA réel (script ci-dessus, à faire par le propriétaire).
