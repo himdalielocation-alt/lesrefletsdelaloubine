@@ -99,20 +99,20 @@ Recommandation complémentaire : faire tourner l'extension navigateur axe DevToo
 3. ✅ Corrections structurelles diverses (constats 6, 7, 9-13, 15) — menu clavier, footer, cibles tactiles, SVG décoratifs, mode contrastes forcés, mouvement réduit.
 4. ✅ Carte Leaflet (constat 8) — molette/glisser tactile, contrôles en français.
 5. ✅ Cohérence du parcours de réservation (constats 4-5) — verbe unique validé avec le propriétaire, étapes numérotées, bouton copier l'adresse.
-6. ⏳ Choix de la piste visuelle (A ou B, voir ci-dessous) puis mise en œuvre — volontairement en dernier pour ne pas mélanger accessibilité et esthétique dans les mêmes commits.
+6. ❌ Refonte visuelle (pistes A/B) — **refusée par le propriétaire**, retirée du périmètre de la mission. La Phase 3 (design system, nouvelle mise en page du hero) ne sera pas mise en œuvre.
 
-Tout ce qui précède (1 à 5) est commité sur la branche `ux-accessibilite` (pull request [#2](https://github.com/himdalielocation-alt/lesrefletsdelaloubine/pull/2)).
+Tout ce qui précède (1 à 5) est commité sur la branche `ux-accessibilite` (pull requests [#2](https://github.com/himdalielocation-alt/lesrefletsdelaloubine/pull/2) et [#3](https://github.com/himdalielocation-alt/lesrefletsdelaloubine/pull/3)).
 
 ---
 
-## Pistes visuelles (Phase 3 — proposées en Phase 0, choix encore à faire)
+## Pistes visuelles (Phase 3 — proposées en Phase 0, refusées)
 
-Deux mockups temporaires (`_mockup-piste-a.html` / `_mockup-piste-b.html`) ont été créés puis supprimés après capture d'écran, pour respecter la contrainte « aucune modification de fichier » de la Phase 0. Captures envoyées en pièces jointes dans la conversation.
+Deux mockups temporaires (`_mockup-piste-a.html` / `_mockup-piste-b.html`) avaient été créés puis supprimés après capture d'écran, pour respecter la contrainte « aucune modification de fichier » de la Phase 0. Captures envoyées en pièces jointes dans la conversation.
 
 - **Piste A — évolution discrète** : mêmes couleurs et polices, hero en deux colonnes (texte/photo), liste factuelle à puces à la place du badge arrondi actuel, un seul CTA primaire clair (« Demander mes dates ») + un CTA secondaire.
 - **Piste B — évolution plus affirmée** : la vue mer comme élément visuel fort (photo plein cadre en fond de hero avec dégradé de lisibilité), typographie plus marquée, toujours avec les mêmes polices (Fraunces Reflets / Karla Reflets) et le même vocabulaire de couleur — un seul élément mémorable plutôt que plusieurs cartes.
 
-Ce choix reste à faire par le propriétaire avant la mise en œuvre de la Phase 3.
+**Décision du propriétaire : aucune des deux, pas de modification visuelle.** La suite de la mission se concentre sur les corrections fonctionnelles et d'accessibilité (structure, contenu, parcours), sans changement d'apparence proposé de ma propre initiative.
 
 ---
 

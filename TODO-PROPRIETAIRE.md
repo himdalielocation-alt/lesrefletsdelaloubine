@@ -63,10 +63,6 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - [ ] Tester le JSON-LD sur [validator.schema.org](https://validator.schema.org) et sur le [test des résultats enrichis de Google](https://search.google.com/test/rich-results)
 - [ ] Ajouter le site dans Bing Webmaster Tools
 
-## Décision restant à prendre
-
-- [ ] **Piste visuelle A ou B** pour la refonte de la page d'accueil (mission UX/accessibilité, Phase 3) : Piste A = évolution discrète (mêmes couleurs/polices, hiérarchie et contrastes corrigés), Piste B = évolution plus affirmée (vue mer comme élément fort, moins de cartes, typographie plus marquée — toujours avec les mêmes polices). Volontairement remis à plus tard pour ne pas mélanger accessibilité et esthétique dans les mêmes commits ; les corrections d'accessibilité (Phase 1) avancent en attendant.
-
 ## Décisions déjà prises avec votre accord
 
 - Header/footer désormais générés depuis `templates/` (voir `CLAUDE.md`) — éditez `templates/pages/` et `templates/includes/`, pas les fichiers à la racine
@@ -76,3 +72,4 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - Pages Mentions légales et Politique de confidentialité créées et liées depuis le footer
 - Verbe unique pour l'action de réservation partout sur le site : « Demander mes dates » (mission UX/accessibilité, Phase 1) — remplace les 4 formulations différentes qui coexistaient (« Réserver en direct », « Demander une réservation », « Envoyer une demande par e-mail », « Réserver »)
 - Pas de bouton ni de widget d'accessibilité : conformément à la règle du brief UX/accessibilité (les overlays d'accessibilité ne rendent pas un site réellement accessible), confirmé explicitement par vous
+- Pas de refonte visuelle (pistes A/B refusées) : la mission UX/accessibilité continue uniquement sur les corrections fonctionnelles et d'accessibilité (structure, contenu, parcours), sans changement d'apparence proposé de votre propre initiative
