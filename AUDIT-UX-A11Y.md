@@ -113,3 +113,44 @@ Deux mockups temporaires (`_mockup-piste-a.html` / `_mockup-piste-b.html`) ont �
 - **Piste B — évolution plus affirmée** : la vue mer comme élément visuel fort (photo plein cadre en fond de hero avec dégradé de lisibilité), typographie plus marquée, toujours avec les mêmes polices (Fraunces Reflets / Karla Reflets) et le même vocabulaire de couleur — un seul élément mémorable plutôt que plusieurs cartes.
 
 Ce choix reste à faire par le propriétaire avant la mise en œuvre de la Phase 3.
+
+---
+
+## Script de test manuel — lecteur d'écran (Phase 5)
+
+À faire une fois la pull request `ux-accessibilite` fusionnée (ou testable en local). Sert à vérifier ce qu'aucun outil automatisé ne peut confirmer : ce qu'on entend réellement. Comptez 15-20 minutes pour le parcours complet sur iPhone.
+
+### VoiceOver sur iPhone (Réglages → Accessibilité → VoiceOver)
+
+**Activer/désactiver rapidement** : triple-clic sur le bouton latéral (si le raccourci est configuré dans Réglages → Accessibilité → Bouton d'accessibilité), sinon Réglages → Accessibilité → VoiceOver → bascule.
+
+**Gestes de base pendant le test** :
+- Glisser un doigt vers la droite/gauche : élément suivant/précédent
+- Double-taper n'importe où : activer l'élément sélectionné (équivalent d'un clic)
+- Glisser 3 doigts vers le haut/bas : faire défiler la page
+- Glisser 1 doigt en Z (droite, gauche, droite rapidement) : revenir en arrière / fermer
+
+**Parcours à suivre, en écoutant ce qui est annoncé à chaque étape :**
+
+1. Ouvrez `lesrefletsdelaloubine.fr` dans Safari. VoiceOver doit annoncer le titre de la page dès le chargement.
+2. Glissez vers la droite plusieurs fois depuis le haut. Le tout premier élément doit être le lien « Aller au contenu principal » (normalement invisible à l'écran, mais annoncé). Double-tapez dessus : la lecture doit sauter directement au contenu, sans repasser par tout le menu.
+3. Revenez en haut de page (glisser 2 doigts vers le haut, geste « lire depuis le début », ou remontez au doigt). Vérifiez que le logo est annoncé comme un seul élément « Les Reflets de la Loubine — Accueil, lien », **pas** comme plusieurs images séparées.
+4. Continuez jusqu'au bouton burger (☰, en haut à droite sur mobile). Il doit annoncer « Ouvrir le menu, bouton ». Double-tapez pour l'ouvrir : il doit maintenant annoncer « Fermer le menu ». Parcourez les liens du menu (Présentation, Équipements, Tarifs, Localisation, Que faire aux Sables ?, Espace locataire) : chacun doit être annoncé clairement.
+5. Descendez jusqu'à la section Tarifs, puis le calendrier. Glissez sur plusieurs cases de jours : chacune doit annoncer la date complète et son statut, par exemple « samedi 12 juillet 2026, disponible » ou « lundi 1 septembre 2026, information non disponible ». **C'est le point le plus important à vérifier** : avant les correctifs de cette phase, seul le numéro du jour était annoncé, sans date ni statut.
+6. Sur les boutons flèches du calendrier (mois précédent/suivant), double-tapez sur « Mois suivant ». Le mois affiché doit changer visuellement ; idéalement VoiceOver annonce aussi le nouveau mois automatiquement (grâce à la région `aria-live`) sans qu'il soit nécessaire de re-naviguer jusqu'à lui.
+7. Descendez jusqu'à la section Localisation, jusqu'à la carte. Testez le glissé à un doigt directement sur la carte : sur mobile, la page doit continuer à défiler normalement (la carte ne doit plus capturer le geste).
+8. Descendez jusqu'à la section réservation. Le bouton principal doit annoncer « Demander mes dates, lien » ou « bouton » selon son type. Repérez aussi le bouton « Copier l'adresse » : double-tapez dessus, et vérifiez qu'une confirmation est bien annoncée peu après (« Adresse e-mail copiée »), même si rien ne change visuellement à l'écran de façon évidente.
+9. Terminez sur le footer : vérifiez que l'adresse e-mail, les liens Mentions légales/Politique de confidentialité, et le copyright sont tous annoncés distinctement et restent accessibles en zoomant le texte (Réglages → Accessibilité → Affichage et taille du texte → Texte plus grand) sans qu'aucun contenu ne soit coupé.
+
+**Ce qu'il faut noter pendant le test** : tout endroit où (a) rien n'est annoncé alors qu'il y a un élément visible à l'écran, (b) l'annonce est incompréhensible ou trop technique (ex. un nom de fichier), (c) le focus semble « perdu » ou saute à un endroit inattendu, (d) un geste ne fait rien alors qu'il devrait.
+
+### NVDA sur PC (si disponible — gratuit, [nvaccess.org](https://www.nvaccess.org))
+
+Même parcours que ci-dessus, avec les commandes NVDA :
+- <kbd>Insigne</kbd> (Verr Maj ou touche NVDA dédiée) <kbd>+</kbd> <kbd>Espace</kbd> : bascule mode navigation/focus
+- <kbd>Tab</kbd> / <kbd>Maj</kbd>+<kbd>Tab</kbd> : élément interactif suivant/précédent
+- <kbd>H</kbd> : titre suivant (utile pour vérifier la hiérarchie H1→H2→H3 en voix haute)
+- <kbd>Entrée</kbd> : activer l'élément
+- <kbd>Échap</kbd> : sur le menu mobile ouvert (si testé en largeur réduite), doit le refermer et ramener le focus sur le bouton burger.
+
+Le point de vérification le plus utile sur PC : naviguer au clavier pur (sans souris) de haut en bas de la page avec <kbd>Tab</kbd>, en vérifiant à chaque arrêt qu'un contour de focus est visible à l'écran et jamais masqué par le header fixe.
