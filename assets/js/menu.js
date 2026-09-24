@@ -5,17 +5,22 @@ const menuIconOpen = document.getElementById('menuIconOpen');
 const menuIconClose = document.getElementById('menuIconClose');
 
 if (menuToggle && mobileMenu) {
+    // Libellés lus depuis des attributs data-* (traduits par page/langue dans
+    // templates/includes/header.{lang}.html) plutôt que codés en dur ici,
+    // puisque ce script est partagé par les 3 langues du site.
+    const labelOpen = menuToggle.getAttribute('data-label-open') || 'Ouvrir le menu';
+    const labelClose = menuToggle.getAttribute('data-label-close') || 'Fermer le menu';
     function closeMobileMenu() {
         mobileMenu.classList.add('hidden');
         menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+        menuToggle.setAttribute('aria-label', labelOpen);
         menuIconOpen.classList.remove('hidden');
         menuIconClose.classList.add('hidden');
     }
     function openMobileMenu() {
         mobileMenu.classList.remove('hidden');
         menuToggle.setAttribute('aria-expanded', 'true');
-        menuToggle.setAttribute('aria-label', 'Fermer le menu');
+        menuToggle.setAttribute('aria-label', labelClose);
         menuIconOpen.classList.add('hidden');
         menuIconClose.classList.remove('hidden');
     }

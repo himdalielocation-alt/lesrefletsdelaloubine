@@ -28,6 +28,18 @@ Ce script lit `templates/pages/*.html`, remplace `{{HEADER}}`/`{{FOOTER}}` par l
 4. Penser à l'ajouter dans `sitemap.xml`.
 5. Si la page utilise des classes Tailwind qui n'apparaissent sur aucune autre page, vérifier qu'elle est bien scannée par `tailwind.config.js` (`content: [...]`) — sinon ses classes ne seront pas générées dans le CSS compilé.
 
+## Site multilingue (FR/EN/DE)
+
+Le site existe en français (racine), anglais (`/en/`) et allemand (`/de/`), avec les mêmes noms de fichiers dans chaque langue (ex. `activites-sables-d-olonne.html`, `/en/activites-sables-d-olonne.html`, `/de/activites-sables-d-olonne.html`) — c'est ce qui permet au bouton de langue de toujours pointer vers l'équivalent exact de la page courante dans l'autre langue, sans table de correspondance.
+
+- **Pages traduites** : `templates/pages/en/*.html` et `templates/pages/de/*.html`, mêmes noms de fichiers et même structure que leurs équivalents français dans `templates/pages/`. Les chemins vers les ressources (images, icônes `brand/`, `data/calendar.json`) doivent y être en **absolu** (`/images/...`, pas `images/...`) puisque ces pages sont servies depuis un sous-dossier.
+- **Header/footer traduits** : `templates/includes/header.en.html`, `header.de.html`, `footer.en.html`, `footer.de.html` — mêmes principes que les versions françaises (URLs absolues, `data-label-open`/`data-label-close` sur le bouton burger pour que `assets/js/menu.js`, partagé entre les 3 langues, annonce le bon texte).
+- **`404.html` reste unique** (une seule version, en français) : GitHub Pages ne sert qu'un seul fichier 404 pour tout le site, quel que soit le préfixe de langue de l'URL demandée — impossible d'en avoir un par langue avec ce hébergement.
+- **`{{HREFLANG}}`** : jeton présent dans le `<head>` des 4 pages traduisibles (`index.html`, `activites-sables-d-olonne.html`, `mentions-legales.html`, `politique-de-confidentialite.html`, dans chacune des 3 langues). `scripts/build_pages.py` le remplace automatiquement par les 4 balises `<link rel="alternate" hreflang="...">` (fr/en/de/x-default) — rien à taper à la main.
+- **`{{LANGSWITCH}}`** : jeton placé une seule fois par page (juste après `{{HEADER}}`), remplacé par le bouton flottant (drapeaux 🇫🇷🇬🇧🇩🇪, coin bas-droit, `position: fixed`) qui bascule vers l'équivalent de la page courante dans les 2 autres langues. Généré par `scripts/build_pages.py`, pas à écrire à la main.
+- **`sitemap.xml`** : chaque URL liste ses 3 variantes de langue via `<xhtml:link rel="alternate" hreflang="...">`, en plus de son entrée `<loc>` propre — 12 entrées au total (3 langues × 4 pages traduisibles).
+- **Pour ajouter une 4ᵉ page traduisible** : créer le fichier français dans `templates/pages/`, ses 2 traductions dans `templates/pages/en/` et `templates/pages/de/` (mêmes classes/structure, texte traduit, chemins de ressources absolus), ajouter son nom de fichier à `TRANSLATED_PAGES` dans `scripts/build_pages.py`, ajouter `{{HREFLANG}}` dans son `<head>` et `{{LANGSWITCH}}` juste après `{{HEADER}}`, puis l'ajouter à `sitemap.xml` (3 entrées, avec les 4 `hreflang` sur chacune).
+
 ## CSS (Tailwind CLI, plus de CDN)
 
 Le site chargeait `cdn.tailwindcss.com` en production (script de prototypage, déconseillé par Tailwind lui-même hors développement). Remplacé par un CSS compilé et minifié :
