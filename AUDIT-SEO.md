@@ -9,7 +9,7 @@ Document de travail (non publié, voir `.nojekyll` et la section « Fichiers de 
 | Constat | Statut |
 |---|---|
 | JSON-LD accueil : `starRating: 3` non confirmé, présenté comme un fait | ✅ Retiré |
-| JSON-LD : `checkinTime`/`checkoutTime` non confirmés | ✅ Retirés |
+| JSON-LD : `checkinTime`/`checkoutTime` non confirmés | ✅ Retirés, puis rétablis (17:00 / 10:00) après confirmation du propriétaire |
 | JSON-LD : `paymentAccepted: "Virement bancaire"` absent des faits de référence | ✅ Retiré |
 | JSON-LD : `postalCode: "85100"` incorrect | ✅ Corrigé en 85180, adresse complète |
 | JSON-LD : `priceRange` jusqu'à 130€ alors que le tarif max affiché est 110€ | ✅ Corrigé |

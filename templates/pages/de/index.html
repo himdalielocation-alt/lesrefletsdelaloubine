@@ -36,7 +36,7 @@
       "@context": "https://schema.org",
       "@type": "VacationRental",
       "name": "Les Reflets de la Loubine",
-      "description": "Ferienwohnung für ein Paar (bis zu 4 Personen) innerhalb der Ferienanlage Lagrange Vacances L'Estran in Les Sables-d'Olonne, gegenüber dem Puits d'Enfer. Direkter Meerblick vom Wohnzimmer und von der Terrasse. 2 beheizte Außenpools, geöffnet vom 15. Mai bis 15. Oktober. Ein Rückzugsort mit Meerblick zwischen der Bucht von Cayola und dem Strand von Tanchet.",
+      "description": "Ferienwohnung für ein Paar (bis zu 4 Personen) innerhalb der Ferienanlage Lagrange Vacances L'Estran in Les Sables-d'Olonne, gegenüber dem Puits d'Enfer. Direkter Meerblick vom Wohnzimmer und von der Terrasse. 2 beheizte Außenpools, geöffnet von April bis Ende September, je nach Wetter. Ein Rückzugsort mit Meerblick zwischen der Bucht von Cayola und dem Strand von Tanchet.",
       "url": "https://lesrefletsdelaloubine.fr/de/",
       "email": "himdalielocation@gmail.com",
       "address": {
@@ -54,22 +54,32 @@
       "image": "https://lesrefletsdelaloubine.fr/de/images/sables-olonne-plage.jpg",
       "priceRange": "50€ - 110€ / nuit",
       "currenciesAccepted": "EUR",
+      "checkinTime": "17:00",
+      "checkoutTime": "10:00",
+      "paymentAccepted": "Banküberweisung",
       "touristType": ["Couple", "Familie"],
       "containsPlace": {
         "@type": "Accommodation",
         "numberOfRooms": 2,
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 25,
+          "unitCode": "MTK"
+        },
+        "petsAllowed": false,
         "occupancy": {
           "@type": "QuantitativeValue",
           "maxValue": 4
         },
         "amenityFeature": [
           { "@type": "LocationFeatureSpecification", "name": "Direkter Meerblick", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Beheizter Pool (15. Mai - 15. Oktober)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Beheizter Pool (April bis Ende September, je nach Wetter)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Kostenloser Parkplatz", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Ausgestattete Küche", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Fernseher", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Direkter Zugang zum Radweg", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Bettwäsche: 2 Einzelbetten + 1 Schrankbett (echte Matratze)", "value": true }
+          { "@type": "LocationFeatureSpecification", "name": "Betten: 2 Einzelbetten (Schlafzimmer) + 1 Schrankbett (Hauptraum, echte Matratze)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Geschirrspüler", "value": true }
         ]
       }
     }
@@ -95,7 +105,7 @@
                     Wohnung mit Meerblick gegenüber dem Puits d'Enfer, in Les Sables-d'Olonne
                 </h1>
                 <p class="chapo text-encre mb-8 max-w-md">
-                    Willkommen bei Les Reflets de la Loubine: eine Wohnung für 4 Personen in der Ferienanlage Lagrange Vacances L'Estran, mit direktem Meerblick und 2 beheizten Pools vom 15. Mai bis 15. Oktober.
+                    Willkommen bei Les Reflets de la Loubine: eine Wohnung für 4 Personen in der Ferienanlage Lagrange Vacances L'Estran, mit direktem Meerblick und 2 beheizten Pools von April bis Ende September (je nach Wetter).
                 </p>
                 <div class="inline-flex items-center gap-2 bg-reflet text-encre px-4 py-2 rounded-rayon-pilule surtitre mb-8">
                     Bis zu 15 % sparen bei Direktbuchung
@@ -119,7 +129,7 @@
                     </div>
                     <div>
                         <p class="corps-fort text-encre">2 beheizte Pools</p>
-                        <p class="legende">15. Mai bis 15. Oktober</p>
+                        <p class="legende">April bis Ende September, je nach Wetter</p>
                     </div>
                 </div>
             </div>
@@ -147,8 +157,8 @@
                 <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
                     <span class="icono w-6 h-6 text-bleu-loubine" style="mask-image:url('/brand/icons/message.svg');-webkit-mask-image:url('/brand/icons/message.svg')" aria-hidden="true"></span>
                 </div>
-                <h3 class="titre-3 text-encre mb-2">Direkter Kontakt zum Vermieter</h3>
-                <p class="corps text-encre-douce">Persönliche, unkomplizierte Kommunikation und maßgeschneiderte Tipps vor Ort.</p>
+                <h3 class="titre-3 text-encre mb-2">Direkter Kontakt zu Ihren Gastgebern</h3>
+                <p class="corps text-encre-douce">Maryse und ihre Kinder freuen sich, Sie in Les Sables-d'Olonne willkommen zu heißen. Persönliche, unkomplizierte Kommunikation und maßgeschneiderte Tipps vor Ort.</p>
             </div>
             <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
                 <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
@@ -197,11 +207,11 @@
                 <div class="grid sm:grid-cols-2 gap-4 corps text-encre">
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/personnes.svg');-webkit-mask-image:url('/brand/icons/personnes.svg')" aria-hidden="true"></span>
-                        <span>Kapazität: <strong>4 Personen</strong></span>
+                        <span>Kapazität: <strong>4 Personen</strong> · 25 m²</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/piscine.svg');-webkit-mask-image:url('/brand/icons/piscine.svg')" aria-hidden="true"></span>
-                        <span><strong>2 beheizte Pools</strong> (15. Mai bis 15. Oktober)</span>
+                        <span><strong>2 beheizte Pools</strong> (April bis Ende September, je nach Wetter)</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/vague.svg');-webkit-mask-image:url('/brand/icons/vague.svg')" aria-hidden="true"></span>
@@ -209,7 +219,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/couchage.svg');-webkit-mask-image:url('/brand/icons/couchage.svg')" aria-hidden="true"></span>
-                        <span>Schlafzimmer: 2 Einzelbetten + Schrankbett (echte Matratze)</span>
+                        <span>Schlafzimmer: 2 Einzelbetten · Hauptraum: Schrankbett (echte Matratze)</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/cle.svg');-webkit-mask-image:url('/brand/icons/cle.svg')" aria-hidden="true"></span>
@@ -241,17 +251,17 @@
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/piscine.svg');-webkit-mask-image:url('/brand/icons/piscine.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">2 Beheizte Pools</h3>
-                    <p class="legende">15. Mai bis 15. Oktober</p>
+                    <p class="legende">April bis Ende September, je nach Wetter</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/couchage.svg');-webkit-mask-image:url('/brand/icons/couchage.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">Bettwäsche</h3>
-                    <p class="legende">2 Einzelbetten + Schrankbett (echte Matratze)</p>
+                    <p class="legende">2 Einzelbetten (Schlafzimmer) + Schrankbett (Hauptraum)</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/cuisine.svg');-webkit-mask-image:url('/brand/icons/cuisine.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">Ausgestattete Küche</h3>
-                    <p class="legende">Herdplatten, Mikrowelle, Kühlschrank, Geschirr</p>
+                    <p class="legende">Herdplatten, Mikrowelle, Kühlschrank, Geschirrspüler</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/television.svg');-webkit-mask-image:url('/brand/icons/television.svg')" aria-hidden="true"></span>
@@ -309,7 +319,7 @@
                     <p class="legende mb-1">Ab</p>
                     <div class="titre-1 text-bleu-loubine mb-6">75 € <span class="corps text-encre-douce">/ Nacht</span></div>
                     <ul class="corps text-encre space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Zugang zu beiden beheizten Pools</li>
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Zugang zu beiden beheizten Pools (bis Ende September)</li>
                         <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Angenehmes Wetter</li>
                     </ul>
                     <span class="w-full text-center border border-dune text-encre-douce corps-fort py-3 rounded-rayon-md cursor-not-allowed inline-block">Demnächst verfügbar</span>
@@ -486,17 +496,17 @@
             <div class="space-y-4">
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Für wie viele Personen ist die Wohnung geeignet?</summary>
-                    <p class="corps text-encre-douce mt-3">Bis zu 4 Personen, mit 2 Einzelbetten und einem Schrankbett (echte Matratze, kein Schlafsofa).</p>
+                    <p class="corps text-encre-douce mt-3">Bis zu 4 Personen: 2 Einzelbetten im Schlafzimmer und ein Schrankbett (echte Matratze, kein Schlafsofa) im Hauptraum.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Sind die Pools der Anlage das ganze Jahr über geöffnet?</summary>
-                    <p class="corps text-encre-douce mt-3">Nein, die 2 beheizten Außenpools sind vom 15. Mai bis 15. Oktober geöffnet.</p>
+                    <p class="corps text-encre-douce mt-3">Nein, die 2 beheizten Außenpools sind von April bis Ende September geöffnet, je nach Wetter.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Wie läuft die Buchung ab?</summary>
-                    <p class="corps text-encre-douce mt-3">Eine Online-Buchung ist derzeit noch nicht möglich: Sie senden Ihre Anfrage per E-Mail (Schaltfläche „Verfügbarkeit anfragen" unten) mit Ihren gewünschten Daten, und wir antworten Ihnen, um die Verfügbarkeit zu bestätigen. Direktbuchung, ohne Agentur- oder Plattformgebühren.</p>
+                    <p class="corps text-encre-douce mt-3">Eine Online-Buchung ist derzeit noch nicht möglich: Sie senden Ihre Anfrage per E-Mail (Schaltfläche „Verfügbarkeit anfragen" unten) mit Ihren gewünschten Daten, und wir antworten Ihnen, um die Verfügbarkeit zu bestätigen. Nach Bestätigung Ihres Aufenthalts erfolgt die Zahlung ausschließlich per Banküberweisung. Direktbuchung, ohne Agentur- oder Plattformgebühren.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
@@ -507,6 +517,26 @@
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Kann man mit dem Fahrrad anreisen?</summary>
                     <p class="corps text-encre-douce mt-3">Ja, ein Radweg beginnt direkt an der Anlage.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Wann sind An- und Abreise?</summary>
+                    <p class="corps text-encre-douce mt-3">Anreise ab 17 Uhr, Abreise bis 10 Uhr.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Gibt es WLAN?</summary>
+                    <p class="corps text-encre-douce mt-3">Nein, die Wohnung hat keinen WLAN-Anschluss.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Gibt es einen Geschirrspüler und eine Waschmaschine?</summary>
+                    <p class="corps text-encre-douce mt-3">Ja: einen Geschirrspüler in der Wohnung und eine Waschmaschine in der Ferienanlage.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Sind Haustiere erlaubt?</summary>
+                    <p class="corps text-encre-douce mt-3">Nein, Haustiere sind nicht erlaubt.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
@@ -554,7 +584,6 @@
             </div>
 
             <!-- Coordonnées en clair -->
-            <!-- TODO(proprio) : ajouter le téléphone une fois communiqué -->
             <address class="not-italic max-w-xl mx-auto corps">
                 <div class="p-4 rounded-rayon-md border border-dune flex flex-col sm:flex-row items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                     <span>E-Mail: <strong>himdalielocation@gmail.com</strong></span>

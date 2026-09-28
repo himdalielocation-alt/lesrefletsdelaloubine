@@ -36,7 +36,7 @@
       "@context": "https://schema.org",
       "@type": "VacationRental",
       "name": "Les Reflets de la Loubine",
-      "description": "Holiday apartment for a couple (sleeps up to 4) within the Lagrange Vacances L'Estran residence in Les Sables-d'Olonne, facing the Puits d'Enfer. Direct sea view from the living room and terrace. 2 heated outdoor pools, open from 15 May to 15 October. A sea-view retreat between the Cayola bay and Tanchet beach.",
+      "description": "Holiday apartment for a couple (sleeps up to 4) within the Lagrange Vacances L'Estran residence in Les Sables-d'Olonne, facing the Puits d'Enfer. Direct sea view from the living room and terrace. 2 heated outdoor pools, open from April to the end of September, weather permitting. A sea-view retreat between the Cayola bay and Tanchet beach.",
       "url": "https://lesrefletsdelaloubine.fr/en/",
       "email": "himdalielocation@gmail.com",
       "address": {
@@ -54,22 +54,32 @@
       "image": "https://lesrefletsdelaloubine.fr/en/images/sables-olonne-plage.jpg",
       "priceRange": "50€ - 110€ / nuit",
       "currenciesAccepted": "EUR",
+      "checkinTime": "17:00",
+      "checkoutTime": "10:00",
+      "paymentAccepted": "Bank transfer",
       "touristType": ["Couple", "Family"],
       "containsPlace": {
         "@type": "Accommodation",
         "numberOfRooms": 2,
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": 25,
+          "unitCode": "MTK"
+        },
+        "petsAllowed": false,
         "occupancy": {
           "@type": "QuantitativeValue",
           "maxValue": 4
         },
         "amenityFeature": [
           { "@type": "LocationFeatureSpecification", "name": "Direct sea view", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Heated pool (15 May - 15 October)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Heated pool (April to end of September, weather permitting)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Free parking", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Fully equipped kitchen", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Television", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Direct access to cycle path", "value": true },
-          { "@type": "LocationFeatureSpecification", "name": "Bedding: 2 single beds + 1 wall bed (real mattress)", "value": true }
+          { "@type": "LocationFeatureSpecification", "name": "Bedding: 2 single beds (bedroom) + 1 wall bed (main room, real mattress)", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Dishwasher", "value": true }
         ]
       }
     }
@@ -95,7 +105,7 @@
                     Sea view apartment facing the Puits d'Enfer, in Les Sables-d'Olonne
                 </h1>
                 <p class="chapo text-encre mb-8 max-w-md">
-                    Welcome to Les Reflets de la Loubine: an apartment for 4 within the Lagrange Vacances L'Estran residence, direct sea view, 2 heated pools from 15 May to 15 October.
+                    Welcome to Les Reflets de la Loubine: an apartment for 4 within the Lagrange Vacances L'Estran residence, direct sea view, 2 heated pools from April to the end of September (weather permitting).
                 </p>
                 <div class="inline-flex items-center gap-2 bg-reflet text-encre px-4 py-2 rounded-rayon-pilule surtitre mb-8">
                     Save up to 15%, booking direct
@@ -119,7 +129,7 @@
                     </div>
                     <div>
                         <p class="corps-fort text-encre">2 heated pools</p>
-                        <p class="legende">15 May to 15 October</p>
+                        <p class="legende">April to end of September, weather permitting</p>
                     </div>
                 </div>
             </div>
@@ -147,8 +157,8 @@
                 <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
                     <span class="icono w-6 h-6 text-bleu-loubine" style="mask-image:url('/brand/icons/message.svg');-webkit-mask-image:url('/brand/icons/message.svg')" aria-hidden="true"></span>
                 </div>
-                <h3 class="titre-3 text-encre mb-2">Direct contact with the owner</h3>
-                <p class="corps text-encre-douce">Smooth, personal communication and tailored local tips.</p>
+                <h3 class="titre-3 text-encre mb-2">Direct contact with your hosts</h3>
+                <p class="corps text-encre-douce">Maryse and her children look forward to welcoming you to Les Sables-d'Olonne. Smooth, personal communication and tailored local tips.</p>
             </div>
             <div class="bg-blanc-coquille border border-dune rounded-rayon-lg p-6">
                 <div class="w-12 h-12 bg-reflet rounded-rayon-pilule flex items-center justify-center mx-auto mb-4">
@@ -197,11 +207,11 @@
                 <div class="grid sm:grid-cols-2 gap-4 corps text-encre">
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/personnes.svg');-webkit-mask-image:url('/brand/icons/personnes.svg')" aria-hidden="true"></span>
-                        <span>Capacity: <strong>4 people</strong></span>
+                        <span>Capacity: <strong>4 people</strong> · 25 m²</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/piscine.svg');-webkit-mask-image:url('/brand/icons/piscine.svg')" aria-hidden="true"></span>
-                        <span><strong>2 heated pools</strong> (15 May to 15 October)</span>
+                        <span><strong>2 heated pools</strong> (April to end of September, weather permitting)</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/vague.svg');-webkit-mask-image:url('/brand/icons/vague.svg')" aria-hidden="true"></span>
@@ -209,7 +219,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/couchage.svg');-webkit-mask-image:url('/brand/icons/couchage.svg')" aria-hidden="true"></span>
-                        <span>Bedroom: 2 single beds + wall bed (real mattress)</span>
+                        <span>Bedroom: 2 single beds · Main room: wall bed (real mattress)</span>
                     </div>
                     <div class="flex items-center gap-3">
                         <span class="icono w-5 h-5 shrink-0 text-bleu-loubine" style="mask-image:url('/brand/icons/cle.svg');-webkit-mask-image:url('/brand/icons/cle.svg')" aria-hidden="true"></span>
@@ -241,17 +251,17 @@
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/piscine.svg');-webkit-mask-image:url('/brand/icons/piscine.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">2 Heated Pools</h3>
-                    <p class="legende">15 May to 15 October</p>
+                    <p class="legende">April to end of September, weather permitting</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/couchage.svg');-webkit-mask-image:url('/brand/icons/couchage.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">Bedding</h3>
-                    <p class="legende">2 single beds + wall bed (real mattress)</p>
+                    <p class="legende">2 single beds (bedroom) + wall bed (main room)</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/cuisine.svg');-webkit-mask-image:url('/brand/icons/cuisine.svg')" aria-hidden="true"></span>
                     <h3 class="titre-3 text-encre mb-1">Fully Equipped Kitchen</h3>
-                    <p class="legende">Hob, microwave, fridge, tableware</p>
+                    <p class="legende">Hob, microwave, fridge, dishwasher</p>
                 </div>
                 <div>
                     <span class="icono w-8 h-8 mx-auto mb-3 text-bleu-loubine" style="mask-image:url('/brand/icons/television.svg');-webkit-mask-image:url('/brand/icons/television.svg')" aria-hidden="true"></span>
@@ -309,7 +319,7 @@
                     <p class="legende mb-1">From</p>
                     <div class="titre-1 text-bleu-loubine mb-6">€75 <span class="corps text-encre-douce">/ night</span></div>
                     <ul class="corps text-encre space-y-3 mb-8 flex-grow">
-                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Access to both heated pools</li>
+                        <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Access to both heated pools (until end of September)</li>
                         <li class="flex items-center gap-3"><span class="pastille bg-varech"></span> Pleasant weather</li>
                     </ul>
                     <span class="w-full text-center border border-dune text-encre-douce corps-fort py-3 rounded-rayon-md cursor-not-allowed inline-block">Coming soon</span>
@@ -486,17 +496,17 @@
             <div class="space-y-4">
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">How many people can the apartment sleep?</summary>
-                    <p class="corps text-encre-douce mt-3">Up to 4 people, with 2 single beds and a wall bed (a real mattress, not a sofa bed).</p>
+                    <p class="corps text-encre-douce mt-3">Up to 4 people: 2 single beds in the bedroom and a wall bed (a real mattress, not a sofa bed) in the main room.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Are the residence's pools open all year round?</summary>
-                    <p class="corps text-encre-douce mt-3">No, the 2 heated outdoor pools are open from 15 May to 15 October.</p>
+                    <p class="corps text-encre-douce mt-3">No, the 2 heated outdoor pools are open from April to the end of September, weather permitting.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">How does booking work?</summary>
-                    <p class="corps text-encre-douce mt-3">There's no online booking yet: you send your request by email (the "Check my dates" button below) with your preferred dates, and we reply to confirm availability. Direct booking, with no agency or platform fees.</p>
+                    <p class="corps text-encre-douce mt-3">There's no online booking yet: you send your request by email (the "Check my dates" button below) with your preferred dates, and we reply to confirm availability. Once your stay is confirmed, payment is by bank transfer only. Direct booking, with no agency or platform fees.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
@@ -507,6 +517,26 @@
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
                     <summary class="corps-fort text-encre cursor-pointer btn-focus">Can I arrive by bike?</summary>
                     <p class="corps text-encre-douce mt-3">Yes, a cycle path starts right outside the residence.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">What are the check-in and check-out times?</summary>
+                    <p class="corps text-encre-douce mt-3">Check-in from 5 pm, check-out by 10 am.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Is there Wi-Fi?</summary>
+                    <p class="corps text-encre-douce mt-3">No, the apartment has no Wi-Fi connection.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Is there a dishwasher and a washing machine?</summary>
+                    <p class="corps text-encre-douce mt-3">Yes: a dishwasher in the apartment, and a washing machine in the residence.</p>
+                </details>
+
+                <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
+                    <summary class="corps-fort text-encre cursor-pointer btn-focus">Are pets allowed?</summary>
+                    <p class="corps text-encre-douce mt-3">No, pets are not allowed.</p>
                 </details>
 
                 <details class="bg-blanc-coquille border border-dune rounded-rayon-md p-5">
@@ -554,7 +584,6 @@
             </div>
 
             <!-- Coordonnées en clair -->
-            <!-- TODO(proprio) : ajouter le téléphone une fois communiqué -->
             <address class="not-italic max-w-xl mx-auto corps">
                 <div class="p-4 rounded-rayon-md border border-dune flex flex-col sm:flex-row items-center gap-3 justify-center" style="background: color-mix(in srgb, var(--ecume-nuit) 4%, transparent);">
                     <span>Email: <strong>himdalielocation@gmail.com</strong></span>
