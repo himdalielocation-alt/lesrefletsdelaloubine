@@ -9,7 +9,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] Dates des piscines : formulation des fiches résidence retenue, « d'avril à fin septembre, selon météo » — **intégré partout** (accueil, FAQ, page activités, JSON-LD, 3 langues). Conséquence : la carte « Moyenne saison » (mai, juin, septembre, octobre) précise désormais « Accès aux 2 piscines chauffées (jusqu'à fin septembre) »
 - [x] Classement : meublé de tourisme classé 2 étoiles (classement officiel, pas le label Clévacances) — **intégré** (liste « À propos », JSON-LD `starRating: 2`)
 - [x] Surface : 25 m² — **intégré** (« Capacité : 4 personnes · 25 m² », JSON-LD `floorSize`)
-- [x] Étage : 1er étage, sans ascenseur — **intégré** (liste « À propos », FAQ accessibilité)
+- [x] Étage : rez-de-chaussée — **intégré** (liste « À propos », FAQ « À quel étage se trouve l'appartement ? »). Rien n'est affiché sur l'accessibilité PMR (marches, largeur des portes…) faute d'information
 - [x] Wi-Fi : non — **intégré** en FAQ (« Non, l'appartement n'a pas de connexion Wi-Fi »)
 - [x] Lave-vaisselle dans l'appartement, lave-linge dans la résidence — **intégré** (carte « Cuisine équipée », FAQ, JSON-LD)
 - [x] Linge de lit : en option, 12 € par lit pour le séjour — **intégré** (FAQ, mention sous les tarifs)
