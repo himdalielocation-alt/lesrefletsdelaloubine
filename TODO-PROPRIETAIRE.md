@@ -7,16 +7,16 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 ### Le logement
 - [x] Pièce de chaque couchage : 2 lits simples dans la chambre, lit armoire dans la pièce principale — **intégré** (accueil, FAQ, JSON-LD, 3 langues)
 - [x] Dates des piscines : formulation des fiches résidence retenue, « d'avril à fin septembre, selon météo » — **intégré partout** (accueil, FAQ, page activités, JSON-LD, 3 langues). Conséquence : la carte « Moyenne saison » (mai, juin, septembre, octobre) précise désormais « Accès aux 2 piscines chauffées (jusqu'à fin septembre) »
-- [ ] Classement : vous avez répondu « 2 étoiles clés vacances » — **à préciser avant affichage** : s'agit-il du classement officiel « meublé de tourisme 2 étoiles » (préfecture/Atout France), du label Clévacances « 2 clés », ou des deux ? Ce sont deux choses différentes, et on ne peut afficher que ce qui figure sur votre décision de classement / attestation de label
+- [x] Classement : meublé de tourisme classé 2 étoiles (classement officiel, pas le label Clévacances) — **intégré** (liste « À propos », JSON-LD `starRating: 2`)
 - [x] Surface : 25 m² — **intégré** (« Capacité : 4 personnes · 25 m² », JSON-LD `floorSize`)
-- [ ] Étage et ascenseur : vous avez répondu « non » — **à préciser** : rez-de-chaussée (donc pas d'ascenseur utile), ou appartement en étage sans ascenseur (et alors quel étage) ? Rien d'affiché pour l'instant
+- [x] Étage : 1er étage, sans ascenseur — **intégré** (liste « À propos », FAQ accessibilité)
 - [x] Wi-Fi : non — **intégré** en FAQ (« Non, l'appartement n'a pas de connexion Wi-Fi »)
 - [x] Lave-vaisselle dans l'appartement, lave-linge dans la résidence — **intégré** (carte « Cuisine équipée », FAQ, JSON-LD)
-- [ ] Linge de lit fourni ou non — **décision à prendre** (voir mes conseils dans la conversation) ; rien d'affiché pour l'instant
+- [x] Linge de lit : en option, 12 € par lit pour le séjour — **intégré** (FAQ, mention sous les tarifs)
 - [x] Animaux : non acceptés — **intégré** (FAQ, JSON-LD `petsAllowed: false`)
 - [x] Horaires : arrivée à partir de 17h, départ avant 10h — **intégré** (FAQ, JSON-LD `checkinTime`/`checkoutTime` rétablis)
-- [ ] Caution — **décision à prendre** (voir mes conseils dans la conversation) ; rien d'affiché pour l'instant
-- [ ] Conditions d'annulation — **décision à prendre** (voir mes conseils dans la conversation) ; rien d'affiché pour l'instant
+- [x] Caution : 300 € par empreinte bancaire (ex. Swikly, compte à créer de votre côté) — **intégré** (FAQ, sans nommer le service)
+- [x] Annulation : 25 % d'arrhes à la réservation, solde 30 jours avant l'arrivée ; annulation > 30 jours : arrhes conservées ; < 30 jours : séjour dû sauf relocation ; assurance annulation conseillée — **intégré** (FAQ). À reprendre à l'identique dans votre contrat de location
 - [x] Paiement : virement bancaire uniquement — **intégré** (FAQ « Comment se passe la réservation ? », JSON-LD `paymentAccepted`)
 - [ ] Délai de réponse habituel à une demande envoyée par e-mail (ex. « sous 24h », « sous 48h ») — vous avez indiqué ne pas vouloir vous engager sur un délai précis pour l'instant ; rien n'est donc affiché sur le site à ce sujet (voir le `<!-- TODO(proprio) -->` dans la section réservation de `templates/pages/index.html`)
 - [ ] Numéro d'enregistrement du meublé de tourisme — en attente de votre côté
