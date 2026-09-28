@@ -31,5 +31,11 @@ jobs:
           for f in templates/pages/*.html; do
             git add "$(basename "$f")"
           done
+          for lang in en de; do
+            for f in templates/pages/$lang/*.html; do
+              git add "$lang/$(basename "$f")"
+            done
+          done
+          git add sitemap.xml
           git commit -m "🧩 Régénérer les pages (build_pages.py)" || true
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true

@@ -29,7 +29,8 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [ ] Coordonnées GPS précises : je proposerai un géocodage Nominatim/OpenStreetMap de l'adresse ci-dessus pour comparaison avec les valeurs actuelles (46.4741, -1.7483) — à valider avant remplacement
 
 ### Évènements
-- [ ] Dates exactes du village de course Vendée Globe (le départ du 12 novembre 2028 est donné, le village « environ trois semaines avant » reste à préciser)
+- [ ] Dates exactes du village de course Vendée Globe 2028 — la page `vendee-globe-2028.html` (FR/EN/DE) est en ligne avec le départ confirmé (dimanche 12 novembre 2028, 13h02) et les dates du village **2024** en référence (19 octobre – 10 novembre, 10h–20h), en précisant que les dates 2028 ne sont pas encore officielles : à mettre à jour dès leur annonce
+- [ ] Photo du départ ou du village du Vendée Globe dont vous détenez les droits (pour la page Vendée Globe)
 - [ ] Confirmation officielle de la date IRONMAN Les Sables-d'Olonne–Vendée (27 juin 2027 annoncé, à vérifier sur le site officiel)
 - [ ] Dates 2027 : ponts de mai, Vendée Va'a, Journées européennes du patrimoine
 
