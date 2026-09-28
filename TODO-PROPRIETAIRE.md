@@ -5,24 +5,24 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 ## Informations à me donner
 
 ### Le logement
-- [ ] Pièce où se trouve chaque couchage (2 lits simples + lit armoire)
-- [ ] Formulation unique pour les dates des piscines — à choisir entre : « 15 mai – 15 octobre » (accueil actuel) / « mai à octobre » (page activités actuelle) / « avril à fin septembre selon météo » (fiches résidence)
-- [ ] Nombre d'étoiles du classement meublé de tourisme
-- [ ] Surface du logement
-- [ ] Étage et ascenseur (oui/non)
-- [ ] Wi-Fi (disponible ? gratuit ?)
-- [ ] Lave-vaisselle / lave-linge
-- [ ] Linge fourni ou non
-- [ ] Animaux acceptés ou non
-- [ ] Horaires d'arrivée et de départ (utilisés dans le JSON-LD `checkinTime`/`checkoutTime`, actuellement retirés faute de confirmation)
-- [ ] Caution
-- [ ] Conditions d'annulation
-- [ ] Mode(s) de paiement accepté(s) une fois la demande confirmée (virement, chèque, espèces...)
+- [x] Pièce de chaque couchage : 2 lits simples dans la chambre, lit armoire dans la pièce principale — **intégré** (accueil, FAQ, JSON-LD, 3 langues)
+- [x] Dates des piscines : formulation des fiches résidence retenue, « d'avril à fin septembre, selon météo » — **intégré partout** (accueil, FAQ, page activités, JSON-LD, 3 langues). Conséquence : la carte « Moyenne saison » (mai, juin, septembre, octobre) précise désormais « Accès aux 2 piscines chauffées (jusqu'à fin septembre) »
+- [x] Classement : meublé de tourisme classé 2 étoiles (classement officiel, pas le label Clévacances) — **intégré** (liste « À propos », JSON-LD `starRating: 2`)
+- [x] Surface : 25 m² — **intégré** (« Capacité : 4 personnes · 25 m² », JSON-LD `floorSize`)
+- [x] Étage : 1er étage, sans ascenseur — **intégré** (liste « À propos », FAQ accessibilité)
+- [x] Wi-Fi : non — **intégré** en FAQ (« Non, l'appartement n'a pas de connexion Wi-Fi »)
+- [x] Lave-vaisselle dans l'appartement, lave-linge dans la résidence — **intégré** (carte « Cuisine équipée », FAQ, JSON-LD)
+- [x] Linge de lit : en option, 12 € par lit pour le séjour — **intégré** (FAQ, mention sous les tarifs)
+- [x] Animaux : non acceptés — **intégré** (FAQ, JSON-LD `petsAllowed: false`)
+- [x] Horaires : arrivée à partir de 17h, départ avant 10h — **intégré** (FAQ, JSON-LD `checkinTime`/`checkoutTime` rétablis)
+- [x] Caution : 300 € par empreinte bancaire (ex. Swikly, compte à créer de votre côté) — **intégré** (FAQ, sans nommer le service)
+- [x] Annulation : 25 % d'arrhes à la réservation, solde 30 jours avant l'arrivée ; annulation > 30 jours : arrhes conservées ; < 30 jours : séjour dû sauf relocation ; assurance annulation conseillée — **intégré** (FAQ). À reprendre à l'identique dans votre contrat de location
+- [x] Paiement : virement bancaire uniquement — **intégré** (FAQ « Comment se passe la réservation ? », JSON-LD `paymentAccepted`)
 - [ ] Délai de réponse habituel à une demande envoyée par e-mail (ex. « sous 24h », « sous 48h ») — vous avez indiqué ne pas vouloir vous engager sur un délai précis pour l'instant ; rien n'est donc affiché sur le site à ce sujet (voir le `<!-- TODO(proprio) -->` dans la section réservation de `templates/pages/index.html`)
-- [ ] Numéro d'enregistrement du meublé de tourisme
-- [ ] Numéro de téléphone (actuellement « 06 XX XX XX XX » factice)
+- [ ] Numéro d'enregistrement du meublé de tourisme — en attente de votre côté
+- [x] Numéro de téléphone : pas de téléphone affiché, choix définitif — seul l'e-mail reste comme contact (le TODO correspondant a été retiré du code)
 - [ ] Lien de l'annonce Airbnb (actuellement « Lien disponible prochainement »)
-- [ ] Quelques lignes « Votre hôte »
+- [x] « Votre hôte » : « Maryse et ses enfants sont heureux de vous accueillir aux Sables-d'Olonne » — **intégré** dans la carte « Contact direct avec vos hôtes » (anciennement « … avec le propriétaire »), 3 langues
 
 ### L'emplacement
 - [x] Adresse résidence utilisée : 65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne — **à valider définitivement** (déjà utilisée dans le JSON-LD suite à votre validation du plan Phase 0, mais vous pouvez encore corriger)
