@@ -11,9 +11,15 @@ etc.) et ses propres pages sources (templates/pages/en/, templates/pages/de/).
 404.html reste unique (GitHub Pages ne sert qu'un seul fichier 404 pour tout
 le site, quel que soit le préfixe de langue de l'URL demandée).
 
+Le <lastmod> de sitemap.xml est aussi mis à jour automatiquement (date du
+jour, UTC) pour chaque page dont le HTML généré a réellement changé : Google
+s'en sert pour savoir quand repasser sur une page.
+
 Usage : python3 scripts/build_pages.py
 """
+import datetime
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -33,7 +39,10 @@ TRANSLATED_PAGES = [
     "activites-sables-d-olonne.html",
     "mentions-legales.html",
     "politique-de-confidentialite.html",
+    "vendee-globe-2028.html",
 ]
+
+SITEMAP_PATH = ROOT / "sitemap.xml"
 
 LANG_SWITCH_NAMES = {"fr": "Français", "en": "English", "de": "Deutsch"}
 # Drapeaux en SVG plat (pas d'emoji, rendu différent selon les appareils) :
@@ -132,11 +141,28 @@ def read_include(name: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def update_sitemap_lastmod(changed_urls: list[str]) -> None:
+    """Met la date du jour dans le <lastmod> des URLs dont la page a changé."""
+    if not changed_urls or not SITEMAP_PATH.is_file():
+        return
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    sitemap = SITEMAP_PATH.read_text(encoding="utf-8")
+    for url in changed_urls:
+        pattern = re.compile(
+            r"(<loc>" + re.escape(url) + r"</loc>\s*<lastmod>)[^<]*(</lastmod>)"
+        )
+        sitemap, count = pattern.subn(r"\g<1>" + today + r"\g<2>", sitemap)
+        if count == 0:
+            print(f"Attention : {url} absente de sitemap.xml (ou sans <lastmod>)")
+    SITEMAP_PATH.write_text(sitemap, encoding="utf-8")
+
+
 def build() -> list[pathlib.Path]:
     if not PAGES_DIR.is_dir():
         sys.exit(f"Dossier introuvable : {PAGES_DIR}")
 
     written = []
+    changed_urls = []
 
     for slug in TRANSLATED_PAGES:
         hreflang = hreflang_block(slug)
@@ -165,6 +191,9 @@ def build() -> list[pathlib.Path]:
             output_dir = ROOT if lang == "fr" else ROOT / lang
             output_dir.mkdir(parents=True, exist_ok=True)
             output_path = output_dir / slug
+            previous = output_path.read_text(encoding="utf-8") if output_path.is_file() else None
+            if content != previous:
+                changed_urls.append(page_url(lang, slug))
             output_path.write_text(content, encoding="utf-8")
             written.append(output_path)
 
@@ -179,6 +208,7 @@ def build() -> list[pathlib.Path]:
     output_path.write_text(content, encoding="utf-8")
     written.append(output_path)
 
+    update_sitemap_lastmod(changed_urls)
     return written
 
 

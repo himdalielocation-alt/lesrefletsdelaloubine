@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lesrefletsdelaloubine.fr/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/en/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/de/</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -32,7 +32,7 @@
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/en/activites-sables-d-olonne.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
@@ -52,7 +52,7 @@
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/de/activites-sables-d-olonne.html</loc>
-    <lastmod>2026-09-24</lastmod>
+    <lastmod>2026-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/activites-sables-d-olonne.html"/>
@@ -119,5 +119,35 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/politique-de-confidentialite.html"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/politique-de-confidentialite.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/politique-de-confidentialite.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/vendee-globe-2028.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/en/vendee-globe-2028.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
+  </url>
+  <url>
+    <loc>https://lesrefletsdelaloubine.fr/de/vendee-globe-2028.html</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://lesrefletsdelaloubine.fr/en/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/vendee-globe-2028.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/vendee-globe-2028.html"/>
   </url>
 </urlset>
