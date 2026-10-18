@@ -133,9 +133,8 @@ def photo_img(slot: dict, lang: str, css: str, loading: str = "lazy") -> str | N
     )
 
 
-def slideshow(slots: list[dict], lang: str) -> str:
-    """Diaporama des photos présentes du groupe « Accueil : diaporama » (doublons exacts ignorés)."""
-    labels = SLIDESHOW_LABELS[lang]
+def slideshow_photos(slots: list[dict]) -> list[tuple[dict, tuple[int, int, str]]]:
+    """Photos présentes du groupe « Accueil : diaporama », dans l'ordre, doublons exacts ignorés."""
     seen, chosen = set(), []
     for slot in slots:
         if not slot["group"].startswith(SLIDESHOW_GROUP_PREFIX):
@@ -144,6 +143,21 @@ def slideshow(slots: list[dict], lang: str) -> str:
         if info and info[2] not in seen:
             seen.add(info[2])
             chosen.append((slot, info))
+    return chosen
+
+
+def photo_url(slot: dict, info: tuple[int, int, str]) -> str:
+    return f"{BASE_URL}/images/photos/{slot['id']}.jpg?v={info[2][:8]}"
+
+
+# Image de repli (partage sur les réseaux, JSON-LD) tant qu'aucune photo du logement n'est envoyée.
+DEFAULT_IMAGE = f"{BASE_URL}/images/sables-olonne-plage.jpg"
+
+
+def slideshow(slots: list[dict], lang: str) -> str:
+    """Diaporama des photos présentes du groupe « Accueil : diaporama » (doublons exacts ignorés)."""
+    labels = SLIDESHOW_LABELS[lang]
+    chosen = slideshow_photos(slots)
     if not chosen:
         return ""
     total = len(chosen)
@@ -195,6 +209,11 @@ def render_photos(content: str, lang: str, slots: list[dict], page: pathlib.Path
         return photo_img(get(match[1]), lang, "block w-full rounded-rayon-lg mb-6") or ""
 
     content = re.sub(r"\{\{PHOTO:([\w-]+)\}\}", inline, content)
+    # Accueil : vraies photos du logement pour le partage (og:image, 1re du diaporama)
+    # et pour le JSON-LD VacationRental (toutes les photos du diaporama, puis l'image de repli).
+    house = [photo_url(slot, info) for slot, info in slideshow_photos(slots)]
+    content = content.replace("{{OG_IMAGE}}", house[0] if house else DEFAULT_IMAGE)
+    content = content.replace("{{JSONLD_IMAGES}}", json.dumps(house + [DEFAULT_IMAGE]))
     if "{{SLIDESHOW}}" in content:
         content = content.replace("{{SLIDESHOW}}", slideshow(slots, lang))
     return content
@@ -296,6 +315,40 @@ def read_include(name: str) -> str:
     return path.read_text(encoding="utf-8")
 
 
+IMAGE_NS = 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"'
+
+
+def page_images(content: str) -> list[str]:
+    """URLs absolues des images de contenu (<img src="/images/...">) d'une page, sans doublon."""
+    urls = []
+    for src in re.findall(r'<img src="(/?images/[^"?]+)', content):
+        url = f"{BASE_URL}/{src.lstrip('/')}"
+        if url not in urls:
+            urls.append(url)
+    return urls
+
+
+def update_sitemap_images(images_by_url: dict[str, list[str]]) -> None:
+    """Remplace les blocs <image:image> de chaque <url> par les images actuelles de la page."""
+    if not SITEMAP_PATH.is_file():
+        return
+    sitemap = SITEMAP_PATH.read_text(encoding="utf-8")
+    if IMAGE_NS not in sitemap:
+        sitemap = sitemap.replace("<urlset ", f"<urlset {IMAGE_NS} ", 1)
+
+    def fix(match: re.Match) -> str:
+        block = re.sub(r"\n?\s*<image:image>.*?</image:image>", "", match[0], flags=re.S)
+        loc = re.search(r"<loc>([^<]+)</loc>", block)[1]
+        images = "".join(
+            f"\n    <image:image><image:loc>{html.escape(url)}</image:loc></image:image>"
+            for url in images_by_url.get(loc, [])
+        )
+        return block.replace("\n  </url>", images + "\n  </url>")
+
+    sitemap = re.sub(r"  <url>.*?</url>", fix, sitemap, flags=re.S)
+    SITEMAP_PATH.write_text(sitemap, encoding="utf-8")
+
+
 def update_sitemap_lastmod(changed_urls: list[str]) -> None:
     """Met la date du jour dans le <lastmod> des URLs dont la page a changé."""
     if not changed_urls or not SITEMAP_PATH.is_file():
@@ -318,6 +371,7 @@ def build() -> list[pathlib.Path]:
 
     written = []
     changed_urls = []
+    images_by_url = {}
     photo_slots = load_photo_slots()
 
     for slug in TRANSLATED_PAGES:
@@ -338,7 +392,7 @@ def build() -> list[pathlib.Path]:
 
             remaining = [
                 t for t in ("{{HEADER}}", "{{FOOTER}}", "{{HREFLANG}}", "{{LANGSWITCH}}",
-                            "{{PHOTO", "{{SLIDESHOW}}")
+                            "{{PHOTO", "{{SLIDESHOW}}", "{{OG_IMAGE}}", "{{JSONLD_IMAGES}}")
                 if t in content
             ]
             if remaining:
@@ -350,6 +404,7 @@ def build() -> list[pathlib.Path]:
             output_dir = ROOT if lang == "fr" else ROOT / lang
             output_dir.mkdir(parents=True, exist_ok=True)
             output_path = output_dir / slug
+            images_by_url[page_url(lang, slug)] = page_images(content)
             previous = output_path.read_text(encoding="utf-8") if output_path.is_file() else None
             if content != previous:
                 changed_urls.append(page_url(lang, slug))
@@ -369,6 +424,7 @@ def build() -> list[pathlib.Path]:
     written.append(output_path)
 
     update_sitemap_lastmod(changed_urls)
+    update_sitemap_images(images_by_url)
     return written
 
 
