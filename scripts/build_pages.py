@@ -169,6 +169,20 @@ def slideshow(slots: list[dict], lang: str) -> str:
     )
 
 
+# Fichiers CSS/JS partagés : un ?v=<empreinte> est ajouté à leurs liens pour que les
+# navigateurs (et le cache de GitHub Pages) chargent la nouvelle version dès qu'ils changent.
+VERSIONED_ASSETS = ["assets/css/styles.css", "assets/js/menu.js", "assets/js/diaporama.js"]
+
+
+def version_assets(content: str) -> str:
+    for asset in VERSIONED_ASSETS:
+        path = ROOT / asset
+        if path.is_file():
+            version = hashlib.sha1(path.read_bytes()).hexdigest()[:8]
+            content = re.sub(r'"/' + re.escape(asset) + r'(\?v=[0-9a-f]*)?"', f'"/{asset}?v={version}"', content)
+    return content
+
+
 def render_photos(content: str, lang: str, slots: list[dict], page: pathlib.Path) -> str:
     by_id = {slot["id"]: slot for slot in slots}
 
@@ -320,6 +334,7 @@ def build() -> list[pathlib.Path]:
             content = content.replace("{{HREFLANG}}", hreflang)
             content = content.replace("{{LANGSWITCH}}", lang_switch_block(lang, slug))
             content = render_photos(content, lang, photo_slots, page_path)
+            content = version_assets(content)
 
             remaining = [
                 t for t in ("{{HEADER}}", "{{FOOTER}}", "{{HREFLANG}}", "{{LANGSWITCH}}",
@@ -345,6 +360,7 @@ def build() -> list[pathlib.Path]:
     content = (PAGES_DIR / "404.html").read_text(encoding="utf-8")
     content = content.replace("{{HEADER}}", read_include("header.html"))
     content = content.replace("{{FOOTER}}", read_include("footer.html"))
+    content = version_assets(content)
     remaining = [t for t in ("{{HEADER}}", "{{FOOTER}}") if t in content]
     if remaining:
         sys.exit(f"404.html : jeton(s) non résolu(s) : {', '.join(remaining)}")
