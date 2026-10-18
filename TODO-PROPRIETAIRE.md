@@ -26,7 +26,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 
 ### L'emplacement
 - [x] Adresse résidence utilisée : 65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne — **à valider définitivement** (déjà utilisée dans le JSON-LD suite à votre validation du plan Phase 0, mais vous pouvez encore corriger)
-- [ ] Coordonnées GPS : remplacées par 46.4731, -1.7441 (moyenne de deux sources publiques sur la résidence L'Estran, au lieu de 46.4741, -1.7483 qui tombait environ 300 m trop à l'ouest) — **à vérifier par vous sur la carte du site** ; si le repère n'est toujours pas sur la résidence, envoyez-moi un lien Google Maps du bon endroit
+- [x] Coordonnées GPS : 46.473392, -1.745570, relevées par vous sur Google Maps — **intégré** (carte, liens itinéraire, JSON-LD, 3 langues)
 
 ### Évènements
 - [x] Village Vendée Globe 2028 : du 20 octobre au 12 novembre 2028 — **intégré** (page `vendee-globe-2028.html`, 3 langues ; horaires 2028 non précisés)
