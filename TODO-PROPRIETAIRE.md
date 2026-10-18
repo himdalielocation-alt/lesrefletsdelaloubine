@@ -18,20 +18,20 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] Caution : 300 € par empreinte bancaire (ex. Swikly, compte à créer de votre côté) — **intégré** (FAQ, sans nommer le service)
 - [x] Annulation : 25 % d'arrhes à la réservation, solde 30 jours avant l'arrivée ; annulation > 30 jours : arrhes conservées ; < 30 jours : séjour dû sauf relocation ; assurance annulation conseillée — **intégré** (FAQ). À reprendre à l'identique dans votre contrat de location
 - [x] Paiement : virement bancaire uniquement — **intégré** (FAQ « Comment se passe la réservation ? », JSON-LD `paymentAccepted`)
-- [ ] Délai de réponse habituel à une demande envoyée par e-mail (ex. « sous 24h », « sous 48h ») — vous avez indiqué ne pas vouloir vous engager sur un délai précis pour l'instant ; rien n'est donc affiché sur le site à ce sujet (voir le `<!-- TODO(proprio) -->` dans la section réservation de `templates/pages/index.html`)
-- [ ] Numéro d'enregistrement du meublé de tourisme — en attente de votre côté
+- [x] Délai de réponse : sous 24h — **intégré** (étape 3 de la section réservation, 3 langues)
+- [x] Numéro d'enregistrement : 8519400689700 — **intégré** (mentions légales et pied de page de toutes les pages, 3 langues). La mention « Immatriculation en cours » du calendrier a été retirée
 - [x] Numéro de téléphone : pas de téléphone affiché, choix définitif — seul l'e-mail reste comme contact (le TODO correspondant a été retiré du code)
-- [ ] Lien de l'annonce Airbnb (actuellement « Lien disponible prochainement »)
+- [x] Annonce Airbnb : https://www.airbnb.fr/h/lesrefletsdelaloubine — **intégré** (encart Airbnb de la section réservation, JSON-LD `sameAs`, 3 langues)
 - [x] « Votre hôte » : « Maryse et ses enfants sont heureux de vous accueillir aux Sables-d'Olonne » — **intégré** dans la carte « Contact direct avec vos hôtes » (anciennement « … avec le propriétaire »), 3 langues
 
 ### L'emplacement
 - [x] Adresse résidence utilisée : 65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne — **à valider définitivement** (déjà utilisée dans le JSON-LD suite à votre validation du plan Phase 0, mais vous pouvez encore corriger)
-- [ ] Coordonnées GPS précises : je proposerai un géocodage Nominatim/OpenStreetMap de l'adresse ci-dessus pour comparaison avec les valeurs actuelles (46.4741, -1.7483) — à valider avant remplacement
+- [ ] Coordonnées GPS : remplacées par 46.4731, -1.7441 (moyenne de deux sources publiques sur la résidence L'Estran, au lieu de 46.4741, -1.7483 qui tombait environ 300 m trop à l'ouest) — **à vérifier par vous sur la carte du site** ; si le repère n'est toujours pas sur la résidence, envoyez-moi un lien Google Maps du bon endroit
 
 ### Évènements
-- [ ] Dates exactes du village de course Vendée Globe 2028 — la page `vendee-globe-2028.html` (FR/EN/DE) est en ligne avec le départ confirmé (dimanche 12 novembre 2028, 13h02) et les dates du village **2024** en référence (19 octobre – 10 novembre, 10h–20h), en précisant que les dates 2028 ne sont pas encore officielles : à mettre à jour dès leur annonce
+- [x] Village Vendée Globe 2028 : du 20 octobre au 12 novembre 2028 — **intégré** (page `vendee-globe-2028.html`, 3 langues ; horaires 2028 non précisés)
 - [ ] Photo du départ ou du village du Vendée Globe dont vous détenez les droits (pour la page Vendée Globe)
-- [ ] Confirmation officielle de la date IRONMAN Les Sables-d'Olonne–Vendée (27 juin 2027 annoncé, à vérifier sur le site officiel)
+- [x] IRONMAN Les Sables-d'Olonne–Vendée : 27 juin 2027, confirmé — **intégré** (page activités, 3 langues)
 - [ ] Dates 2027 : ponts de mai, Vendée Va'a, Journées européennes du patrimoine
 
 ### Mentions légales et confidentialité
@@ -60,9 +60,11 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 
 - [ ] Soumettre `sitemap.xml` dans Google Search Console
 - [ ] Soumettre les nouvelles pages (activités, Vendée Globe le cas échéant) dans Search Console
-- [ ] Vérifier que HTTPS fonctionne et que `www.lesrefletsdelaloubine.fr` redirige bien vers `lesrefletsdelaloubine.fr` (ou l'inverse selon votre config CNAME)
+- [x] HTTPS et redirection `www.lesrefletsdelaloubine.fr` → site : vérifié par vous
 - [ ] Tester le JSON-LD sur [validator.schema.org](https://validator.schema.org) et sur le [test des résultats enrichis de Google](https://search.google.com/test/rich-results)
 - [ ] Ajouter le site dans Bing Webmaster Tools
+- [ ] Créer le compte Swikly pour la caution (plus tard)
+- [ ] Reprendre les conditions de caution et d'annulation dans le contrat de location (clauses proposées dans la conversation)
 
 ## Décisions déjà prises avec votre accord
 

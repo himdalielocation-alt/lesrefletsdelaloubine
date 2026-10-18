@@ -48,10 +48,11 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 46.4741,
-        "longitude": -1.7483
+        "latitude": 46.4731,
+        "longitude": -1.7441
       },
       "image": "https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg",
+      "sameAs": ["https://www.airbnb.fr/h/lesrefletsdelaloubine"],
       "priceRange": "50€ - 110€ / nuit",
       "currenciesAccepted": "EUR",
       "starRating": {
@@ -365,7 +366,7 @@
                             <span class="surtitre bg-ajonc text-nuit px-3 py-1 rounded-rayon-pilule">Réservation bientôt disponible</span>
                         </div>
                         <p class="legende bg-sable border border-dune px-3 py-1 rounded-rayon-sm inline-block mt-2">
-                            * Calendrier à titre indicatif, mis à jour 1 fois par jour. Immatriculation en cours : les réservations en ligne ouvriront très prochainement.
+                            * Calendrier à titre indicatif, mis à jour 1 fois par jour. La réservation se fait par e-mail, avec le bouton « Demander mes dates » ci-dessous.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 self-center sm:self-auto">
@@ -432,8 +433,8 @@
                     <address class="not-italic corps text-encre-douce mt-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
                         <span>65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne</span>
                         <span class="flex items-center gap-3 corps-fort">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Google Maps)</a>
-                            <a href="https://maps.apple.com/?daddr=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Apple Plans)</a>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4731,-1.7441" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Google Maps)</a>
+                            <a href="https://maps.apple.com/?daddr=46.4731,-1.7441" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Itinéraire (Apple Plans)</a>
                         </span>
                     </address>
                 </div>
@@ -607,8 +608,7 @@
                 <ol class="legende mt-4 text-left max-w-sm mx-auto space-y-1.5 list-decimal list-inside">
                     <li>Le clic ouvre votre application de messagerie (Gmail, Mail, Outlook) avec un e-mail pré-rempli.</li>
                     <li>Vous complétez les informations manquantes (dates, coordonnées) et envoyez le message.</li>
-                    <!-- TODO(proprio) : préciser ici le délai de réponse habituel (ex. « sous 24h », « sous 48h ») une fois confirmé -->
-                    <li>Je vous réponds par e-mail pour confirmer la disponibilité et les modalités de votre séjour.</li>
+                    <li>Je vous réponds par e-mail sous 24h pour confirmer la disponibilité et les modalités de votre séjour.</li>
                 </ol>
             </div>
 
@@ -618,8 +618,7 @@
                     <span class="icono w-5 h-5 text-ecume-nuit" style="mask-image:url('brand/icons/lien-externe.svg');-webkit-mask-image:url('brand/icons/lien-externe.svg')" aria-hidden="true"></span>
                     <p class="corps-fort">Vous préférez réserver via Airbnb ?</p>
                 </div>
-                <!-- TODO(proprio) : confirmer si une annonce Airbnb existe déjà (et son lien), sinon garder cette formulation -->
-                <p class="legende mb-4">Notre annonce sera bientôt disponible sur Airbnb si vous préférez passer par leur plateforme.</p>
+                <p class="legende mb-4">Notre logement est aussi proposé sur Airbnb : <a href="https://www.airbnb.fr/h/lesrefletsdelaloubine" target="_blank" rel="noopener" class="text-ecume-nuit underline underline-offset-2 hover:opacity-80 btn-focus">voir l'annonce Airbnb</a> (s'ouvre dans un nouvel onglet). En réservant en direct ici, vous évitez les frais de service de la plateforme.</p>
             </div>
 
             <!-- Coordonnées en clair -->
@@ -660,8 +659,8 @@
         }
 
         function initMap() {
-            const lat = 46.4741;
-            const lng = -1.7483;
+            const lat = 46.4731;
+            const lng = -1.7441;
             // Sur mobile/tactile, un glisser à un doigt sur la carte ne doit pas capturer le
             // défilement de la page : le déplacement de la carte y est donc désactivé (la liste
             // de distances et les liens « Itinéraire » ci-contre restent l'alternative complète).
