@@ -10,10 +10,10 @@ on:
       - 'data/photos.json'
       - 'scripts/build_pages.py'
 
-# Plusieurs photos envoyées d'affilée déclenchent plusieurs exécutions :
-# elles passent l'une après l'autre, chacune repartant de la dernière version de main.
+# Plusieurs photos envoyées d'affilée déclenchent plusieurs exécutions : elles passent
+# l'une après l'autre (même file que build-css.yml), chacune repartant de la dernière version de main.
 concurrency:
-  group: build-pages
+  group: site-build
   cancel-in-progress: false
 
 permissions:

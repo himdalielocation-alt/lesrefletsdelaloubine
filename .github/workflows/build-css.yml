@@ -14,12 +14,19 @@ on:
 permissions:
   contents: write
 
+# Même file d'attente que build-pages.yml : les deux workflows ne poussent jamais en même temps.
+concurrency:
+  group: site-build
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
@@ -31,10 +38,27 @@ jobs:
       - name: Compiler le CSS
         run: npm run build:css
 
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # Régénère les pages pour que leurs liens portent l'empreinte (?v=) du CSS compilé.
+      - name: Régénérer les pages
+        run: python3 scripts/build_pages.py
+
       - name: Commit et push
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Actions"
-          git add assets/css/styles.css
+          git add assets/css/styles.css sitemap.xml
+          for f in templates/pages/*.html; do
+            git add "$(basename "$f")"
+          done
+          for lang in en de; do
+            for f in templates/pages/$lang/*.html; do
+              git add "$lang/$(basename "$f")"
+            done
+          done
           git commit -m "🎨 Recompiler le CSS (Tailwind)" || true
+          git pull --rebase origin main || true
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
