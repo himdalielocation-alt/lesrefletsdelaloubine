@@ -38,6 +38,8 @@
     {
       "@context": "https://schema.org",
       "@type": "VacationRental",
+      "additionalType": "Apartment",
+      "identifier": "lesrefletsdelaloubine",
       "name": "Les Reflets de la Loubine",
       "description": "Holiday apartment for a couple (sleeps up to 4) within the Lagrange Vacances L'Estran residence in Les Sables-d'Olonne, facing the Puits d'Enfer. Direct sea view from the living room and terrace. 2 heated outdoor pools, open from April to the end of September, weather permitting. A sea-view retreat between the Cayola bay and Tanchet beach.",
       "url": "https://lesrefletsdelaloubine.fr/en/",
@@ -47,6 +49,7 @@
         "streetAddress": "65 rue du Puits d'Enfer, Château-d'Olonne",
         "addressLocality": "Les Sables-d'Olonne",
         "postalCode": "85180",
+        "addressRegion": "Pays de la Loire",
         "addressCountry": "FR"
       },
       "geo": {
@@ -68,7 +71,14 @@
       "touristType": ["Couple", "Family"],
       "containsPlace": {
         "@type": "Accommodation",
+        "additionalType": "EntirePlace",
         "numberOfRooms": 2,
+        "numberOfBedrooms": 1,
+        "numberOfBathroomsTotal": 1,
+        "bed": [
+          { "@type": "BedDetails", "numberOfBeds": 2, "typeOfBed": "Single" },
+          { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double" }
+        ],
         "floorSize": {
           "@type": "QuantitativeValue",
           "value": 25,
@@ -77,9 +87,16 @@
         "petsAllowed": false,
         "occupancy": {
           "@type": "QuantitativeValue",
-          "maxValue": 4
+          "value": 4
         },
         "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "pool", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "kitchen", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "microwave", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "tv", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "patio", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "wifi", "value": false },
+          { "@type": "LocationFeatureSpecification", "name": "licenseNum", "value": "8519400689700" },
           { "@type": "LocationFeatureSpecification", "name": "Direct sea view", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Heated pool (April to end of September, weather permitting)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Free parking", "value": true },
