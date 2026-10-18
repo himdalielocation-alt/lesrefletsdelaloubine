@@ -38,6 +38,8 @@
     {
       "@context": "https://schema.org",
       "@type": "VacationRental",
+      "additionalType": "Apartment",
+      "identifier": "lesrefletsdelaloubine",
       "name": "Les Reflets de la Loubine",
       "description": "Ferienwohnung für ein Paar (bis zu 4 Personen) innerhalb der Ferienanlage Lagrange Vacances L'Estran in Les Sables-d'Olonne, gegenüber dem Puits d'Enfer. Direkter Meerblick vom Wohnzimmer und von der Terrasse. 2 beheizte Außenpools, geöffnet von April bis Ende September, je nach Wetter. Ein Rückzugsort mit Meerblick zwischen der Bucht von Cayola und dem Strand von Tanchet.",
       "url": "https://lesrefletsdelaloubine.fr/de/",
@@ -47,6 +49,7 @@
         "streetAddress": "65 rue du Puits d'Enfer, Château-d'Olonne",
         "addressLocality": "Les Sables-d'Olonne",
         "postalCode": "85180",
+        "addressRegion": "Pays de la Loire",
         "addressCountry": "FR"
       },
       "geo": {
@@ -68,7 +71,14 @@
       "touristType": ["Couple", "Familie"],
       "containsPlace": {
         "@type": "Accommodation",
+        "additionalType": "EntirePlace",
         "numberOfRooms": 2,
+        "numberOfBedrooms": 1,
+        "numberOfBathroomsTotal": 1,
+        "bed": [
+          { "@type": "BedDetails", "numberOfBeds": 2, "typeOfBed": "Single" },
+          { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double" }
+        ],
         "floorSize": {
           "@type": "QuantitativeValue",
           "value": 25,
@@ -77,9 +87,16 @@
         "petsAllowed": false,
         "occupancy": {
           "@type": "QuantitativeValue",
-          "maxValue": 4
+          "value": 4
         },
         "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "pool", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "kitchen", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "microwave", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "tv", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "patio", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "wifi", "value": false },
+          { "@type": "LocationFeatureSpecification", "name": "licenseNum", "value": "8519400689700" },
           { "@type": "LocationFeatureSpecification", "name": "Direkter Meerblick", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Beheizter Pool (April bis Ende September, je nach Wetter)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Kostenloser Parkplatz", "value": true },

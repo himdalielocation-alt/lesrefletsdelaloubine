@@ -35,6 +35,8 @@
     {
       "@context": "https://schema.org",
       "@type": "VacationRental",
+      "additionalType": "Apartment",
+      "identifier": "lesrefletsdelaloubine",
       "name": "Les Reflets de la Loubine",
       "description": "Appartement de vacances pour un couple (jusqu'à 4 personnes) au sein de la résidence Lagrange Vacances L'Estran aux Sables d'Olonne, face au Puits d'Enfer. Vue mer directe depuis le salon et la terrasse. 2 piscines extérieures chauffées, ouvertes d'avril à fin septembre selon la météo. Un cocon vue mer entre la baie de Cayola et la plage de Tanchet.",
       "url": "https://lesrefletsdelaloubine.fr/",
@@ -44,6 +46,7 @@
         "streetAddress": "65 rue du Puits d'Enfer, Château-d'Olonne",
         "addressLocality": "Les Sables-d'Olonne",
         "postalCode": "85180",
+        "addressRegion": "Pays de la Loire",
         "addressCountry": "FR"
       },
       "geo": {
@@ -65,7 +68,14 @@
       "touristType": ["Couple", "Famille"],
       "containsPlace": {
         "@type": "Accommodation",
+        "additionalType": "EntirePlace",
         "numberOfRooms": 2,
+        "numberOfBedrooms": 1,
+        "numberOfBathroomsTotal": 1,
+        "bed": [
+          { "@type": "BedDetails", "numberOfBeds": 2, "typeOfBed": "Single" },
+          { "@type": "BedDetails", "numberOfBeds": 1, "typeOfBed": "Double" }
+        ],
         "floorSize": {
           "@type": "QuantitativeValue",
           "value": 25,
@@ -74,9 +84,16 @@
         "petsAllowed": false,
         "occupancy": {
           "@type": "QuantitativeValue",
-          "maxValue": 4
+          "value": 4
         },
         "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "pool", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "kitchen", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "microwave", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "tv", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "patio", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "wifi", "value": false },
+          { "@type": "LocationFeatureSpecification", "name": "licenseNum", "value": "8519400689700" },
           { "@type": "LocationFeatureSpecification", "name": "Vue mer directe", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Piscine chauffée (avril à fin septembre, selon météo)", "value": true },
           { "@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true },
