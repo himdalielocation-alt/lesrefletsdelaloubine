@@ -1,0 +1,220 @@
+{
+  "_lisez-moi": "Emplacements photo du site. Chaque photo est stockée dans images/photos/<id>.jpg. La page /admin.html envoie les photos ; scripts/build_pages.py les place dans les pages. Pour ajouter un emplacement : ajouter une entrée ici et le jeton correspondant dans le template (voir CLAUDE.md).",
+  "slots": [
+    {
+      "id": "sejour",
+      "group": "Accueil : les 3 grandes photos du logement",
+      "label": "Le séjour (grande photo principale)",
+      "alt": {
+        "fr": "Séjour de l'appartement Les Reflets de la Loubine, vue mer directe",
+        "en": "Living room of the Les Reflets de la Loubine apartment, direct sea view",
+        "de": "Wohnzimmer der Wohnung Les Reflets de la Loubine, direkter Meerblick"
+      },
+      "placeholder": {
+        "fr": "Photo à ajouter : le séjour",
+        "en": "Photo coming soon: the living room",
+        "de": "Foto folgt: das Wohnzimmer"
+      }
+    },
+    {
+      "id": "piscines",
+      "group": "Accueil : les 3 grandes photos du logement",
+      "label": "Les 2 piscines de la résidence",
+      "alt": {
+        "fr": "Les 2 piscines extérieures chauffées de la résidence Lagrange Vacances L'Estran",
+        "en": "The 2 heated outdoor pools of the Lagrange Vacances L'Estran residence",
+        "de": "Die 2 beheizten Außenpools der Ferienanlage Lagrange Vacances L'Estran"
+      },
+      "placeholder": {
+        "fr": "Photo à ajouter : les piscines",
+        "en": "Photo coming soon: the pools",
+        "de": "Foto folgt: die Pools"
+      }
+    },
+    {
+      "id": "plage",
+      "group": "Accueil : les 3 grandes photos du logement",
+      "label": "La plage (Tanchet ou à proximité)",
+      "alt": {
+        "fr": "Plage du Tanchet, à proximité de la résidence Les Reflets de la Loubine",
+        "en": "Tanchet beach, near the Les Reflets de la Loubine residence",
+        "de": "Strand von Tanchet, in der Nähe der Ferienanlage Les Reflets de la Loubine"
+      },
+      "placeholder": {
+        "fr": "Photo à ajouter : la plage",
+        "en": "Photo coming soon: the beach",
+        "de": "Foto folgt: der Strand"
+      }
+    },
+    {
+      "id": "vue-salon",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "Vue mer depuis le salon",
+      "alt": {
+        "fr": "Vue mer directe depuis le salon de l'appartement",
+        "en": "Direct sea view from the apartment's living room",
+        "de": "Direkter Meerblick vom Wohnzimmer der Wohnung"
+      }
+    },
+    {
+      "id": "vue-terrasse",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "Vue mer depuis la terrasse",
+      "alt": {
+        "fr": "Vue mer depuis la terrasse de l'appartement",
+        "en": "Sea view from the apartment's terrace",
+        "de": "Meerblick von der Terrasse der Wohnung"
+      }
+    },
+    {
+      "id": "chambre",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "La chambre (2 lits simples)",
+      "alt": {
+        "fr": "Chambre avec 2 lits simples",
+        "en": "Bedroom with 2 single beds",
+        "de": "Schlafzimmer mit 2 Einzelbetten"
+      }
+    },
+    {
+      "id": "lit-armoire-ouvert",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "Le lit armoire ouvert",
+      "alt": {
+        "fr": "Lit armoire ouvert dans la pièce principale",
+        "en": "Wall bed open in the main room",
+        "de": "Geöffnetes Schrankbett im Hauptraum"
+      }
+    },
+    {
+      "id": "lit-armoire-ferme",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "Le lit armoire fermé",
+      "alt": {
+        "fr": "Lit armoire fermé dans la pièce principale",
+        "en": "Wall bed closed in the main room",
+        "de": "Geschlossenes Schrankbett im Hauptraum"
+      }
+    },
+    {
+      "id": "cuisine",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "La cuisine",
+      "alt": {
+        "fr": "Cuisine équipée de l'appartement",
+        "en": "The apartment's equipped kitchen",
+        "de": "Ausgestattete Küche der Wohnung"
+      }
+    },
+    {
+      "id": "salle-de-bain",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "La salle de bain",
+      "alt": {
+        "fr": "Salle de bain de l'appartement",
+        "en": "The apartment's bathroom",
+        "de": "Badezimmer der Wohnung"
+      }
+    },
+    {
+      "id": "exterieurs-residence",
+      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "label": "Extérieurs / espaces verts de la résidence",
+      "alt": {
+        "fr": "Extérieurs et espaces verts de la résidence Lagrange Vacances L'Estran",
+        "en": "Grounds and green spaces of the Lagrange Vacances L'Estran residence",
+        "de": "Außenbereiche und Grünflächen der Ferienanlage Lagrange Vacances L'Estran"
+      }
+    },
+    {
+      "id": "act-plages",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Les plages",
+      "alt": {
+        "fr": "Plage de La Pironnière aux Sables-d'Olonne, sable fin et rochers à marée basse",
+        "en": "La Pironnière beach in Les Sables-d'Olonne, fine sand and rocks at low tide",
+        "de": "Strand von La Pironnière in Les Sables-d'Olonne, feiner Sand und Felsen bei Ebbe"
+      }
+    },
+    {
+      "id": "act-puits-enfer",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Le Puits d'Enfer",
+      "alt": {
+        "fr": "Le Puits d'Enfer, faille rocheuse sur la corniche des Sables-d'Olonne",
+        "en": "The Puits d'Enfer, a rocky chasm on the Les Sables-d'Olonne coastal path",
+        "de": "Der Puits d'Enfer, eine Felsspalte am Küstenweg von Les Sables-d'Olonne"
+      }
+    },
+    {
+      "id": "act-remblai",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Le Remblai et la Grande Plage",
+      "alt": {
+        "fr": "Le Remblai des Sables-d'Olonne, promenade bordant la Grande Plage",
+        "en": "The Remblai in Les Sables-d'Olonne, the promenade running along the Grande Plage",
+        "de": "Der Remblai von Les Sables-d'Olonne, die Promenade entlang der Grande Plage"
+      }
+    },
+    {
+      "id": "act-la-chaume",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Le quartier de La Chaume",
+      "alt": {
+        "fr": "Le quartier de La Chaume aux Sables-d'Olonne, maisons basses et ruelles colorées",
+        "en": "The La Chaume quarter in Les Sables-d'Olonne, low houses and colourful lanes",
+        "de": "Das Viertel La Chaume in Les Sables-d'Olonne, niedrige Häuser und bunte Gassen"
+      }
+    },
+    {
+      "id": "act-port-olona",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Port Olona",
+      "alt": {
+        "fr": "Les pontons de Port Olona aux Sables-d'Olonne, port de départ du Vendée Globe",
+        "en": "The pontoons of Port Olona in Les Sables-d'Olonne, start port of the Vendée Globe",
+        "de": "Die Stege von Port Olona in Les Sables-d'Olonne, Startort der Vendée Globe"
+      }
+    },
+    {
+      "id": "act-velodyssee",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "La Vélodyssée / pistes cyclables",
+      "alt": {
+        "fr": "Piste cyclable de la Vélodyssée près de la résidence Lagrange L'Estran, Sables-d'Olonne",
+        "en": "Vélodyssée cycle path near the Lagrange L'Estran residence, Les Sables-d'Olonne",
+        "de": "Radweg der Vélodyssée in der Nähe der Ferienanlage Lagrange L'Estran, Les Sables-d'Olonne"
+      }
+    },
+    {
+      "id": "act-zoo-tanchet",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Le zoo et le lac de Tanchet",
+      "alt": {
+        "fr": "Le lac de Tanchet aux Sables-d'Olonne, à proximité du zoo",
+        "en": "Lake Tanchet in Les Sables-d'Olonne, near the zoo",
+        "de": "Der Tanchet-See in Les Sables-d'Olonne, in der Nähe des Zoos"
+      }
+    },
+    {
+      "id": "act-evenements",
+      "group": "Page « Que faire aux Sables ? »",
+      "label": "Les grands évènements (IRONMAN, régates…)",
+      "alt": {
+        "fr": "Évènements sportifs et nautiques aux Sables-d'Olonne (IRONMAN, Vendée Globe)",
+        "en": "Sporting and sailing events in Les Sables-d'Olonne (IRONMAN, Vendée Globe)",
+        "de": "Sport- und Segelveranstaltungen in Les Sables-d'Olonne (IRONMAN, Vendée Globe)"
+      }
+    },
+    {
+      "id": "vendee-globe",
+      "group": "Page « Vendée Globe 2028 »",
+      "label": "Départ ou village du Vendée Globe (photo dont vous avez les droits)",
+      "alt": {
+        "fr": "Les bateaux du Vendée Globe dans le chenal des Sables-d'Olonne",
+        "en": "Vendée Globe boats in the channel of Les Sables-d'Olonne",
+        "de": "Boote der Vendée Globe im Kanal von Les Sables-d'Olonne"
+      }
+    }
+  ]
+}

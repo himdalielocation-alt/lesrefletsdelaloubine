@@ -184,24 +184,14 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div class="md:col-span-2 aspect-[16/10] rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
-                    <!-- Foto folgt: images/sejour-les-reflets-de-la-loubine.jpg — alt="Wohnzimmer der Wohnung Les Reflets de la Loubine, direkter Meerblick" -->
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
-                    <p class="legende">Foto folgt: das Wohnzimmer</p>
-                </div>
+                {{PHOTOBOX:sejour|md:col-span-2 aspect-[16/10]}}
                 <div class="grid grid-rows-2 gap-6">
-                    <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
-                        <!-- Foto folgt: images/piscines-residence-estran.jpg — alt="Die 2 beheizten Außenpools der Ferienanlage Lagrange Vacances L'Estran" -->
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
-                        <p class="legende">Foto folgt: die Pools</p>
-                    </div>
-                    <div class="aspect-[16/10] md:aspect-auto rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">
-                        <!-- Foto folgt: images/plage-tanchet-les-sables-olonne.jpg — alt="Strand von Tanchet, in der Nähe der Ferienanlage Les Reflets de la Loubine" -->
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>
-                        <p class="legende">Foto folgt: der Strand</p>
-                    </div>
+                    {{PHOTOBOX:piscines|aspect-[16/10] md:aspect-auto}}
+                    {{PHOTOBOX:plage|aspect-[16/10] md:aspect-auto}}
                 </div>
             </div>
+
+            {{GALLERY}}
 
             <div class="max-w-4xl mx-auto">
                 <h3 class="titre-3 text-encre mb-4">Über die Wohnung</h3>
