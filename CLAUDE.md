@@ -71,6 +71,10 @@ Le propriétaire envoie lui-même les photos depuis **`https://lesrefletsdelalou
 - **Mise en ligne** : chaque photo envoyée déclenche `.github/workflows/build-pages.yml` (chemins `images/photos/**`, `data/photos.json`), qui régénère et commit les pages ; exécutions en file d'attente, repartant toujours de la dernière version de `main`.
 - **Ajouter un emplacement** : une entrée dans `data/photos.json` + le jeton dans les templates des 3 langues. Les classes CSS utilisées par les jetons existent déjà dans `assets/css/styles.css` ; en cas de nouvelle classe, vérifier le CSS compilé.
 
+## IndexNow (Bing, Yahoo, DuckDuckGo, Ecosia, Yandex)
+
+`.github/workflows/indexnow.yml` lance chaque jour `scripts/indexnow.py`, qui signale à IndexNow les URLs du sitemap dont le `<lastmod>` date des 2 derniers jours. La clé est le fichier `<clé hexadécimale>.txt` à la racine (contenu = la clé) : ne pas le supprimer ni le renommer. Google n'utilise pas IndexNow (pour Google, Search Console).
+
 ## Calendrier de disponibilités (ne pas modifier sans comprendre le mécanisme)
 
 - `.github/workflows/sync-calendar.yml` : tourne tous les jours à minuit UTC (+ déclenchement manuel), lit un Google Sheet via un compte de service (secret `GOOGLE_SERVICE_ACCOUNT_JSON`), écrit `data/calendar.json`, commit et push sur `main`.

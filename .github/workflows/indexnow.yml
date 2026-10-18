@@ -1,0 +1,22 @@
+name: 📣 Signaler les pages modifiées (IndexNow)
+
+# Chaque jour, signale à Bing / Yahoo / DuckDuckGo / Ecosia / Yandex les pages dont
+# le <lastmod> du sitemap a changé ces 2 derniers jours (voir scripts/indexnow.py).
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 6 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Signaler les pages modifiées
+        run: python3 scripts/indexnow.py 2
