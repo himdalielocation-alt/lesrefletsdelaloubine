@@ -47,6 +47,15 @@ Document de travail (non publié, voir `.nojekyll` et la section « Fichiers de 
 | Pas de `preload` sur les polices critiques | ✅ Ajouté (Fraunces Reflets + Karla Reflets, sur toutes les pages) |
 | SVG du logotype (29,5 Ko) dupliqué sur chaque page | Info — accepté tel quel (le gain de mutualisation nécessiterait un changement de format, hors périmètre immédiat) |
 
+### Octobre 2026 — photos réelles et performances
+
+| Constat | Statut |
+|---|---|
+| `og:image` et JSON-LD `image` de l'accueil = photo de plage générique | ✅ Vraies photos du logement (1re du diaporama en `og:image`, toutes dans le JSON-LD), mises à jour automatiquement à chaque photo envoyée |
+| Aucun sitemap des images | ✅ `<image:image>` par page dans `sitemap.xml`, généré par `build_pages.py` |
+| Image principale de l'accueil (LCP) : 2000 px, 425 Ko | ✅ 1600 px, 154 Ko |
+| CSS/JS servis depuis le cache après mise à jour (diaporama cassé) | ✅ `?v=<empreinte>` sur `styles.css`, `menu.js`, `diaporama.js` |
+
 ### JSON-LD (Phase 3)
 
 `LodgingBusiness` → restructuré en `WebSite` (nom du site) + `VacationRental` avec `containsPlace → Accommodation` (occupation, pièces, équipements, literie). Pas de `sameAs` (pas de lien Airbnb confirmé), pas d'`AggregateRating`/`Review` (aucun avis fourni). `BreadcrumbList` déjà présent sur la page activités.
