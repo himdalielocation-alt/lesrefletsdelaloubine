@@ -51,10 +51,11 @@
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 46.4741,
-        "longitude": -1.7483
+        "latitude": 46.4731,
+        "longitude": -1.7441
       },
       "image": "https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg",
+      "sameAs": ["https://www.airbnb.fr/h/lesrefletsdelaloubine"],
       "priceRange": "50€ - 110€ / nuit",
       "currenciesAccepted": "EUR",
       "starRating": {
@@ -420,7 +421,7 @@
                             <span class="surtitre bg-ajonc text-nuit px-3 py-1 rounded-rayon-pilule">Online booking coming soon</span>
                         </div>
                         <p class="legende bg-sable border border-dune px-3 py-1 rounded-rayon-sm inline-block mt-2">
-                            * Calendar for reference only, updated once a day. Registration in progress: online booking will open very soon.
+                            * Calendar for reference only, updated once a day. Bookings will open very soon.
                         </p>
                     </div>
                     <div class="flex items-center gap-2 self-center sm:self-auto">
@@ -487,8 +488,8 @@
                     <address class="not-italic corps text-encre-douce mt-4 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
                         <span>65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne</span>
                         <span class="flex items-center gap-3 corps-fort">
-                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Directions (Google Maps)</a>
-                            <a href="https://maps.apple.com/?daddr=46.4741,-1.7483" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Directions (Apple Maps)</a>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=46.4731,-1.7441" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Directions (Google Maps)</a>
+                            <a href="https://maps.apple.com/?daddr=46.4731,-1.7441" target="_blank" rel="noopener" class="btn-focus text-bleu-loubine hover:text-bleu-estran underline underline-offset-2">Directions (Apple Maps)</a>
                         </span>
                     </address>
                 </div>
@@ -662,8 +663,7 @@
                 <ol class="legende mt-4 text-left max-w-sm mx-auto space-y-1.5 list-decimal list-inside">
                     <li>The click opens your email app (Gmail, Mail, Outlook) with a pre-filled message.</li>
                     <li>You fill in the missing details (dates, contact info) and send the message.</li>
-                    <!-- TODO(proprio) : préciser ici le délai de réponse habituel (ex. « sous 24h », « sous 48h ») une fois confirmé -->
-                    <li>I reply by email to confirm availability and the details of your stay.</li>
+                    <li>I reply by email within 24 hours to confirm availability and the details of your stay.</li>
                 </ol>
             </div>
 
@@ -673,8 +673,7 @@
                     <span class="icono w-5 h-5 text-ecume-nuit" style="mask-image:url('/brand/icons/lien-externe.svg');-webkit-mask-image:url('/brand/icons/lien-externe.svg')" aria-hidden="true"></span>
                     <p class="corps-fort">Prefer to book via Airbnb?</p>
                 </div>
-                <!-- TODO(proprio) : confirmer si une annonce Airbnb existe déjà (et son lien), sinon garder cette formulation -->
-                <p class="legende mb-4">Our listing will be available on Airbnb soon if you'd rather book through their platform.</p>
+                <p class="legende mb-4">Our apartment is also listed on Airbnb: <a href="https://www.airbnb.fr/h/lesrefletsdelaloubine" target="_blank" rel="noopener" class="text-ecume-nuit underline underline-offset-2 hover:opacity-80 btn-focus">see the Airbnb listing</a> (opens in a new tab). By booking directly here, you avoid the platform's service fees.</p>
             </div>
 
             <!-- Coordonnées en clair -->
@@ -701,6 +700,7 @@
             <div>
                 <p class="corps-fort text-ecume-nuit">Les Reflets de la Loubine - Les Sables d'Olonne, France</p>
                 <p>Résidence Lagrange Vacances L'Estran</p>
+                <p>Furnished tourist accommodation no. 8519400689700</p>
                 <p><a href="mailto:himdalielocation@gmail.com" class="inline-block py-1 underline underline-offset-2 hover:text-ecume-nuit transition btn-focus">himdalielocation@gmail.com</a></p>
             </div>
             <nav aria-label="Legal links" class="flex flex-col sm:items-end gap-1">
@@ -733,8 +733,8 @@
         }
 
         function initMap() {
-            const lat = 46.4741;
-            const lng = -1.7483;
+            const lat = 46.4731;
+            const lng = -1.7441;
             // Sur mobile/tactile, un glisser à un doigt sur la carte ne doit pas capturer le
             // défilement de la page : le déplacement de la carte y est donc désactivé (la liste
             // de distances et les liens « Itinéraire » ci-contre restent l'alternative complète).
