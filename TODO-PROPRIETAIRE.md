@@ -37,7 +37,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 ### Mentions légales et confidentialité
 - [x] Éditeur du site : Maryse Courant, Résidence L'Estran, 65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne — **intégré** (3 langues)
 - [x] Directeur de la publication : Maryse Courant — **intégré** (3 langues)
-- [ ] Durée de conservation des e-mails de réservation — dans `politique-de-confidentialite.html`, actuellement en TODO
+- [x] Durée de conservation : demande sans suite 3 ans après le dernier échange ; séjour réservé : durée de la relation + 5 ans ; factures : 10 ans — **intégré** (3 langues)
 
 ## Photos à prendre (remplacent les placeholders actuels)
 
@@ -63,6 +63,7 @@ Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représente
 - [x] HTTPS et redirection `www.lesrefletsdelaloubine.fr` → site : vérifié par vous
 - [ ] Tester le JSON-LD sur [validator.schema.org](https://validator.schema.org) et sur le [test des résultats enrichis de Google](https://search.google.com/test/rich-results)
 - [ ] Ajouter le site dans Bing Webmaster Tools
+- [ ] Obtenir l'autorisation de changement d'usage — tant qu'elle n'est pas obtenue, le site garde « Réservation bientôt disponible » (badge du calendrier) et « Bientôt disponible » (cartes de tarifs) ; me prévenir pour les remplacer par « Demander mes dates »
 - [ ] Créer le compte Swikly pour la caution (plus tard)
 - [ ] Reprendre les conditions de caution et d'annulation dans le contrat de location (clauses proposées dans la conversation)
 
