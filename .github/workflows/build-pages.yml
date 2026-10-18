@@ -6,6 +6,15 @@ on:
     branches: [main]
     paths:
       - 'templates/**'
+      - 'images/photos/**'
+      - 'data/photos.json'
+      - 'scripts/build_pages.py'
+
+# Plusieurs photos envoyées d'affilée déclenchent plusieurs exécutions :
+# elles passent l'une après l'autre, chacune repartant de la dernière version de main.
+concurrency:
+  group: build-pages
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -16,6 +25,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - uses: actions/setup-python@v4
         with:
@@ -38,4 +49,5 @@ jobs:
           done
           git add sitemap.xml
           git commit -m "🧩 Régénérer les pages (build_pages.py)" || true
+          git pull --rebase origin main || true
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true

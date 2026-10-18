@@ -15,9 +15,19 @@ Le <lastmod> de sitemap.xml est aussi mis à jour automatiquement (date du
 jour, UTC) pour chaque page dont le HTML généré a réellement changé : Google
 s'en sert pour savoir quand repasser sur une page.
 
+Les jetons photo ({{PHOTOBOX:id|classes}}, {{PHOTO:id}}, {{GALLERY}}) sont
+remplacés par les photos présentes dans images/photos/<id>.jpg, décrites
+dans data/photos.json (texte alternatif par langue). Ces photos sont envoyées
+par le propriétaire depuis /admin.html ; une photo absente donne un
+emplacement « Photo à ajouter » ({{PHOTOBOX}}) ou rien du tout ({{PHOTO}},
+{{GALLERY}}).
+
 Usage : python3 scripts/build_pages.py
 """
 import datetime
+import hashlib
+import html
+import json
 import pathlib
 import re
 import sys
@@ -43,6 +53,105 @@ TRANSLATED_PAGES = [
 ]
 
 SITEMAP_PATH = ROOT / "sitemap.xml"
+PHOTOS_JSON = ROOT / "data" / "photos.json"
+PHOTOS_DIR = ROOT / "images" / "photos"
+
+# Groupe de data/photos.json affiché par {{GALLERY}} (galerie du logement).
+GALLERY_GROUP_PREFIX = "Accueil : galerie"
+
+PLACEHOLDER_SVG = (
+    '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" '
+    'focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect>'
+    '<circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>'
+)
+
+
+def load_photo_slots() -> list[dict]:
+    if not PHOTOS_JSON.is_file():
+        sys.exit(f"Fichier manquant : {PHOTOS_JSON}")
+    return json.loads(PHOTOS_JSON.read_text(encoding="utf-8"))["slots"]
+
+
+def jpeg_size(data: bytes) -> tuple[int, int]:
+    """Largeur et hauteur d'un JPEG, lues dans son en-tête (marqueur SOF)."""
+    if data[:2] != b"\xff\xd8":
+        raise ValueError("pas un fichier JPEG")
+    i = 2
+    while i + 9 < len(data):
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7 or marker == 0xFF:
+            i += 1 if marker == 0xFF else 2
+            continue
+        length = int.from_bytes(data[i + 2:i + 4], "big")
+        if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+            height = int.from_bytes(data[i + 5:i + 7], "big")
+            width = int.from_bytes(data[i + 7:i + 9], "big")
+            return width, height
+        i += 2 + length
+    raise ValueError("dimensions introuvables")
+
+
+def photo_img(slot: dict, lang: str, css: str) -> str | None:
+    """Balise <img> de l'emplacement, ou None si aucune photo n'a été envoyée."""
+    path = PHOTOS_DIR / f"{slot['id']}.jpg"
+    if not path.is_file():
+        return None
+    data = path.read_bytes()
+    try:
+        width, height = jpeg_size(data)
+    except ValueError as exc:
+        sys.exit(f"{path} : {exc}")
+    version = hashlib.sha1(data).hexdigest()[:8]
+    alt = html.escape(slot["alt"][lang], quote=True)
+    return (
+        f'<img src="/images/photos/{slot["id"]}.jpg?v={version}" alt="{alt}" '
+        f'width="{width}" height="{height}" loading="lazy" decoding="async" class="{css}">'
+    )
+
+
+def render_photos(content: str, lang: str, slots: list[dict], page: pathlib.Path) -> str:
+    by_id = {slot["id"]: slot for slot in slots}
+
+    def get(slot_id: str) -> dict:
+        if slot_id not in by_id:
+            sys.exit(f"{page} : emplacement photo inconnu « {slot_id} » (absent de data/photos.json)")
+        return by_id[slot_id]
+
+    def box(match: re.Match) -> str:
+        slot, css = get(match[1]), match[2]
+        img = photo_img(slot, lang, "w-full h-full object-cover")
+        if img:
+            return f'<div class="{css} rounded-rayon-lg overflow-hidden">{img}</div>'
+        label = html.escape(slot["placeholder"][lang])
+        return (
+            f'<div class="{css} rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex '
+            f'flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">'
+            f'{PLACEHOLDER_SVG}<p class="legende">{label}</p></div>'
+        )
+
+    def inline(match: re.Match) -> str:
+        return photo_img(get(match[1]), lang, "block w-full rounded-rayon-lg mb-6") or ""
+
+    content = re.sub(r"\{\{PHOTOBOX:([\w-]+)\|([^}]*)\}\}", box, content)
+    content = re.sub(r"\{\{PHOTO:([\w-]+)\}\}", inline, content)
+
+    if "{{GALLERY}}" in content:
+        items = [
+            photo_img(slot, lang, "w-full h-full object-cover")
+            for slot in slots
+            if slot["group"].startswith(GALLERY_GROUP_PREFIX)
+        ]
+        items = [f'<div class="aspect-[4/3] rounded-rayon-lg overflow-hidden">{img}</div>' for img in items if img]
+        gallery = (
+            '<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">' + "".join(items) + "</div>"
+            if items else ""
+        )
+        content = content.replace("{{GALLERY}}", gallery)
+    return content
 
 LANG_SWITCH_NAMES = {"fr": "Français", "en": "English", "de": "Deutsch"}
 # Drapeaux en SVG plat (pas d'emoji, rendu différent selon les appareils) :
@@ -163,6 +272,7 @@ def build() -> list[pathlib.Path]:
 
     written = []
     changed_urls = []
+    photo_slots = load_photo_slots()
 
     for slug in TRANSLATED_PAGES:
         hreflang = hreflang_block(slug)
@@ -177,9 +287,11 @@ def build() -> list[pathlib.Path]:
             content = content.replace("{{FOOTER}}", read_include(cfg["footer"]))
             content = content.replace("{{HREFLANG}}", hreflang)
             content = content.replace("{{LANGSWITCH}}", lang_switch_block(lang, slug))
+            content = render_photos(content, lang, photo_slots, page_path)
 
             remaining = [
-                t for t in ("{{HEADER}}", "{{FOOTER}}", "{{HREFLANG}}", "{{LANGSWITCH}}")
+                t for t in ("{{HEADER}}", "{{FOOTER}}", "{{HREFLANG}}", "{{LANGSWITCH}}",
+                            "{{PHOTO", "{{GALLERY}}")
                 if t in content
             ]
             if remaining:
