@@ -101,3 +101,31 @@
             width: 200%;
             will-change: transform;
         }
+
+        /* Diaporama des photos du logement (accueil) — balisage généré par
+           scripts/build_pages.py ({{SLIDESHOW}}), comportement dans assets/js/diaporama.js.
+           Sans JS : défilement au doigt / à la barre de défilement, contrôles masqués. */
+        .diaporama { position: relative; border-radius: 1.25rem; overflow: hidden; background: var(--sable); }
+        .diaporama-piste { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+        .diaporama-piste::-webkit-scrollbar { display: none; }
+        .diaporama-piste:focus-visible { outline: 3px solid var(--bleu-loubine); outline-offset: -3px; }
+        .diaporama-diapo { flex: 0 0 100%; margin: 0; scroll-snap-align: center; aspect-ratio: 3 / 2; }
+        .diaporama-diapo img { width: 100%; height: 100%; display: block; object-fit: cover; }
+        .diaporama-diapo img.diaporama-portrait { object-fit: contain; }
+        .diaporama-btn, .diaporama-pause { display: none; position: absolute; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; border: 1px solid rgba(255,255,255,.6); background: rgba(18,33,31,.55); color: #fff; cursor: pointer; }
+        .diaporama-btn:hover, .diaporama-pause:hover { background: rgba(18,33,31,.8); }
+        .diaporama-btn:focus-visible, .diaporama-pause:focus-visible, .diaporama-points button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+        .diaporama-prec { left: 12px; top: 50%; transform: translateY(-50%); }
+        .diaporama-suiv { right: 12px; top: 50%; transform: translateY(-50%); }
+        .diaporama-bas { display: none; position: absolute; left: 0; right: 0; bottom: 12px; align-items: center; justify-content: center; gap: 12px; pointer-events: none; }
+        .diaporama-bas > * { pointer-events: auto; }
+        .diaporama-pause { position: static; width: 36px; height: 36px; }
+        .diaporama-points { display: flex; gap: 2px; padding: 4px 8px; border-radius: 9999px; background: rgba(18,33,31,.45); }
+        .diaporama-points button { width: 24px; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 9999px; }
+        .diaporama-points button::before { content: ""; width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,.55); }
+        .diaporama-points button[aria-current="true"]::before { background: #fff; transform: scale(1.3); }
+        .diaporama-actif .diaporama-btn { display: flex; }
+        .diaporama-actif .diaporama-bas { display: flex; }
+        .diaporama-actif .diaporama-pause { display: flex; }
+        .diaporama-seule .diaporama-btn, .diaporama-seule .diaporama-bas { display: none; }
+        @media (max-width: 639px) { .diaporama-btn { width: 36px; height: 36px; } .diaporama-prec { left: 8px; } .diaporama-suiv { right: 8px; } }

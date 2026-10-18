@@ -1,55 +1,10 @@
 {
-  "_lisez-moi": "Emplacements photo du site. Chaque photo est stockée dans images/photos/<id>.jpg. La page /admin.html envoie les photos ; scripts/build_pages.py les place dans les pages. Pour ajouter un emplacement : ajouter une entrée ici et le jeton correspondant dans le template (voir CLAUDE.md).",
+  "_lisez-moi": "Emplacements photo du site. Chaque photo est stockée dans images/photos/<id>.jpg. La page /admin.html envoie les photos ; scripts/build_pages.py les place dans les pages. Les photos du diaporama de l'accueil s'affichent dans l'ordre de cette liste (doublons exacts ignorés). Pour ajouter un emplacement : ajouter une entrée ici et le jeton correspondant dans le template (voir CLAUDE.md).",
   "slots": [
     {
-      "id": "sejour",
-      "group": "Accueil : les 3 grandes photos du logement",
-      "label": "Le séjour (grande photo principale)",
-      "alt": {
-        "fr": "Séjour de l'appartement Les Reflets de la Loubine, vue mer directe",
-        "en": "Living room of the Les Reflets de la Loubine apartment, direct sea view",
-        "de": "Wohnzimmer der Wohnung Les Reflets de la Loubine, direkter Meerblick"
-      },
-      "placeholder": {
-        "fr": "Photo à ajouter : le séjour",
-        "en": "Photo coming soon: the living room",
-        "de": "Foto folgt: das Wohnzimmer"
-      }
-    },
-    {
-      "id": "piscines",
-      "group": "Accueil : les 3 grandes photos du logement",
-      "label": "Les 2 piscines de la résidence",
-      "alt": {
-        "fr": "Les 2 piscines extérieures chauffées de la résidence Lagrange Vacances L'Estran",
-        "en": "The 2 heated outdoor pools of the Lagrange Vacances L'Estran residence",
-        "de": "Die 2 beheizten Außenpools der Ferienanlage Lagrange Vacances L'Estran"
-      },
-      "placeholder": {
-        "fr": "Photo à ajouter : les piscines",
-        "en": "Photo coming soon: the pools",
-        "de": "Foto folgt: die Pools"
-      }
-    },
-    {
-      "id": "plage",
-      "group": "Accueil : les 3 grandes photos du logement",
-      "label": "La plage (Tanchet ou à proximité)",
-      "alt": {
-        "fr": "Plage du Tanchet, à proximité de la résidence Les Reflets de la Loubine",
-        "en": "Tanchet beach, near the Les Reflets de la Loubine residence",
-        "de": "Strand von Tanchet, in der Nähe der Ferienanlage Les Reflets de la Loubine"
-      },
-      "placeholder": {
-        "fr": "Photo à ajouter : la plage",
-        "en": "Photo coming soon: the beach",
-        "de": "Foto folgt: der Strand"
-      }
-    },
-    {
       "id": "vue-salon",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
-      "label": "Vue mer depuis le salon",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
+      "label": "Vue mer depuis le salon (1re photo du diaporama)",
       "alt": {
         "fr": "Vue mer directe depuis le salon de l'appartement",
         "en": "Direct sea view from the apartment's living room",
@@ -57,8 +12,18 @@
       }
     },
     {
+      "id": "sejour",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
+      "label": "Le séjour",
+      "alt": {
+        "fr": "Séjour de l'appartement Les Reflets de la Loubine, vue mer directe",
+        "en": "Living room of the Les Reflets de la Loubine apartment, direct sea view",
+        "de": "Wohnzimmer der Wohnung Les Reflets de la Loubine, direkter Meerblick"
+      }
+    },
+    {
       "id": "vue-terrasse",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "Vue mer depuis la terrasse",
       "alt": {
         "fr": "Vue mer depuis la terrasse de l'appartement",
@@ -68,7 +33,7 @@
     },
     {
       "id": "chambre",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "La chambre (2 lits simples)",
       "alt": {
         "fr": "Chambre avec 2 lits simples",
@@ -78,7 +43,7 @@
     },
     {
       "id": "lit-armoire-ouvert",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "Le lit armoire ouvert",
       "alt": {
         "fr": "Lit armoire ouvert dans la pièce principale",
@@ -88,7 +53,7 @@
     },
     {
       "id": "lit-armoire-ferme",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "Le lit armoire fermé",
       "alt": {
         "fr": "Lit armoire fermé dans la pièce principale",
@@ -98,7 +63,7 @@
     },
     {
       "id": "cuisine",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "La cuisine",
       "alt": {
         "fr": "Cuisine équipée de l'appartement",
@@ -108,7 +73,7 @@
     },
     {
       "id": "salle-de-bain",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "La salle de bain",
       "alt": {
         "fr": "Salle de bain de l'appartement",
@@ -117,13 +82,33 @@
       }
     },
     {
+      "id": "piscines",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
+      "label": "Les 2 piscines de la résidence",
+      "alt": {
+        "fr": "Les 2 piscines extérieures chauffées de la résidence Lagrange Vacances L'Estran",
+        "en": "The 2 heated outdoor pools of the Lagrange Vacances L'Estran residence",
+        "de": "Die 2 beheizten Außenpools der Ferienanlage Lagrange Vacances L'Estran"
+      }
+    },
+    {
       "id": "exterieurs-residence",
-      "group": "Accueil : galerie du logement (n'apparaît que si au moins une photo est envoyée)",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
       "label": "Extérieurs / espaces verts de la résidence",
       "alt": {
         "fr": "Extérieurs et espaces verts de la résidence Lagrange Vacances L'Estran",
         "en": "Grounds and green spaces of the Lagrange Vacances L'Estran residence",
         "de": "Außenbereiche und Grünflächen der Ferienanlage Lagrange Vacances L'Estran"
+      }
+    },
+    {
+      "id": "plage",
+      "group": "Accueil : diaporama du logement (dans cet ordre ; les emplacements vides n'apparaissent pas)",
+      "label": "La plage (Tanchet ou à proximité)",
+      "alt": {
+        "fr": "Plage du Tanchet, à proximité de la résidence Les Reflets de la Loubine",
+        "en": "Tanchet beach, near the Les Reflets de la Loubine residence",
+        "de": "Strand von Tanchet, in der Nähe der Ferienanlage Les Reflets de la Loubine"
       }
     },
     {
