@@ -43,18 +43,18 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 
 **À envoyer vous-même depuis https://lesrefletsdelaloubine.fr/admin.html** (clé GitHub à créer une fois, explications sur la page). 20 emplacements : 3 grandes photos de l'accueil, 8 pour la galerie du logement, 8 pour la page activités, 1 pour la page Vendée Globe. Le site se met à jour seul 2 à 3 minutes après chaque envoi.
 
-- [ ] Créer la clé GitHub et se connecter à la page admin
+- [x] Créer la clé GitHub et se connecter à la page admin
 
-- [ ] Vue depuis le salon
+- [x] Vue depuis le salon
 - [ ] Vue depuis la terrasse
-- [ ] Séjour
-- [ ] Chambre
+- [x] Séjour (même fichier que « lit armoire fermé » : photo affichée deux fois sur l'accueil, à remplacer dans l'un des deux emplacements)
+- [x] Chambre
 - [ ] Lit armoire ouvert
-- [ ] Lit armoire fermé
+- [x] Lit armoire fermé
 - [ ] Cuisine
-- [ ] Salle de bain
-- [ ] Les 2 piscines de la résidence
-- [ ] Extérieurs / espaces verts de la résidence
+- [x] Salle de bain
+- [x] Les 2 piscines de la résidence
+- [x] Extérieurs / espaces verts de la résidence
 - [ ] Plage (Tanchet ou à proximité) — remplace la 3e photo « galerie » de l'accueil, actuellement en placeholder
 - [ ] Le Puits d'Enfer
 
