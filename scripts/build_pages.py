@@ -48,6 +48,8 @@ TRANSLATED_PAGES = [
     "mentions-legales.html",
     "politique-de-confidentialite.html",
     "vendee-globe-2028.html",
+    "puits-d-enfer-sables-d-olonne.html",
+    "plages-sables-d-olonne.html",
 ]
 
 SITEMAP_PATH = ROOT / "sitemap.xml"
