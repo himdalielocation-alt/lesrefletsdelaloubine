@@ -47,7 +47,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 
 - [x] Vue depuis le salon
 - [ ] Vue depuis la terrasse
-- [x] Séjour (même fichier que « lit armoire fermé » : photo affichée deux fois sur l'accueil, à remplacer dans l'un des deux emplacements)
+- [x] Séjour (même fichier que « lit armoire fermé » : le diaporama ne l'affiche qu'une fois ; envoyez un autre angle dans l'un des deux emplacements si vous voulez une photo de plus)
 - [x] Chambre
 - [ ] Lit armoire ouvert
 - [x] Lit armoire fermé

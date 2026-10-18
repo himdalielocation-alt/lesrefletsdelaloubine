@@ -15,12 +15,10 @@ Le <lastmod> de sitemap.xml est aussi mis à jour automatiquement (date du
 jour, UTC) pour chaque page dont le HTML généré a réellement changé : Google
 s'en sert pour savoir quand repasser sur une page.
 
-Les jetons photo ({{PHOTOBOX:id|classes}}, {{PHOTO:id}}, {{GALLERY}}) sont
-remplacés par les photos présentes dans images/photos/<id>.jpg, décrites
-dans data/photos.json (texte alternatif par langue). Ces photos sont envoyées
-par le propriétaire depuis /admin.html ; une photo absente donne un
-emplacement « Photo à ajouter » ({{PHOTOBOX}}) ou rien du tout ({{PHOTO}},
-{{GALLERY}}).
+Les jetons photo ({{SLIDESHOW}}, {{PHOTO:id}}) sont remplacés par les photos
+présentes dans images/photos/<id>.jpg, décrites dans data/photos.json (texte
+alternatif par langue). Ces photos sont envoyées par le propriétaire depuis
+/admin.html ; une photo absente n'est simplement pas affichée.
 
 Usage : python3 scripts/build_pages.py
 """
@@ -56,15 +54,28 @@ SITEMAP_PATH = ROOT / "sitemap.xml"
 PHOTOS_JSON = ROOT / "data" / "photos.json"
 PHOTOS_DIR = ROOT / "images" / "photos"
 
-# Groupe de data/photos.json affiché par {{GALLERY}} (galerie du logement).
-GALLERY_GROUP_PREFIX = "Accueil : galerie"
+# Groupe de data/photos.json affiché par {{SLIDESHOW}} (diaporama du logement, dans l'ordre du fichier).
+SLIDESHOW_GROUP_PREFIX = "Accueil : diaporama"
 
-PLACEHOLDER_SVG = (
-    '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" '
-    'focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"></rect>'
-    '<circle cx="8.5" cy="9.5" r="1.5"></circle><path d="M21 15l-5-5-4 4-3-3-6 6"></path></svg>'
-)
+SLIDESHOW_LABELS = {
+    "fr": {"region": "Photos du logement", "slide": "Photo {n} sur {total}", "prev": "Photo précédente",
+           "next": "Photo suivante", "goto": "Afficher la photo {n}", "pause": "Mettre le diaporama en pause",
+           "play": "Relancer le défilement automatique"},
+    "en": {"region": "Photos of the apartment", "slide": "Photo {n} of {total}", "prev": "Previous photo",
+           "next": "Next photo", "goto": "Show photo {n}", "pause": "Pause the slideshow",
+           "play": "Resume automatic slideshow"},
+    "de": {"region": "Fotos der Wohnung", "slide": "Foto {n} von {total}", "prev": "Vorheriges Foto",
+           "next": "Nächstes Foto", "goto": "Foto {n} anzeigen", "pause": "Diashow anhalten",
+           "play": "Automatische Diashow fortsetzen"},
+}
+ICON_PREV = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg>')
+ICON_NEXT = ('<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg>')
+ICON_PAUSE = ('<svg class="icone-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" '
+              'focusable="false"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>')
+ICON_PLAY = ('<svg class="icone-lecture" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" '
+             'focusable="false" style="display:none"><path d="M8 5v14l11-7z"/></svg>')
 
 
 def load_photo_slots() -> list[dict]:
@@ -95,8 +106,8 @@ def jpeg_size(data: bytes) -> tuple[int, int]:
     raise ValueError("dimensions introuvables")
 
 
-def photo_img(slot: dict, lang: str, css: str) -> str | None:
-    """Balise <img> de l'emplacement, ou None si aucune photo n'a été envoyée."""
+def photo_info(slot: dict) -> tuple[int, int, str] | None:
+    """(largeur, hauteur, empreinte) de la photo de l'emplacement, ou None si absente."""
     path = PHOTOS_DIR / f"{slot['id']}.jpg"
     if not path.is_file():
         return None
@@ -105,11 +116,56 @@ def photo_img(slot: dict, lang: str, css: str) -> str | None:
         width, height = jpeg_size(data)
     except ValueError as exc:
         sys.exit(f"{path} : {exc}")
-    version = hashlib.sha1(data).hexdigest()[:8]
+    return width, height, hashlib.sha1(data).hexdigest()
+
+
+def photo_img(slot: dict, lang: str, css: str, loading: str = "lazy") -> str | None:
+    """Balise <img> de l'emplacement, ou None si aucune photo n'a été envoyée."""
+    info = photo_info(slot)
+    if not info:
+        return None
+    width, height, digest = info
     alt = html.escape(slot["alt"][lang], quote=True)
+    css_attr = f' class="{css}"' if css else ""
     return (
-        f'<img src="/images/photos/{slot["id"]}.jpg?v={version}" alt="{alt}" '
-        f'width="{width}" height="{height}" loading="lazy" decoding="async" class="{css}">'
+        f'<img src="/images/photos/{slot["id"]}.jpg?v={digest[:8]}" alt="{alt}" '
+        f'width="{width}" height="{height}" loading="{loading}" decoding="async"{css_attr}>'
+    )
+
+
+def slideshow(slots: list[dict], lang: str) -> str:
+    """Diaporama des photos présentes du groupe « Accueil : diaporama » (doublons exacts ignorés)."""
+    labels = SLIDESHOW_LABELS[lang]
+    seen, chosen = set(), []
+    for slot in slots:
+        if not slot["group"].startswith(SLIDESHOW_GROUP_PREFIX):
+            continue
+        info = photo_info(slot)
+        if info and info[2] not in seen:
+            seen.add(info[2])
+            chosen.append((slot, info))
+    if not chosen:
+        return ""
+    total = len(chosen)
+    slides, dots = [], []
+    for n, (slot, (width, height, _)) in enumerate(chosen, start=1):
+        css = "diaporama-portrait" if height > width else ""
+        img = photo_img(slot, lang, css, loading="eager" if n == 1 else "lazy")
+        slide_label = labels["slide"].format(n=n, total=total)
+        slides.append(f'<figure class="diaporama-diapo" role="group" aria-roledescription="diapositive" '
+                      f'aria-label="{slide_label}">{img}</figure>')
+        dots.append(f'<button type="button" aria-label="{labels["goto"].format(n=n)}"></button>')
+    esc = lambda s: html.escape(s, quote=True)
+    return (
+        f'<div class="diaporama mb-12" role="region" aria-roledescription="carrousel" '
+        f'aria-label="{esc(labels["region"])}" data-libelle-pause="{esc(labels["pause"])}" '
+        f'data-libelle-lecture="{esc(labels["play"])}">'
+        f'<div class="diaporama-piste" tabindex="0" aria-label="{esc(labels["region"])}">' + "".join(slides) + "</div>"
+        f'<button type="button" class="diaporama-btn diaporama-prec" aria-label="{esc(labels["prev"])}">{ICON_PREV}</button>'
+        f'<button type="button" class="diaporama-btn diaporama-suiv" aria-label="{esc(labels["next"])}">{ICON_NEXT}</button>'
+        f'<div class="diaporama-bas"><button type="button" class="diaporama-pause" '
+        f'aria-label="{esc(labels["pause"])}">{ICON_PAUSE}{ICON_PLAY}</button>'
+        f'<div class="diaporama-points">' + "".join(dots) + "</div></div></div>"
     )
 
 
@@ -121,36 +177,12 @@ def render_photos(content: str, lang: str, slots: list[dict], page: pathlib.Path
             sys.exit(f"{page} : emplacement photo inconnu « {slot_id} » (absent de data/photos.json)")
         return by_id[slot_id]
 
-    def box(match: re.Match) -> str:
-        slot, css = get(match[1]), match[2]
-        img = photo_img(slot, lang, "w-full h-full object-cover")
-        if img:
-            return f'<div class="{css} rounded-rayon-lg overflow-hidden">{img}</div>'
-        label = html.escape(slot["placeholder"][lang])
-        return (
-            f'<div class="{css} rounded-rayon-lg border-2 border-dashed border-dune bg-sable flex '
-            f'flex-col items-center justify-center gap-2 text-encre-douce p-6 text-center">'
-            f'{PLACEHOLDER_SVG}<p class="legende">{label}</p></div>'
-        )
-
     def inline(match: re.Match) -> str:
         return photo_img(get(match[1]), lang, "block w-full rounded-rayon-lg mb-6") or ""
 
-    content = re.sub(r"\{\{PHOTOBOX:([\w-]+)\|([^}]*)\}\}", box, content)
     content = re.sub(r"\{\{PHOTO:([\w-]+)\}\}", inline, content)
-
-    if "{{GALLERY}}" in content:
-        items = [
-            photo_img(slot, lang, "w-full h-full object-cover")
-            for slot in slots
-            if slot["group"].startswith(GALLERY_GROUP_PREFIX)
-        ]
-        items = [f'<div class="aspect-[4/3] rounded-rayon-lg overflow-hidden">{img}</div>' for img in items if img]
-        gallery = (
-            '<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">' + "".join(items) + "</div>"
-            if items else ""
-        )
-        content = content.replace("{{GALLERY}}", gallery)
+    if "{{SLIDESHOW}}" in content:
+        content = content.replace("{{SLIDESHOW}}", slideshow(slots, lang))
     return content
 
 LANG_SWITCH_NAMES = {"fr": "Français", "en": "English", "de": "Deutsch"}
@@ -291,7 +323,7 @@ def build() -> list[pathlib.Path]:
 
             remaining = [
                 t for t in ("{{HEADER}}", "{{FOOTER}}", "{{HREFLANG}}", "{{LANGSWITCH}}",
-                            "{{PHOTO", "{{GALLERY}}")
+                            "{{PHOTO", "{{SLIDESHOW}}")
                 if t in content
             ]
             if remaining:
