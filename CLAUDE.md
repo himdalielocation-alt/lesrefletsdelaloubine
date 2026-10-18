@@ -59,6 +59,16 @@ npm run build:css
 
 ⚠️ **Cette étape n'a pas pu être testée dans l'environnement où elle a été écrite** (le registre npm y était bloqué, donc impossible d'installer le CLI Tailwind ni de vérifier le rendu avant de committer). Après le premier push touchant le CSS : vérifiez que `.github/workflows/build-css.yml` se termine en vert dans l'onglet Actions de GitHub, que `assets/css/styles.css` a bien été généré (non vide), et ouvrez le site pour comparer visuellement avec ce que vous connaissiez avant. Si quelque chose cloche, le plus simple est de me dire ce qui a changé visuellement, ou de rouvrir `assets/css/styles.css` généré et regarder si une classe utilisée dans le HTML semble absente du CSS (signe que `tailwind.config.js` ne scanne pas le bon fichier).
 
+## Photos (page `/admin.html`)
+
+Le propriétaire envoie lui-même les photos depuis **`https://lesrefletsdelaloubine.fr/admin.html`** (page non indexée, absente du sitemap et des menus) :
+
+- **Emplacements** : déclarés dans `data/photos.json` (`id`, `group`, `label` affiché dans l'admin, `alt` en fr/en/de, `placeholder` pour les grands cadres de l'accueil). Une photo = `images/photos/<id>.jpg`.
+- **Envoi** : `admin.html` réduit la photo dans le navigateur (1920 px max, JPEG), puis la commit dans `images/photos/` via l'API GitHub avec une clé *fine-grained* (dépôt `lesrefletsdelaloubine` seul, permission Contents en lecture/écriture) stockée uniquement dans le `localStorage` de l'appareil. Aucun script externe sur la page, CSP limitée à `api.github.com`.
+- **Affichage** : jetons dans les templates, remplacés par `scripts/build_pages.py` — `{{PHOTOBOX:id|classes}}` (cadre de l'accueil : photo, sinon « Photo à ajouter »), `{{PHOTO:id}}` (photo dans le texte, sinon rien), `{{GALLERY}}` (galerie des emplacements du groupe « Accueil : galerie… » présents, sinon rien). Dimensions lues dans le JPEG, `?v=<hash>` pour le cache.
+- **Mise en ligne** : chaque photo envoyée déclenche `.github/workflows/build-pages.yml` (chemins `images/photos/**`, `data/photos.json`), qui régénère et commit les pages ; exécutions en file d'attente, repartant toujours de la dernière version de `main`.
+- **Ajouter un emplacement** : une entrée dans `data/photos.json` + le jeton dans les templates des 3 langues. Les classes CSS utilisées par les jetons existent déjà dans `assets/css/styles.css` ; en cas de nouvelle classe, vérifier le CSS compilé.
+
 ## Calendrier de disponibilités (ne pas modifier sans comprendre le mécanisme)
 
 - `.github/workflows/sync-calendar.yml` : tourne tous les jours à minuit UTC (+ déclenchement manuel), lit un Google Sheet via un compte de service (secret `GOOGLE_SERVICE_ACCOUNT_JSON`), écrit `data/calendar.json`, commit et push sur `main`.

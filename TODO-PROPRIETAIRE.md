@@ -39,9 +39,11 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] Directeur de la publication : Maryse Courant — **intégré** (3 langues)
 - [x] Durée de conservation : demande sans suite 3 ans après le dernier échange ; séjour réservé : durée de la relation + 5 ans ; factures : 10 ans — **intégré** (3 langues)
 
-## Photos à prendre (remplacent les placeholders actuels)
+## Photos à prendre
 
-Remplacent les 3 photos Unsplash de la section « Le Logement » (ne représentent pas le vrai logement) et les 8 blocs « Photo à ajouter » de la page activités :
+**À envoyer vous-même depuis https://lesrefletsdelaloubine.fr/admin.html** (clé GitHub à créer une fois, explications sur la page). 20 emplacements : 3 grandes photos de l'accueil, 8 pour la galerie du logement, 8 pour la page activités, 1 pour la page Vendée Globe. Le site se met à jour seul 2 à 3 minutes après chaque envoi.
+
+- [ ] Créer la clé GitHub et se connecter à la page admin
 
 - [ ] Vue depuis le salon
 - [ ] Vue depuis la terrasse
