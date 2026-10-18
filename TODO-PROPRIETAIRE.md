@@ -35,8 +35,8 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [ ] Dates 2027 : ponts de mai, Vendée Va'a, Journées européennes du patrimoine
 
 ### Mentions légales et confidentialité
-- [ ] Identité de l'éditeur du site (nom, adresse) — dans `mentions-legales.html`, actuellement en TODO
-- [ ] Nom du directeur de la publication — idem
+- [x] Éditeur du site : Maryse Courant, Résidence L'Estran, 65 rue du Puits d'Enfer, Château-d'Olonne, 85180 Les Sables-d'Olonne — **intégré** (3 langues)
+- [x] Directeur de la publication : Maryse Courant — **intégré** (3 langues)
 - [ ] Durée de conservation des e-mails de réservation — dans `politique-de-confidentialite.html`, actuellement en TODO
 
 ## Photos à prendre (remplacent les placeholders actuels)
