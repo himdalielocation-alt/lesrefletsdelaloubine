@@ -50,6 +50,9 @@ TRANSLATED_PAGES = [
     "vendee-globe-2028.html",
     "puits-d-enfer-sables-d-olonne.html",
     "plages-sables-d-olonne.html",
+    "sables-d-olonne-hors-saison.html",
+    "venir-aux-sables-d-olonne.html",
+    "location-vacances-chateau-d-olonne.html",
 ]
 
 SITEMAP_PATH = ROOT / "sitemap.xml"
