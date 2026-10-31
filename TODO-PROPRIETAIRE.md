@@ -19,7 +19,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] Annulation : 25 % d'arrhes à la réservation, solde 30 jours avant l'arrivée ; annulation > 30 jours : arrhes conservées ; < 30 jours : séjour dû sauf relocation ; assurance annulation conseillée — **intégré** (FAQ). À reprendre à l'identique dans votre contrat de location
 - [x] Paiement : virement bancaire uniquement — **intégré** (FAQ « Comment se passe la réservation ? », JSON-LD `paymentAccepted`)
 - [x] Délai de réponse : sous 24h — **intégré** (étape 3 de la section réservation, 3 langues)
-- [x] Numéro d'enregistrement : 8519400689700 — **intégré** (mentions légales et pied de page de toutes les pages, 3 langues). La mention « Immatriculation en cours » du calendrier a été retirée
+- [x] Numéro d'enregistrement : 8519400698598 — **intégré** (mentions légales et pied de page de toutes les pages, 3 langues). La mention « Immatriculation en cours » du calendrier a été retirée
 - [x] Numéro de téléphone : pas de téléphone affiché, choix définitif — seul l'e-mail reste comme contact (le TODO correspondant a été retiré du code)
 - [x] Annonce Airbnb : https://www.airbnb.fr/h/lesrefletsdelaloubine — **intégré** (encart Airbnb de la section réservation, JSON-LD `sameAs`, 3 langues)
 - [x] « Votre hôte » : « Maryse et ses enfants sont heureux de vous accueillir aux Sables-d'Olonne » — **intégré** dans la carte « Contact direct avec vos hôtes » (anciennement « … avec le propriétaire »), 3 langues
