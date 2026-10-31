@@ -65,7 +65,7 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] HTTPS et redirection `www.lesrefletsdelaloubine.fr` → site : vérifié par vous
 - [ ] Tester le JSON-LD sur [validator.schema.org](https://validator.schema.org) et sur le [test des résultats enrichis de Google](https://search.google.com/test/rich-results)
 - [ ] Ajouter le site dans Bing Webmaster Tools
-- [ ] Obtenir l'autorisation de changement d'usage — tant qu'elle n'est pas obtenue, le site garde « Réservation bientôt disponible » (badge du calendrier) et « Bientôt disponible » (cartes de tarifs) ; me prévenir pour les remplacer par « Demander mes dates »
+- [x] Logement ouvert à la réservation (31/10/2026) : cartes de tarifs avec bouton « Demander mes dates », badge « Réservation ouverte en direct » et note du calendrier mis à jour (3 langues)
 - [ ] Créer le compte Swikly pour la caution (plus tard)
 - [ ] Reprendre les conditions de caution et d'annulation dans le contrat de location (clauses proposées dans la conversation)
 
