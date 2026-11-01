@@ -2,7 +2,7 @@
 <urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lesrefletsdelaloubine.fr/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -10,16 +10,14 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/vue-salon.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/sejour.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/chambre.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/lit-armoire-ferme.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/salle-de-bain.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/piscines.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/exterieurs-residence.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/en/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -27,16 +25,14 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/vue-salon.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/sejour.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/chambre.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/lit-armoire-ferme.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/salle-de-bain.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/piscines.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/exterieurs-residence.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://lesrefletsdelaloubine.fr/de/</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fr" href="https://lesrefletsdelaloubine.fr/"/>
@@ -44,9 +40,7 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://lesrefletsdelaloubine.fr/de/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://lesrefletsdelaloubine.fr/"/>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/sables-olonne-plage.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/vue-salon.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/sejour.jpg</image:loc></image:image>
-    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/chambre.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/lit-armoire-ferme.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/salle-de-bain.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/piscines.jpg</image:loc></image:image>
     <image:image><image:loc>https://lesrefletsdelaloubine.fr/images/photos/exterieurs-residence.jpg</image:loc></image:image>
