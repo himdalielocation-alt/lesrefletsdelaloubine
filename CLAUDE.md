@@ -77,6 +77,10 @@ Le propriétaire envoie lui-même les photos depuis **`https://lesrefletsdelalou
 
 `.github/workflows/indexnow.yml` lance chaque jour `scripts/indexnow.py`, qui signale à IndexNow les URLs du sitemap dont le `<lastmod>` date des 2 derniers jours. La clé est le fichier `<clé hexadécimale>.txt` à la racine (contenu = la clé) : ne pas le supprimer ni le renommer. Google n'utilise pas IndexNow (pour Google, Search Console).
 
+## Livret d'accueil (`livret.html`, page privée)
+
+Page autonome (hors templates, hors sitemap, non liée, `noindex`), générée par `scripts/livret.mjs` à partir de `scripts/livret_shell.html` (mise en page + déchiffrement) et d'un contenu HTML chiffré en AES-GCM 256. **La clé n'est jamais dans le dépôt** : elle est dans l'URL donnée au propriétaire (`livret.html#k=<clé>`, imprimée en QR code dans l'appartement). Pour modifier le contenu, demander l'URL complète au propriétaire, puis `decrypt` / éditer / `encrypt` (voir `README.md`) ; ne jamais committer le contenu en clair ni la clé. L'ancien guide chiffré par mot de passe (`guide.html`, `build-guide.html`) a été supprimé.
+
 ## Calendrier de disponibilités (ne pas modifier sans comprendre le mécanisme)
 
 - `.github/workflows/sync-calendar.yml` : tourne tous les jours à minuit UTC (+ déclenchement manuel), lit un Google Sheet via un compte de service (secret `GOOGLE_SERVICE_ACCOUNT_JSON`), écrit `data/calendar.json`, commit et push sur `main`.

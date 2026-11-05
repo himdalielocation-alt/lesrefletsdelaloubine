@@ -6,8 +6,7 @@ Site vitrine de la location saisonnière « Les Reflets de la Loubine », héber
 
 - `index.html` — page d'accueil (présentation, équipements, tarifs & disponibilités, localisation, réservation).
 - `activites-sables-d-olonne.html` — article SEO « Que faire aux Sables-d'Olonne ? », accessible depuis le menu (« Que faire ? ») et depuis la section Localisation de la page d'accueil.
-- `guide.html` — guide du séjour protégé par mot de passe (voir ci-dessous).
-- `build-guide.html` — outil local pour régénérer `guide.html`.
+- `livret.html` — livret d'accueil des voyageurs, chiffré, ouvert uniquement par l'URL complète / le QR code remis dans l'appartement (voir ci-dessous).
 
 Le domaine réel `https://lesrefletsdelaloubine.fr` est déjà utilisé partout (balises canoniques, Open Graph, JSON-LD, `sitemap.xml`, `robots.txt`) : ce n'est pas un espace réservé à remplacer.
 
@@ -26,8 +25,8 @@ La page `activites-sables-d-olonne.html` contient des blocs « Photo à ajouter 
 
 Une fois une photo ajoutée dans `images/`, remplacez le bloc placeholder correspondant par une balise `<img>` classique dans `activites-sables-d-olonne.html`.
 
-## Guide du séjour (page protégée par mot de passe)
+## Livret d'accueil (page privée)
 
-`guide.html` est chiffré (AES-GCM + PBKDF2, côté client, aucun serveur) : le mot de passe n'apparaît jamais dans le code source. Pour le modifier ou changer le mot de passe : ouvrez `build-guide.html` directement dans votre navigateur (double-clic, pas de serveur nécessaire), éditez le contenu et/ou le mot de passe dans le formulaire, cliquez sur « Générer guide.html », puis remplacez le fichier `guide.html` du dépôt par celui téléchargé. Changer le mot de passe suppose toujours de régénérer `guide.html` de cette façon — il n'y a pas d'autre endroit où le modifier.
+`livret.html` n'est lié nulle part sur le site, n'est pas dans le sitemap et n'est pas indexé. Son contenu est chiffré (AES-GCM 256) : le dépôt étant public, seul le texte chiffré y figure. La clé est uniquement dans l'URL remise aux voyageurs (`https://lesrefletsdelaloubine.fr/livret.html#k=…`, la partie après `#` n'est jamais envoyée au serveur) : le QR code de l'appartement ouvre donc le livret directement, sans mot de passe. Sans cette URL complète, la page affiche seulement un message d'accueil.
 
-⚠️ Le contenu chiffré dans `guide.html` contient encore les `{{PLACEHOLDERS}}` par défaut (pas le vrai contenu) : à régénérer via `build-guide.html` une fois les informations réelles renseignées, avant de communiquer le lien aux voyageurs. Le mot de passe n'est volontairement noté nulle part dans ce dépôt.
+Modifier le livret : `LIVRET_KEY='<URL complète>' node scripts/livret.mjs decrypt > contenu.html`, éditer `contenu.html`, puis `LIVRET_KEY='<URL complète>' node scripts/livret.mjs encrypt contenu.html` (ne pas committer `contenu.html`). Changer la clé (`node scripts/livret.mjs newkey`) oblige à réimprimer le QR code. L'URL complète n'est notée nulle part dans ce dépôt.
