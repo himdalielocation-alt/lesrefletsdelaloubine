@@ -12,9 +12,9 @@ Document de travail (non publié). Tout ce qui suit reste en commentaire `<!-- T
 - [x] Étage : rez-de-chaussée — **intégré** (liste « À propos », FAQ « À quel étage se trouve l'appartement ? »). Rien n'est affiché sur l'accessibilité PMR (marches, largeur des portes…) faute d'information
 - [x] Wi-Fi : non — **intégré** en FAQ (« Non, l'appartement n'a pas de connexion Wi-Fi »)
 - [x] Lave-vaisselle dans l'appartement, lave-linge dans la résidence — **intégré** (carte « Cuisine équipée », FAQ, JSON-LD)
-- [x] Linge de lit : en option, 12 € par lit pour le séjour — **intégré** (FAQ, mention sous les tarifs)
+- [x] Linge de lit : en option, 5 € par lit simple, 10 € pour le lit double, draps de bain 5 €/personne (aligné sur le livret d'accueil) — **intégré** (FAQ, mention sous les tarifs)
 - [x] Animaux : non acceptés — **intégré** (FAQ, JSON-LD `petsAllowed: false`)
-- [x] Horaires : arrivée à partir de 17h, départ avant 10h — **intégré** (FAQ, JSON-LD `checkinTime`/`checkoutTime` rétablis)
+- [x] Horaires : arrivée à partir de 17h, départ avant 11h (aligné sur le livret d'accueil) — **intégré** (FAQ, page « Venir », JSON-LD `checkinTime`/`checkoutTime`)
 - [x] Caution : 300 € par empreinte bancaire (ex. Swikly, compte à créer de votre côté) — **intégré** (FAQ, sans nommer le service)
 - [x] Annulation : 25 % d'arrhes à la réservation, solde 30 jours avant l'arrivée ; annulation > 30 jours : arrhes conservées ; < 30 jours : séjour dû sauf relocation ; assurance annulation conseillée — **intégré** (FAQ). À reprendre à l'identique dans votre contrat de location
 - [x] Paiement : virement bancaire uniquement — **intégré** (FAQ « Comment se passe la réservation ? », JSON-LD `paymentAccepted`)
